@@ -1,0 +1,12 @@
+
+
+.pixel {
+    /* --s: 15px; */
+    width: 10px;
+    height: 10px;
+
+}
+    &:hover {
+      cursor: pointer;
+    }
+  
