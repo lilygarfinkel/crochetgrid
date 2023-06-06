@@ -2,11 +2,12 @@ import React, { useState } from "react"
 import "./Pixel.css"
 
 export default function Pixel(props) {
-  const { selectedColor, stitch } = props
+  const { selectedColor, stitch ,clicked} = props
 
   const [pixelColor, setPixelColor] = useState("#fff")
   const [oldColor, setOldColor] = useState(pixelColor)
   const [canChangeColor, setCanChangeColor] = useState(true)
+  const [isClicked, setClick] = useState(false)
 
 
   function applyColor() {
@@ -15,8 +16,13 @@ export default function Pixel(props) {
   }
 
   function changeColorOnHover() {
+    console.log(clicked)
+    if(clicked){
+      applyColor()
+    }
+    else{
     setOldColor(pixelColor)
-    setPixelColor(selectedColor)
+    setPixelColor(selectedColor)}
   }
 
   function resetColor() {

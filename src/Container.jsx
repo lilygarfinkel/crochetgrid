@@ -5,7 +5,6 @@ import './Container.css';
 import Grid from "./Grid.jsx";
 import { HexColorPicker } from "react-colorful"
 import { exportComponentAsPNG } from "react-component-export-image"
-import { OnDeviceTraining } from "@mui/icons-material";
 
 function Container() {
   const [panelWidth, setPanelWidth] = useState(16);
@@ -17,6 +16,12 @@ function Container() {
   var grid = <Grid></Grid>
   const [currGrid, setCurrGrid] = useState(grid);
   const [oldGrid, setOldGrid] = useState(grid);
+
+  const [isClicked, setClick] = useState(false);
+
+
+  const [saveBar, setSB] = useState(false);
+  const [editBar, setEB] = useState(false);
 
   const panelRef = useRef()
 
@@ -42,25 +47,31 @@ function Container() {
     }
   }
 
-  function hideNav() {
-    var nav = document.getElementById("navbar");
-    // var but = document.getElementById('hidenav');
-    // var box = document.getElementById("hidebox");
-    if (nav.style.display === 'none') {
-      nav.style.display = 'flex';
-      // but.style.left ='25vw';
-      // but.textContent = "<";
-      // box.textContent = "display nav";
-      // box.style.left ='calc(25vw + 20px)';
-    }
-    else {
-      nav.style.display = 'none';
-      // but.textContent = ">";
-      // but.style.left ='0vw';
-      // box.textContent = "hide nav";
-      // box.style.left ='20px';
+  function hideNav(e) {
+    console.log(e.target.value)
+    // var options = document.getElementById("options");
+    // var save = document.getElementById("export");
 
-    }
+    // // var but = document.getElementById('hidenav');
+    // // var box = document.getElementById("hidebox");
+    // if (editBar === false) {
+    //   options.style.display = 'flex';
+    //   save.style.display = 'none';
+    //   // but.style.left ='25vw';
+    //   // but.textContent = "<";
+    //   // box.textContent = "display nav";
+    //   // box.style.left ='calc(25vw + 20px)';
+    // }
+    // else {
+    //   options.style.display = 'none';
+    //   save.style.display = 'flex';
+
+    //   // but.textContent = ">";
+    //   // but.style.left ='0vw';
+    //   // box.textContent = "hide nav";
+    //   // box.style.left ='20px';
+
+    // }
   }
 
   function Undo() {
@@ -82,7 +93,7 @@ function Container() {
 
   function drawGrid() {
     var g = grid;
-    grid = <Grid width={panelWidth} height={panelHeight} selectedColor={selectedColor} mode={mode} stitch={stitch}></Grid>
+    grid = <Grid width={panelWidth} height={panelHeight} selectedColor={selectedColor} mode={mode} stitch={stitch} clicked={isClicked}></Grid>
     //saveGrid(g, grid);
     return grid;
   }
@@ -94,80 +105,88 @@ function Container() {
           <img className='head' src={logo} alt="Logo" id="logo" style={{ height: '20px' }} />
           <h1 className="head">crochetgrid</h1>
           <ul>
-            <li><p>Login</p></li>
-            <li><p  id='hidenav' onClick={hideNav}>Edit</p></li>
-            <div  id='hidebox'className='hidebox'>collapse nav</div>
-            <li><p>Save</p></li>
+            <li><button>Login</button></li>
+            <li><button value='edit' id='hidenav' onClick={(e) => hideNav(e)}>Edit</button></li>
+            {/* <div  id='hidebox'className='hidebox'>collapse nav</div> */}
+            <li><button value='save' id='hidenav' onClick={(e) => { hideNav(e) }}>Save</button></li>
           </ul>
         </div>
         <div id="navbar" className="navbar">
-          <div id="options">
-            <div className="option">
-              <span>Stitch Size</span>
-              <select
-                className="panelInput"
-                defaultValue='double'
-                // value={stitch}
-                onChange={e => {
-                  changeStitch(e)
-                }}>
-                <option name="single"> single</option>
-                <option name="double">double</option>
-                <option name="triple">triple</option>
-              </select>
+            <div id="options">
+              <div className="option">
+                <span>Stitch Size</span>
+                <select
+                  className="panelInput"
+                  defaultValue='double'
+                  // value={stitch}
+                  onChange={e => {
+                    changeStitch(e)
+                  }}>
+                  <option name="single"> single</option>
+                  <option name="double">double</option>
+                  <option name="triple">triple</option>
+                </select>
+              </div>
+              <div className="option">
+                <span>Grid Type</span>
+                <select
+                  className="panelInput"
+                  defaultValue='grid'
+                  onChange={e => {
+                    changeMode(e)
+                  }}>
+                  <option name="grid"> grid</option>
+                  <option name="offset">offset</option>
+                  <option name="square">square</option>
+                </select>
+              </div>
+              <div className="option">
+                <span>Width</span>
+                <input
+                  type="number"
+                  className="panelInput"
+                  defaultValue={panelWidth}
+                  onChange={e => {
+                    setPanelWidth(e.target.value)
+                  }}
+                />
+              </div>
+              <div className="option">
+                <span>Height</span>
+                <input
+                  type="number"
+                  className="panelInput"
+                  defaultValue={panelHeight}
+                  onChange={e => {
+                    setPanelHeight(e.target.value)
+                  }}
+                />
+              </div>
+
+              <div className="small">
+                <HexColorPicker color={selectedColor} onChange={setColor} />
+              </div>
+              <div className='exps'>
+
+                <button className="export" onClick={() => Undo()}>
+                  Undo</button>
+              </div>
             </div>
-            <div className="option">
-              <span>Grid Type</span>
-              <select
-                className="panelInput"
-                defaultValue='grid'
-                onChange={e => {
-                  changeMode(e)
-                }}>
-                <option name="grid"> grid</option>
-                <option name="offset">offset</option>
-                <option name="square">square</option>
-              </select>
-            </div>
-            <div className="option">
-              <span>Width</span>
-              <input
-                type="number"
-                className="panelInput"
-                defaultValue={panelWidth}
-                onChange={e => {
-                  setPanelWidth(e.target.value)
-                }}
-              />
-            </div>
-            <div className="option">
-              <span>Height</span>
-              <input
-                type="number"
-                className="panelInput"
-                defaultValue={panelHeight}
-                onChange={e => {
-                  setPanelHeight(e.target.value)
-                }}
-              />
-            </div>
-            <div className="small">
-              <HexColorPicker color={selectedColor} onChange={setColor} />
-            </div>
-            <div className='exps'>
-              <button className="export" onClick={() => exportComponentAsPNG(panelRef, { html2CanvasOptions: { backgroundColor: null } })}>
-                Export</button>
-              <button className="export" onClick={() => Undo()}>
-                Undo</button>
-            </div>
+
           </div>
 
+          <div className='navbar'>
+            <div className='exps'>  <button id="export" className="export" onClick={() => exportComponentAsPNG(panelRef, { html2CanvasOptions: { backgroundColor: null } })}>
+              Export</button> 
+            </div> 
+          </div>
+       
+        <div className="gridcontainer"  onMouseDown={() => {setClick(true)}}onMouseUp={() => {setClick(false)}} >
+          <div className="grid" ref={panelRef} > {drawGrid()}</div>
         </div>
-
-        <div className="grid" ref={panelRef} > {drawGrid()}</div>
-
       </div>
     </div>
+
   );
 }
 
