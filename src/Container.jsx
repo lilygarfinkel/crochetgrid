@@ -49,29 +49,18 @@ function Container() {
 
   function hideNav(e) {
     console.log(e.target.value)
-    // var options = document.getElementById("options");
-    // var save = document.getElementById("export");
-
-    // // var but = document.getElementById('hidenav');
-    // // var box = document.getElementById("hidebox");
-    // if (editBar === false) {
-    //   options.style.display = 'flex';
-    //   save.style.display = 'none';
-    //   // but.style.left ='25vw';
-    //   // but.textContent = "<";
-    //   // box.textContent = "display nav";
-    //   // box.style.left ='calc(25vw + 20px)';
-    // }
-    // else {
-    //   options.style.display = 'none';
-    //   save.style.display = 'flex';
-
-    //   // but.textContent = ">";
-    //   // but.style.left ='0vw';
-    //   // box.textContent = "hide nav";
-    //   // box.style.left ='20px';
-
-    // }
+    var x = e.target.value
+    var options = document.getElementById("options");
+    var save = document.getElementById("export");
+   if (x === 'edit') {
+      console.log('here')
+      options.style.display = 'flex';
+      save.style.display = 'none';
+    }
+    else if(x === 'save') {
+      options.style.display = 'none';
+      save.style.display = 'flex';
+    }
   }
 
   function Undo() {
@@ -99,17 +88,19 @@ function Container() {
   }
 
   return (
-    <div className="App">
+    <div className="Container">
       <div className='page'>
         <div className="header">
           <img className='head' src={logo} alt="Logo" id="logo" style={{ height: '20px' }} />
           <h1 className="head">crochetgrid</h1>
+          <div className ='headButtons'>
           <ul>
             <li><button>Login</button></li>
-            <li><button value='edit' id='hidenav' onClick={(e) => hideNav(e)}>Edit</button></li>
+            <li><button value='edit' id='hidenav' onClick={(e) => {hideNav(e)}}>Edit</button></li>
             {/* <div  id='hidebox'className='hidebox'>collapse nav</div> */}
             <li><button value='save' id='hidenav' onClick={(e) => { hideNav(e) }}>Save</button></li>
           </ul>
+          </div>
         </div>
         <div id="navbar" className="navbar">
             <div id="options">
@@ -170,17 +161,18 @@ function Container() {
 
                 <button className="export" onClick={() => Undo()}>
                   Undo</button>
+                
+              </div>
+              <div id='export'>  
+              <button id="export" className="export" onClick={() => exportComponentAsPNG(panelRef, { html2CanvasOptions: { backgroundColor: null } })}>
+              Export</button> 
               </div>
             </div>
-
+        
+      
           </div>
 
-          <div className='navbar'>
-            <div className='exps'>  <button id="export" className="export" onClick={() => exportComponentAsPNG(panelRef, { html2CanvasOptions: { backgroundColor: null } })}>
-              Export</button> 
-            </div> 
-          </div>
-       
+          
         <div className="gridcontainer"  onMouseDown={() => {setClick(true)}}onMouseUp={() => {setClick(false)}} >
           <div className="grid" ref={panelRef} > {drawGrid()}</div>
         </div>

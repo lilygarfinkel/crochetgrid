@@ -16,7 +16,7 @@ export default function Pixel(props) {
   }
 
   function changeColorOnHover() {
-    console.log(clicked)
+    // console.log(clicked)
     if(clicked){
       applyColor()
     }

@@ -24,13 +24,16 @@
   z-index: 1;
 }
 
+.headButtons{
+  position: absolute; 
+  bottom: 0;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  position:relative;
-  margin-bottom: 5px;
 }
 
 li {
@@ -40,12 +43,14 @@ li {
 
 li button {
   display: block;
-  background-color: black;
+  background-color: rgb(13,13,13);
   color: white;
   text-align: center;
   padding: 5px 20px;
   text-decoration: none;
   font-size: 11px;
+  border: none;
+
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -143,7 +148,7 @@ flex-direction: row;
 
 .small .react-colorful {
   margin: 5px;
-  width: 20vw;
+  width: 120px;
   height: 65px;
   border: 1px solid rgb(255, 140, 0);
   border-radius: 0.5rem;
