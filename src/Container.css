@@ -1,21 +1,16 @@
 
-#editor {
-  border-radius: 0.25rem;
-  padding: 1rem 4rem 2rem 4rem;
-  margin-top: 2rem;
-
-}
 .page{
  height:100vh;
  width:100vw;
   position:relative;
   --h:10vh;
   display:flex;
-  flex-direction:column;
+  flex-direction: row-reverse;
+  padding-top:10vh;
 }
 .header{
   width: 100vw;
-  height: var(--h);
+  height: 10vh;
   position: absolute;
   top: 0;
   align-items:center;
@@ -53,7 +48,6 @@ li button {
 
 }
 
-/* Change the link color to #111 (black) on hover */
 li button:hover {
   background-color: rgb(96, 62, 20);
 }
@@ -71,59 +65,41 @@ li button:hover {
 .navbar {
   height: calc(100vh - var(--h));
  /* height: 100vh; */
-  width: 25vw;
+  width:  150px;
   position: absolute;
   bottom: 0;
   left: 0;
   background-color: rgb(34, 34, 34);
   border: 1px solid rgb(255, 140, 0);
+
  }
 
- .hnav{
-  padding-top:var(--h);
-  position:relative;
- }
-
-.hidebox{
-  display:none;
-  left: calc(25vw + 20px);
-  width:50px;
-  font-size:2vw;
-  outline:rgb(66, 66, 66);
-  color:rgba(0, 0, 0, 0.538);
-  background:rgb(182, 182, 182);
-  position: absolute;
-}
-
-.hidenav:hover + .hidebox{
-  display:block;
-}
-.hidenav {
-  background: rgb(13, 13, 13);
-  border-top: 1px solid rgb(255, 140, 0);
-  border-right: 1px solid rgb(255, 140, 0);
-  border-bottom: 1px solid rgb(255, 140, 0);
-  border-left: 1px solid rgb(0, 0, 0);
-  /* float:left; */
-  left: 25vw;
-  position:absolute;
-  width: 25px;
-  text-align: center;
+ .panelInput, .export{
+  background-color: rgb(96, 62, 20);
   color: rgb(255, 255, 255);
-  /* z-index: 2; */
+  border: 1px solid rgb(255, 140, 0);
+  border-radius: 0.25rem;
+  font-size:10px;
+  width: 35px;
+  text-align: center;
+  z-index:2;
 }
 
+.panelInput{
+  margin: 0 1rem 0.5rem 1rem;
+}
 
 span{
-  font-size:10px;
+  font-size:12px;
   margin: auto 0;
   padding-left:5px;
   z-index:2;
 
 }
 
+
 #options {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items:flex-start;
   padding-right: 10px;
@@ -141,9 +117,20 @@ span{
 }
 
 .exps {
-margin-top: 10px;
 display: inline-flex;
 flex-direction: row;
+}
+
+.export{
+  margin: 5px 5px 5px 5px;
+}
+
+#export{
+  display:none;
+  flex-direction: column;
+  align-items:flex-start;
+  padding-top: 30px;
+  padding-right: 2px;
 }
 
 .small .react-colorful {
@@ -159,27 +146,23 @@ flex-direction: row;
   height: 15px;
 }
 
-.panelInput, .export{
-  background-color: rgb(96, 62, 20);
-  color: rgb(255, 255, 255);
-  border: 1px solid rgb(255, 140, 0);
-  border-radius: 0.25rem;
-  margin: 0 1rem 0.5rem 1rem;
-  font-size:10px;
-  width: 35px;
-  text-align: center;
-  z-index:2;
 
-}
 .gridcontainer{
-  position:relative;
+  width:calc(100vw - 150px);
+  height: 90vh;
+  position:absolute;
   align-items:center;
+  padding:20px;
+  overflow:scroll;
 }
 .grid {
-  padding-top: 40vh;
-  padding-left:50vw;
-  position:absolute;
+  padding: 20px;
+  width: 200px;
+  height:200px;
+  margin:auto;
+  position:relative;
 }
+
 
 
 

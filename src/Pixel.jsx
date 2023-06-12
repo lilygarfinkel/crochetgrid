@@ -2,21 +2,19 @@ import React, { useState } from "react"
 import "./Pixel.css"
 
 export default function Pixel(props) {
-  const { selectedColor, stitch ,clicked} = props
+  const { selectedColor, stitch ,clicked, drawMode, zoom} = props
 
-  const [pixelColor, setPixelColor] = useState("#fff")
+  const [pixelColor, setPixelColor] = useState("white")
   const [oldColor, setOldColor] = useState(pixelColor)
   const [canChangeColor, setCanChangeColor] = useState(true)
-  const [isClicked, setClick] = useState(false)
-
+  const[ogW, setOGw] = useState(10);
 
   function applyColor() {
     setPixelColor(selectedColor)
     setCanChangeColor(false)
-  }
+    }
 
   function changeColorOnHover() {
-    // console.log(clicked)
     if(clicked){
       applyColor()
     }
@@ -25,13 +23,15 @@ export default function Pixel(props) {
     setPixelColor(selectedColor)}
   }
 
+
   function resetColor() {
     if (canChangeColor) {
       setPixelColor(oldColor)
     }
-
     setCanChangeColor(true)
   }
+
+
 
   return (
     <div
@@ -39,7 +39,8 @@ export default function Pixel(props) {
       onClick={applyColor}
       onMouseEnter={changeColorOnHover}
       onMouseLeave={resetColor}
-      style={{ backgroundColor: pixelColor ,border: "1px solid black", height: stitch+"px" }}
+      color={pixelColor}
+      style={{ backgroundColor: pixelColor,border: "1px solid black", height: stitch+zoom+"px", width: ogW+zoom+"px"}}
     ></div>
   )
 }
