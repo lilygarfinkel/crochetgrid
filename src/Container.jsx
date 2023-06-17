@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import logo from './logo.png'
 import './App.css';
 import './Container.css';
@@ -9,13 +9,13 @@ import { exportComponentAsPNG } from "react-component-export-image"
 function Container() {
   const [panelWidth, setPanelWidth] = useState(16);
   const [panelHeight, setPanelHeight] = useState(16);
-  const [selectedColor, setColor] = useState("#f44336");
-
-  var pstyle = 10;
-  const [stitch, setStitch] = useState(pstyle);
+  const [selectedColor, setColor] = useState("#ffffff");
+  const [stitch, setStitch] = useState(10);
   const [mode, setMode] = useState("grid");
   const [isClicked, setClick] = useState(false);
-  const [bgFill, setBg] = useState('white');
+  const [bgFill, setBg] = useState(selectedColor);
+  //0=default, 2=fill/reset
+  const [drawMode, setDrawMode] = useState(0);
   const [zoom, setZoom] = useState(0);
 
   var grid = <Grid></Grid>
@@ -56,33 +56,42 @@ function Container() {
     }
   }
 
-  function Fill(e, color) {
-    if (e === 'reset') {
-      setPanelHeight(16);
-      setPanelWidth(16);
-      setZoom(0);
-      document.getElementById('sizew').value = '16';
-      document.getElementById('sizeh').value = '16';
-      setBg('white');
-    }
+
+  function Reset() {
+    setPanelHeight(16);
+    setPanelWidth(16);
+    setZoom(0);
+    document.getElementById('sizew').value = '16';
+    document.getElementById('sizeh').value = '16';
     var pixel = document.getElementsByClassName('pixel');
     for (var i = 0; i < pixel.length; i++) {
-      pixel[i].color = 'white';
+      pixel[i].style.backgroundColor = '#ffffff';
     }
-
-
-
+    setBg('#ffffff');
+    setDrawMode(2);
   }
 
+  function Fill() {
+    var pixel = document.getElementsByClassName('pixel');
+    for (var i = 0; i < pixel.length; i++) {
+      pixel[i].style.backgroundColor = selectedColor;
+    }
+    setBg(selectedColor);
+    setDrawMode(2);
+  }
 
   function Undo() {
 
   }
 
   function drawGrid() {
-    grid = <Grid id='g' width={panelWidth} height={panelHeight} selectedColor={selectedColor} mode={mode} stitch={stitch} clicked={isClicked} drawMode={bgFill} zoom={zoom}></Grid>
+    grid = <Grid id='g' width={panelWidth} height={panelHeight} selectedColor={selectedColor} mode={mode} stitch={stitch} clicked={isClicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom}></Grid>
     return grid;
   }
+
+  useEffect(() => {
+    drawGrid()
+  }, [selectedColor, bgFill, drawMode])
 
   return (
     <div className="Container">
@@ -164,12 +173,13 @@ function Container() {
               <button
                 className="export"
                 value='reset'
-                onClick={(e) => Fill(e.target.value, "white")}>
+                onClick={Reset}>
                 Reset</button>
               <button
                 className="export"
-                onClick={(e) => Fill(e.target.value, selectedColor)}>
-                Fill</button>
+                value='fill'
+                onClick={Fill}>
+                Fill </button>
             </div>
             <div className='exps'>
               <button className='export' onClick={() => { setZoom(zoom + 1) }}>Zoom In</button>
@@ -185,7 +195,7 @@ function Container() {
           </div>
 
         </div>
-        <div className="gridcontainer" onMouseDown={() => { setClick(true); }} onMouseUp={() => { setClick(false) }}  >
+        <div className="gridcontainer" onMouseDown={() => { setClick(true); }} onMouseUp={() => { setClick(false); }}  >
           <div className="grid" id='grid' ref={panelRef}>
             {drawGrid()}
           </div>

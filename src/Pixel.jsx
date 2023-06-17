@@ -1,46 +1,61 @@
-import React, { useState } from "react"
+import React, { useState,useEffect } from "react"
 import "./Pixel.css"
 
 export default function Pixel(props) {
-  const { selectedColor, stitch ,clicked, drawMode, zoom} = props
+  const { selectedColor, stitch, clicked, drawMode, bgFill, zoom } = props
 
-  const [pixelColor, setPixelColor] = useState("white")
+  const [pixelColor, setPixelColor] = useState(selectedColor)
   const [oldColor, setOldColor] = useState(pixelColor)
   const [canChangeColor, setCanChangeColor] = useState(true)
-  const[ogW, setOGw] = useState(10);
+  const [dm, setDM] = useState(drawMode)
+  const [bg, setbgFill] = useState(bgFill)
 
-  function applyColor() {
+useEffect(() => {
+  setDM(drawMode);
+  setbgFill(bgFill)
+}, [drawMode,bgFill])
+
+ function applyColor() {
     setPixelColor(selectedColor)
     setCanChangeColor(false)
-    }
+ 
+   }
+
+  
 
   function changeColorOnHover() {
-    if(clicked){
+    if (clicked) {
       applyColor()
     }
-    else{
-    setOldColor(pixelColor)
-    setPixelColor(selectedColor)}
-  }
-
-
-  function resetColor() {
-    if (canChangeColor) {
-      setPixelColor(oldColor)
+    else {
+    if(dm === 0){
+      setOldColor(pixelColor)
+      setPixelColor(selectedColor)
     }
-    setCanChangeColor(true)
+    else if(dm === 2){
+      setOldColor(bgFill)
+      setPixelColor(selectedColor)
+      setDM(0)
+    }
+    }}
+    
+
+
+function resetColor() {
+  if (canChangeColor) {
+    setPixelColor(oldColor)
   }
+  setCanChangeColor(true)
+}
 
 
-
-  return (
-    <div
-      className="pixel"
-      onClick={applyColor}
-      onMouseEnter={changeColorOnHover}
-      onMouseLeave={resetColor}
-      color={pixelColor}
-      style={{ backgroundColor: pixelColor,border: "1px solid black", height: stitch+zoom+"px", width: ogW+zoom+"px"}}
-    ></div>
-  )
+return (
+  <div
+    className="pixel"
+    onClick={applyColor}
+    onMouseEnter={changeColorOnHover}
+    onMouseLeave={resetColor}
+    style={{ backgroundColor: pixelColor, border: "1px solid black", height: stitch + zoom + "px", width: 10 + zoom + "px" }}
+  ></div>
+)
 }
