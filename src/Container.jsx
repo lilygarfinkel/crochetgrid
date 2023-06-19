@@ -91,7 +91,8 @@ function Container() {
 
   useEffect(() => {
     drawGrid()
-  }, [selectedColor, bgFill, drawMode])
+    // setDrawMode(0)
+  }, [bgFill])
 
   return (
     <div className="Container">
@@ -144,7 +145,8 @@ function Container() {
                 className="panelInput"
                 defaultValue={panelWidth}
                 onChange={e => {
-                  setPanelWidth(e.target.value)
+                  setColor('white');
+                  setPanelWidth(e.target.value);
                 }}
               />
             </div>
@@ -156,6 +158,7 @@ function Container() {
                 className="panelInput"
                 defaultValue={panelHeight}
                 onChange={e => {
+                  setColor('white');
                   setPanelHeight(e.target.value)
                 }}
               />

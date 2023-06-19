@@ -10,34 +10,40 @@ export default function Pixel(props) {
   const [dm, setDM] = useState(drawMode)
   const [bg, setbgFill] = useState(bgFill)
 
+
 useEffect(() => {
   setDM(drawMode);
   setbgFill(bgFill)
-}, [drawMode,bgFill])
+}, [bgFill])
 
  function applyColor() {
     setPixelColor(selectedColor)
     setCanChangeColor(false)
- 
+    if(dm === 2){
+      setDM(0)
+    }
+   
    }
 
-  
-
   function changeColorOnHover() {
+    console.log(dm)
     if (clicked) {
       applyColor()
     }
     else {
+      //default
     if(dm === 0){
       setOldColor(pixelColor)
       setPixelColor(selectedColor)
     }
+    //background filled
     else if(dm === 2){
-      setOldColor(bgFill)
+      setOldColor(bg)
       setPixelColor(selectedColor)
-      setDM(0)
     }
-    }}
+   }
+  
+  }
     
 
 
