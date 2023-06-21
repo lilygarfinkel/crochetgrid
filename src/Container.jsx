@@ -7,10 +7,10 @@ import { HexColorPicker } from "react-colorful"
 import { exportComponentAsPNG } from "react-component-export-image"
 
 function Container() {
-  const [panelWidth, setPanelWidth] = useState(16);
-  const [panelHeight, setPanelHeight] = useState(16);
+  const [panelWidth, setPanelWidth] = useState(15);
+  const [panelHeight, setPanelHeight] = useState(15);
   const [selectedColor, setColor] = useState("#ffffff");
-  const [stitch, setStitch] = useState(10);
+  const [stitch, setStitch] = useState(15);
   const [mode, setMode] = useState("grid");
   const [isClicked, setClick] = useState(false);
   const [bgFill, setBg] = useState(selectedColor);
@@ -31,13 +31,13 @@ function Container() {
   function changeStitch(e) {
     const s = e.target.value;
     if (s === "single") {
-      setStitch(5)
-    }
-    else if (s === "double") {
       setStitch(10)
     }
-    else if (s === "triple") {
+    else if (s === "double") {
       setStitch(15)
+    }
+    else if (s === "triple") {
+      setStitch(20)
     }
   }
 
@@ -58,8 +58,8 @@ function Container() {
 
 
   function Reset() {
-    setPanelHeight(16);
-    setPanelWidth(16);
+    setPanelHeight(15);
+    setPanelWidth(15);
     setZoom(0);
     document.getElementById('sizew').value = '16';
     document.getElementById('sizeh').value = '16';
