@@ -59,7 +59,7 @@ function Container() {
 
   function Reset() {
     setPanelHeight(15);
-    setPanelWidth(15);
+    setPanelWidth(1);
     setZoom(0);
     document.getElementById('sizew').value = '16';
     document.getElementById('sizeh').value = '16';

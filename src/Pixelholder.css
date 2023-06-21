@@ -1,0 +1,13 @@
+
+
+.pixelH {
+    width: 15px;
+    height: 15px;
+    padding-bottom: 5px;
+  font-size: 10px;
+
+}
+    &:hover {
+      cursor: pointer;
+    }
+  
