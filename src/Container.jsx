@@ -59,10 +59,10 @@ function Container() {
 
   function Reset() {
     setPanelHeight(15);
-    setPanelWidth(1);
+    setPanelWidth(15);
     setZoom(0);
-    document.getElementById('sizew').value = '16';
-    document.getElementById('sizeh').value = '16';
+    document.getElementById('sizew').value = '15';
+    document.getElementById('sizeh').value = '15';
     var pixel = document.getElementsByClassName('pixel');
     for (var i = 0; i < pixel.length; i++) {
       pixel[i].style.backgroundColor = '#ffffff';
@@ -145,7 +145,7 @@ function Container() {
                 className="panelInput"
                 defaultValue={panelWidth}
                 onChange={e => {
-                  setColor('white');
+                  // setColor('white');
                   setPanelWidth(e.target.value);
                 }}
               />
@@ -158,8 +158,9 @@ function Container() {
                 className="panelInput"
                 defaultValue={panelHeight}
                 onChange={e => {
-                  setColor('white');
-                  setPanelHeight(e.target.value)
+                  // setColor('white');
+                  console.log(e.target.value)
+                  setPanelHeight(e.target.value);
                 }}
               />
             </div>

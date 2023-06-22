@@ -9,9 +9,11 @@ export default function Row(props) {
   let borderR = false;
   let pixels = []
 
-    for (let i = 0; i < width+1; i++) {
+ 
+
+    for (let i = -1; i < width; i++) {
       //bold every 5 gridlines
-      if((i) % 5 === 0){
+      if((i+1) % 5 === 0){
         borderR = true;
       }
       else{
@@ -19,17 +21,17 @@ export default function Row(props) {
       }
       // horizontal numbers
       if(y){
-        if(i===0){
+        if(i===-1){
           pixels.push(<Pixelholder key={i} zoom={zoom} x={''}></Pixelholder>)
         }
         else{
-          pixels.push(<Pixelholder key={i} zoom={zoom} x={i}></Pixelholder>)
+          pixels.push(<Pixelholder key={i} zoom={zoom} x={i+1}></Pixelholder>)
 
         }
       }
       else{
       // vertical numbers
-      if(i===0){
+      if(i===-1){
         pixels.push(<Pixelholder key={i} zoom={zoom} x={x}></Pixelholder>)
       }
       else{

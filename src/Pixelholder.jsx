@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react"
 import "./Pixelholder.css"
 
 export default function Pixelholder(props) {
-  const { stitch, zoom, x, y } = props
+  const { stitch, zoom, x } = props
 
  
 return (

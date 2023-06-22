@@ -10,24 +10,27 @@ function Grid(props) {
 
     const { width, height, selectedColor, mode, stitch, clicked, drawMode, bgFill, zoom} = props
     var color = selectedColor; 
-    var borderB = false;
-    var x =0;
+    let borderB = false;
+    let x =0;
     let y;
 
-    for (let i = 0; i < height+1; i++) {
-        if ((i) % 5 === 0){
+    for (let i = -1; i < height; i++) {
+        //bold every 5 bottom borders
+        if ((i+1) % 5 === 0){
             borderB = true;
         }
         else{
             borderB = false;
         }
 
-        if(i ===0){
+        // if first column, set number holders
+        if(i === -1){
             y=true;
         }
         else{
             y=false;
         }
+        //draw grid
         if (mode === "grid") {
             rows.push(<div><Row key={i} width={width} selectedColor={color} mode={mode} stitch={stitch} clicked={clicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} borderB={borderB}  x={x} y={y}/></div>)
         }
