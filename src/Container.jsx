@@ -4,6 +4,7 @@ import './App.css';
 import './Container.css';
 import Grid from "./Grid.jsx";
 import Color from "./Color.jsx";
+import SwatchesPicker from './SwatchesPicker.jsx'
 import { HexColorPicker } from "react-colorful"
 import { exportComponentAsPNG } from "react-component-export-image"
 import { selectClasses } from "@mui/material";
@@ -11,7 +12,7 @@ import { selectClasses } from "@mui/material";
 function Container() {
   const [panelWidth, setPanelWidth] = useState(15);
   const [panelHeight, setPanelHeight] = useState(15);
-  const [selectedColor, setColor] = useState("red");
+  const [selectedColor, setColor] = useState("#ff0000");
   const [stitch, setStitch] = useState(15);
   const [mode, setMode] = useState("grid");
   const [isClicked, setClick] = useState(false);
@@ -22,6 +23,8 @@ function Container() {
 
   const [sClick, sClicked] = useState(false);
   const [eClick, eClicked] = useState(false);
+  const presetColors = ["#ff0000", "#ffa500", "#ffff00", "#0d6416", "#008000", '#0000ff', '#4b0082', "#ee82ee"];
+
   const [modeC, setModeC] = useState('set');
 
   var grid = <Grid></Grid>
@@ -105,23 +108,27 @@ function Container() {
       }
       else {
         //highlight button
-        sbutton.style.backgroundColor = 'rgb(255, 140, 0)';
-        ubutton.style.backgroundColor = 'rgb(96, 62, 20)'
+        
+        document.getElementById('colorpicker').style.display = "flex"
+        sbutton.style.backgroundColor = 'rgb(25, 25, 25)';
+        ubutton.style.backgroundColor = 'rgb(0, 0, 0)'
         sClicked(true);
         eClicked(false);
       }
     }
     else if (m === "use") {
       if (eClick) {
+        document.getElementById('colorpicker').style.display = "none"
+
         //unhighlight button
-        ubutton.style.backgroundColor = 'rgb(96, 62, 20)'
+        ubutton.style.backgroundColor = 'rgb(0, 0, 0)'
         eClicked(false);
         sClicked(false);
       }
       else {
         //highlight button
-        ubutton.style.backgroundColor = 'rgb(255, 140, 0)';
-        sbutton.style.backgroundColor = 'rgb(96, 62, 20)';
+        ubutton.style.backgroundColor = 'rgb(25, 25, 25)';
+        sbutton.style.backgroundColor = 'rgb(0, 0, 0)';
         eClicked(true);
         sClicked(false);
 
@@ -129,12 +136,24 @@ function Container() {
     }
   }
 
-  function initColors() {
-    let colors = []
-    for (let i = 0; i < 8; i++) {
-      let id = i.toString() + "c"
-      colors.push(<div onClick={() => (useColor(id))}><Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
-    }
+  function initColors(n, t) {
+    // var rows = [];
+    // var row = 0; 
+    // for (let j = 0; j < 2; j++) {
+      let colors = [];
+      // row+=1;
+      for (let i = 0; i < n; i++) {
+        let id = i.toString() + t
+        // if(row===2 ){
+        // colors.push(<div onClick={() => (useColor(id))}><Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
+        // }
+        // else{
+          colors.push(<div onClick={() => (useColor(id))}> <Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
+
+      }
+    // rows.push(<div div className = 'colors'  id={row}>{colors}</div>)
+  // }
+  // console.log(rows)
     return colors;
   }
 
@@ -156,23 +175,20 @@ function Container() {
         return (x.length==1) ? "0"+x : x;  
     })
     hex = "#"+hex.join("");  
-
       console.log(hex)
       setColor(hex);
       colorToUse.style.border = '2px solid green'
     }
 
   }
-  const rgb2hex = (r, g, b) => '#' + (1<<24|r<<16|g<<8|b).toString(16).slice(1)
-
+ 
   function colorPicker() {
     let cp = <HexColorPicker id='colorpick' color={selectedColor} onChange={setColor} />
     return cp;
   }
   useEffect(() => {
     drawGrid();
-    colorPicker();
-  }, [bgFill, selectedColor])
+  }, [bgFill])
 
   return (
     <div className="Container">
@@ -243,13 +259,20 @@ function Container() {
                 }}
               />
             </div>
-            <div className="small">
-              -----------------------------------
+            -----------------------------
+            <div className="small" id='colorpicker'style={{display:'none'}}>
               {colorPicker()}
             </div>
             <div className='colors'>
+              <div className="preset">
+              <SwatchesPicker
+        color={selectedColor}
+        onChange={setColor}
+        presetColors={presetColors}
+      />
+            </div>
               <div className="colorCont">
-                {initColors()}
+              {initColors(8,'custom')}
               </div>
               <button
                 className='export'
@@ -257,7 +280,7 @@ function Container() {
                 value='set'
                 clicked={sClick}
                 onClick={(e) => { handleClick(e) }}
-                style={{ backgroundColor: 'rgb(255, 140, 0)' }}>
+                style={{ backgroundColor: 'rgb(25, 25, 25)' }}>
                 set color</button>
               <button
                 className='export'

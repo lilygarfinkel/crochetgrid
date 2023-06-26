@@ -4,9 +4,7 @@ import "./Pixelholder.css"
 export default function Pixelholder(props) {
   const { stitch, zoom, x } = props
 
- 
-  useEffect(() => {
-  }, [stitch])
+
 return (
   <div
     className="pixelH"
