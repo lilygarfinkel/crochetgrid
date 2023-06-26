@@ -3,13 +3,15 @@ import logo from './logo.png'
 import './App.css';
 import './Container.css';
 import Grid from "./Grid.jsx";
+import Color from "./Color.jsx";
 import { HexColorPicker } from "react-colorful"
 import { exportComponentAsPNG } from "react-component-export-image"
+import { selectClasses } from "@mui/material";
 
 function Container() {
   const [panelWidth, setPanelWidth] = useState(15);
   const [panelHeight, setPanelHeight] = useState(15);
-  const [selectedColor, setColor] = useState("#ffffff");
+  const [selectedColor, setColor] = useState("red");
   const [stitch, setStitch] = useState(15);
   const [mode, setMode] = useState("grid");
   const [isClicked, setClick] = useState(false);
@@ -17,6 +19,10 @@ function Container() {
   //0=default, 2=fill/reset
   const [drawMode, setDrawMode] = useState(0);
   const [zoom, setZoom] = useState(0);
+
+  const [sClick, sClicked] = useState(false);
+  const [eClick, eClicked] = useState(false);
+  const [modeC, setModeC] = useState('set');
 
   var grid = <Grid></Grid>
 
@@ -50,7 +56,7 @@ function Container() {
       options.style.display = 'flex';
       save.style.display = 'none';
     }
-    else if (x === 'save') {
+    else if (x === 'file') {
       options.style.display = 'none';
       save.style.display = 'flex';
     }
@@ -84,15 +90,93 @@ function Container() {
 
   }
 
+  function handleClick(e) {
+    var m = e.target.value;
+    setModeC(m);
+    var sbutton = document.getElementById('set');
+    var ubutton = document.getElementById('use');
+
+    if (m === "set") {
+      if (sClick) {
+        //unhighlight button
+        sbutton.style.backgroundColor = 'rgb(96, 62, 20)'
+        sClicked(false);
+        eClicked(false);
+      }
+      else {
+        //highlight button
+        sbutton.style.backgroundColor = 'rgb(255, 140, 0)';
+        ubutton.style.backgroundColor = 'rgb(96, 62, 20)'
+        sClicked(true);
+        eClicked(false);
+      }
+    }
+    else if (m === "use") {
+      if (eClick) {
+        //unhighlight button
+        ubutton.style.backgroundColor = 'rgb(96, 62, 20)'
+        eClicked(false);
+        sClicked(false);
+      }
+      else {
+        //highlight button
+        ubutton.style.backgroundColor = 'rgb(255, 140, 0)';
+        sbutton.style.backgroundColor = 'rgb(96, 62, 20)';
+        eClicked(true);
+        sClicked(false);
+
+      }
+    }
+  }
+
+  function initColors() {
+    let colors = []
+    for (let i = 0; i < 8; i++) {
+      let id = i.toString() + "c"
+      colors.push(<div onClick={() => (useColor(id))}><Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
+    }
+    return colors;
+  }
+
   function drawGrid() {
     grid = <Grid id='g' width={panelWidth} height={panelHeight} selectedColor={selectedColor} mode={mode} stitch={stitch} clicked={isClicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom}></Grid>
     return grid;
   }
 
+  function useColor(id) {
+    console.log(id);
+    if (modeC === "use") {
+      let colorToUse = document.getElementById(id)
+      let color = colorToUse.style.backgroundColor;
+      console.log(color)
+      var colortohex = color.split("(")[1].split(")")[0];
+      colortohex = colortohex.split(", ");
+      var hex =colortohex.map(function(x){             //For each array element
+        x = parseInt(x).toString(16);      //Convert to a base16 string
+        return (x.length==1) ? "0"+x : x;  //Add zero if we get only one character
+    })
+    hex = "#"+hex.join("");  
+    // col = col.substring(4, col.length-1)
+      // console.log(b)
+      // col = rgb2hex(col)
+      console.log(hex)
+      setColor(hex);
+      colorToUse.style.border = '2px solid green'
+
+      // document.getElementById('colorpicker').color = selectedColor;
+    }
+
+  }
+  const rgb2hex = (r, g, b) => '#' + (1<<24|r<<16|g<<8|b).toString(16).slice(1)
+
+  function colorPicker() {
+    let cp = <HexColorPicker id='colorpick' color={selectedColor} onChange={setColor} />
+    return cp;
+  }
   useEffect(() => {
-    drawGrid()
-    // setDrawMode(0)
-  }, [bgFill])
+    drawGrid();
+    colorPicker();
+  }, [bgFill, selectedColor])
 
   return (
     <div className="Container">
@@ -101,10 +185,10 @@ function Container() {
         <h1 className="head">crochetgrid</h1>
         <div className='headButtons'>
           <ul>
-            <li><button>Login</button></li>
+            <li><button value='file' id='hidenav' onClick={(e) => { hideNav(e) }}>File</button></li>
             <li><button value='edit' id='hidenav' onClick={(e) => { hideNav(e) }}>Edit</button></li>
             {/* <div  id='hidebox'className='hidebox'>collapse nav</div> */}
-            <li><button value='save' id='hidenav' onClick={(e) => { hideNav(e) }}>Save</button></li>
+            {/* <li><button value='save' id='hidenav' onClick={(e) => { hideNav(e) }}>Save</button></li> */}
           </ul>
         </div>
       </div>
@@ -164,9 +248,31 @@ function Container() {
                 }}
               />
             </div>
-
             <div className="small">
-              <HexColorPicker color={selectedColor} onChange={setColor} />
+              -----------------------------------
+              {colorPicker()}
+            </div>
+            <div className='colors'>
+              <div className="colorCont">
+                {initColors()}
+              </div>
+              <button
+                className='export'
+                id='set'
+                value='set'
+                clicked={sClick}
+                onClick={(e) => { handleClick(e) }}
+                style={{ backgroundColor: 'rgb(255, 140, 0)' }}>
+                set color</button>
+              <button
+                className='export'
+                id='use'
+                value='use'
+                clicked={eClick}
+                onClick={(e) => { handleClick(e) }}>
+                use color</button><br></br>
+              -----------------------------
+
             </div>
             <div className='exps'>
               <button
@@ -193,7 +299,13 @@ function Container() {
           <div id='export'>
             <button
               className="export"
-              value='fill'
+              value='upload'
+            // onClick={}
+            >
+              Upload Image</button>
+            <button
+              className="export"
+              value='export'
               onClick={() => exportComponentAsPNG(panelRef, { html2CanvasOptions: { backgroundColor: null } })}>
               Export</button>
           </div>

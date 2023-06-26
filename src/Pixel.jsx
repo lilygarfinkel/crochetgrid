@@ -4,7 +4,7 @@ import "./Pixel.css"
 export default function Pixel(props) {
   const { selectedColor, stitch, clicked, drawMode, bgFill, zoom, borderR, borderB } = props
 
-  const [pixelColor, setPixelColor] = useState(selectedColor)
+  const [pixelColor, setPixelColor] = useState('#ffffff')
   const [oldColor, setOldColor] = useState(pixelColor)
   const [canChangeColor, setCanChangeColor] = useState(true)
   const [dm, setDM] = useState(drawMode)
