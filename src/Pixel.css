@@ -3,7 +3,7 @@
 .pixel {
     width: 15px;
     height: 15px;
-
+  
 }
     &:hover {
       cursor: pointer;

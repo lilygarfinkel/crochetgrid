@@ -1,10 +1,9 @@
 
 
 .pixelH {
-    width: 15px;
-    height: 15px;
-    padding-bottom: 5px;
-  font-size: 10px;
+    height: 10px;
+    /* padding-bottom: 5px; */
+  font-size: 8px;
 
 }
     &:hover {

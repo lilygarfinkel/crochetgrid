@@ -151,19 +151,15 @@ function Container() {
       console.log(color)
       var colortohex = color.split("(")[1].split(")")[0];
       colortohex = colortohex.split(", ");
-      var hex =colortohex.map(function(x){             //For each array element
-        x = parseInt(x).toString(16);      //Convert to a base16 string
-        return (x.length==1) ? "0"+x : x;  //Add zero if we get only one character
+      var hex =colortohex.map(function(x){            
+        x = parseInt(x).toString(16);      
+        return (x.length==1) ? "0"+x : x;  
     })
     hex = "#"+hex.join("");  
-    // col = col.substring(4, col.length-1)
-      // console.log(b)
-      // col = rgb2hex(col)
+
       console.log(hex)
       setColor(hex);
       colorToUse.style.border = '2px solid green'
-
-      // document.getElementById('colorpicker').color = selectedColor;
     }
 
   }
@@ -212,7 +208,6 @@ function Container() {
               <select
                 className="panelInput"
                 defaultValue='double'
-                // value={stitch}
                 onChange={e => {
                   changeStitch(e)
                 }}>
