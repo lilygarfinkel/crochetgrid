@@ -10,7 +10,7 @@ import UploadImg from './UploadImg.jsx'
 import Pattern from './Pattern.jsx'
 import { HexColorPicker } from "react-colorful"
 import { exportComponentAsPNG } from "react-component-export-image"
-import { TiEdit, TiDocumentText, TiDownloadOutline } from "react-icons/ti";
+// import { TiEdit, TiDocumentText, TiDownloadOutline } from "react-icons/ti";
 
 
 function Container() {
@@ -248,9 +248,9 @@ function Container() {
       </div>
       <div className='navContainer'>
       <div className='sidenav'>
-        <button className='navButts' id='navedit' value = 'navedit' onClick = {(e) => {toggleSideNav(e.target.value)}}> <TiEdit size='20'/></button>   
-        <button className='navButts' id='navpattern'  value = 'navpattern' onClick = {(e) => {toggleSideNav(e.target.value)}}> <TiDocumentText size='20'/></button>   
-        <button className='navButts' id='navsave'  value = 'navsave' onClick = {(e) => {toggleSideNav(e.target.value)}}> <TiDownloadOutline size='20'/></button>   
+        <button className='navButts' id='navedit' value = 'navedit' onClick = {(e) => {toggleSideNav(e.target.value)}}> edit</button>   
+        <button className='navButts' id='navpattern'  value = 'navpattern' onClick = {(e) => {toggleSideNav(e.target.value)}}> pattern</button>   
+        <button className='navButts' id='navsave'  value = 'navsave' onClick = {(e) => {toggleSideNav(e.target.value)}}> save</button>   
 
       </div>
         <div><button>x</button></div>
