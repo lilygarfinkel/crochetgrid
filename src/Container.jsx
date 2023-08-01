@@ -371,10 +371,7 @@ function Container() {
                   onClick={Fill}>
                   Fill </button>
               </div>
-            </div>
-          </div>
-          <div className='saveO' id='saveO'>
-          <div className='lbl'>
+              <div className='lbl'>
               <p>Save</p>
               <button className='showOP' value='saveOP' id='saveOPb'onClick={(e) => {hideSection(e.target.value)}}>^</button>
               </div>
@@ -392,9 +389,13 @@ function Container() {
               onClick={uploadImg}
             > Upload Image</button>
           </div>
+            </div>
+          </div>
+          <div className='saveO' id='saveO'>
+          
         </div>
         <div className='pattern'>
-        <span>Start From:</span>
+        {/* <span>Start From:</span>
                 <select
                   className="panelInput"
                   id='patStart'
@@ -405,7 +406,7 @@ function Container() {
                   }}>
                   <option name="tr" value='tr'> top right 1,1</option>
                   <option name="bl" value='bl'>bottom left {panelHeight},{panelWidth}</option>
-                </select>
+                </select> */}
         </div>
         </div>
         </div>
