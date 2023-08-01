@@ -1,0 +1,27 @@
+.patternPix{
+     /* padding:5px; */
+     margin:auto;
+    border: 1px solid black
+}
+#Pattern{
+    position: absolute;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.rowNum{
+    padding: 10px;
+    width:auto;
+    height:40px;
+    align-items:center;
+    display: inline-flex;
+    flex-direction: row;
+    position:relative;
+}
+
+.rowP{
+    padding:5px;
+    display: inline-flex;
+    flex-direction: row;
+    position:relative;
+}

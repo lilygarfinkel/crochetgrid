@@ -1,9 +1,9 @@
 import React from "react";
-import { HexColorPicker } from "react-colorful";
 
 
 export default function SwatchesPicker(props) {
- const { color, onChange, presetColors  } = props
+ const { onChange, presetColors  } = props
+ 
   return (
          <div className="picker__swatches">
         {presetColors.map((presetColor) => (

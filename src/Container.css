@@ -1,143 +1,198 @@
-
+.Container{
+  --yel: #BACF1D;
+  --yel2: #DFF988;
+  --yel3:#ECFEBE;
+}
 .page{
  height:100vh;
  width:100vw;
   position:relative;
-  --h:10vh;
+  --hei: 60px;
   display:flex;
   flex-direction: row-reverse;
-  padding-top:10vh;
+  padding-top:var(--hei);
+
 }
 .header{
   width: 100vw;
-  height: 10vh;
+  height: 60px;
   position: absolute;
   top: 0;
-  align-items:center;
-  background-color: rgb(13, 13, 13);
-  border: 1px solid rgb(255, 140, 0);
+  background: var(--yel);
+  border: 1px solid rgb(0, 0, 0);
   z-index: 1;
 }
 
+.head {
+  position:relative;
+  top:0;
+  padding:0px;
+}
 .headButtons{
   position: absolute; 
   bottom: 0;
+  right:0;
+  padding-right: 10px;
 }
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-li {
-  float: left;
-
-}
-
-li button {
-  display: block;
-  background-color: rgb(13,13,13);
-  color: white;
-  text-align: center;
-  padding: 5px 20px;
-  text-decoration: none;
-  font-size: 11px;
-  border: none;
-
-}
-
-li button:hover {
-  background-color: rgb(96, 62, 20);
-}
-
-
-.head {
-  font-size:20px;
-  position:relative;
-  margin:2px;
-  display: inline-flex;
+.navContainer{
+  left:0;
+  display:inline-flex;
   flex-direction: row;
+  position:absolute;
+}
+
+.sidenav{
+  height: 100vh;
+  width: 35px;
+  left: 0;
+  background-color: var(--yel);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+
+}
+
+.navButts{
+  width:35px;
+  padding-bottom: 5px;
+  background-color: var(--yel);
+  border: 0px;
+  z-index: 3;
 }
 
 
 .navbar {
-  height: calc(100vh - var(--h));
- /* height: 100vh; */
-  width:  150px;
+ height: 100vh;
+ --w : 150px;
+  width:  var(--w);
   position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: rgb(34, 34, 34);
-  border: 1px solid rgb(255, 140, 0);
-
+  left: 35px;
+  background:var(--yel2);
+border: none; 
  }
 
+ .react-icons{
+  width: 40px;
+  height:40px;
+ }
+ #options {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  padding-right: 10px;
+
+}
+ 
  .panelInput, .export{
-  background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
+  background-color: var(--yel3);
+  color: black;
   border: 1px solid rgb(47, 47, 47);
   border-radius: 0.25rem;
   font-size:10px;
   width: 35px;
-  text-align: center;
-  z-index:2;
+  margin: auto;
+  padding:0px;
+  text-align:center;
+  vertical-align: middle;
 }
+
+.zoom {
+  background-color: var(--yel3);
+  border: 1px solid rgb(47, 47, 47);
+  border-radius: 0.25rem;
+  display: inline-flex;
+  flex-direction: row;
+  width:20px;
+  margin:3px;
+  color:black;
+  }
+  
+  .export{
+    margin: 5px;
+
+  }
+
 
 .panelInput{
   margin: 0 1rem 0.5rem 1rem;
 }
 
-span{
-  font-size:12px;
-  margin: auto 0;
-  padding-left:5px;
-  z-index:2;
+#saveOPs{
+  align-items:center;
+  display: inline-flex;
+  flex-direction: row;
+  width:45px;
 
 }
+span{
+  font-size:10px;
+  margin: auto 0;
+  padding-left:5px;
+}
 
+.lbl{
+  background-color:var(--yel);
+  width:150px;
+  font-size:10px;
+  height:18px;
+  display:flex;
+  flex-direction: row;
+  left:0;
 
-#options {
+  position:relative;
+}
+.size, .colors{
+  width:  var(--w);
   display: flex;
   flex-direction: column;
   align-items:flex-start;
-  padding-right: 10px;
-  padding-top: 30px;
+  font-size:10px;
+  padding:0px;
+  padding-top:8px;
+}
 
+.showOP{
+  color:black;
+  background-color: var(--yel);
+  border:none;
+  float:right;
+  display:inline-flex;
+  flex-direction:row;
+  position:absolute;
+  height:10px;
+  right: 1px;;
+
+}
+.saveOP{
+  display:flex;
+  flex-direction:row;
+  width:150px;
+ position:relative;
 }
 
 #save{
   display:flex;
 }
+.saveO{
+  display:none;
+  flex-direction:column;
+  padding:0px;
+  top:0;
+}
 
 .option{
   display:inline-flex;
   flex-direction: row;
+  
 }
 
-.exps {
-display: inline-flex;
-flex-direction: row;
-}
-
-.export{
-  margin: 5px 5px 5px 5px;
-}
-
-#export{
-  display:none;
-  flex-direction: column;
-  align-items:flex-start;
-  padding-top: 30px;
-  padding-right: 2px;
-}
 
 .small .react-colorful {
   margin: 5px;
   width: 120px;
   height: 65px;
-  border: 1px solid rgb(52, 52, 51);
+  /* border: 1px solid rgb(19, 19, 24); */
   border-radius: 0.5rem;
   z-index:2;
 }
@@ -151,8 +206,20 @@ flex-direction: row;
   flex-direction: row;
 
 }
+
+.pattern{
+  display:none;
+  
+}
+
+#patStart{
+  width:75px;
+  margin: 10;
+  margin-top:5px;
+
+}
 .gridcontainer{
-  width:calc(100vw - 150px);
+  width:calc(100vw - 185px);
   height: 90vh;
   position:absolute;
   align-items:center;
@@ -167,6 +234,14 @@ flex-direction: row;
   position:relative;
 }
 
-
-
+.popUpCont + #pop{
+  position:relative;
+  margin:auto;
+  width: 100%;
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+}
 

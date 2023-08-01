@@ -6,9 +6,6 @@ export default function Color(props) {
 const {selectedColor, id, mode} = props;
 
 const [currColor, setColor] = useState("#ffffff");
-const [newColor, setNewColor] = useState(currColor);
-
-
 const [bord, setBord] = useState('1px solid black');
 const [m, setMode] = useState(mode);
 
@@ -29,11 +26,9 @@ useEffect(() => {
     }
     else if(m === 'use'){
       console.log(currColor)
-      for (var i = 0; i < c.length; i++) {
-        c[i].style.border = '1px solid black';
+      for (var j = 0; j < c.length; j++) {
+        c[j].style.border = '1px solid black';
       }
-      setBord('2px solid green');
-      setNewColor(currColor)
     }
 
   }

@@ -9,8 +9,8 @@ export default function Pixel(props) {
   const [canChangeColor, setCanChangeColor] = useState(true)
   const [dm, setDM] = useState(drawMode)
   const [bg, setbgFill] = useState(bgFill)
-  const [bordR, setBordR] = useState( "1px solid black")
-  const [bordB, setBordB] = useState( "1px solid black")
+  const [bordR, setBordR] = useState( "1px solid grey")
+  const [bordB, setBordB] = useState( "1px solid grey")
 
 useEffect(() => {
   setDM(drawMode);

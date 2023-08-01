@@ -1,13 +1,17 @@
 import React, { useState, useRef, useEffect } from "react"
-import logo from './logo.png'
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from './cgwiwmt.png'
 import './App.css';
 import './Container.css';
 import Grid from "./Grid.jsx";
 import Color from "./Color.jsx";
 import SwatchesPicker from './SwatchesPicker.jsx'
+import UploadImg from './UploadImg.jsx'
+import Pattern from './Pattern.jsx'
 import { HexColorPicker } from "react-colorful"
 import { exportComponentAsPNG } from "react-component-export-image"
-import { selectClasses } from "@mui/material";
+import { TiEdit, TiDocumentText, TiDownloadOutline } from "react-icons/ti";
+
 
 function Container() {
   const [panelWidth, setPanelWidth] = useState(15);
@@ -26,6 +30,9 @@ function Container() {
   const presetColors = ["#ff0000", "#ffa500", "#ffff00", "#0d6416", "#008000", '#0000ff', '#4b0082', "#ee82ee"];
 
   const [modeC, setModeC] = useState('set');
+
+  const [hidden, setHidden] = useState('hidden');
+
 
   var grid = <Grid></Grid>
 
@@ -49,22 +56,6 @@ function Container() {
       setStitch(20)
     }
   }
-
-  function hideNav(e) {
-    console.log(e.target.value)
-    var x = e.target.value
-    var options = document.getElementById("options");
-    var save = document.getElementById("export");
-    if (x === 'edit') {
-      options.style.display = 'flex';
-      save.style.display = 'none';
-    }
-    else if (x === 'file') {
-      options.style.display = 'none';
-      save.style.display = 'flex';
-    }
-  }
-
 
   function Reset() {
     setPanelHeight(15);
@@ -100,66 +91,103 @@ function Container() {
     var ubutton = document.getElementById('use');
 
     if (m === "set") {
-      if (sClick) {
-        //unhighlight button
-        sbutton.style.backgroundColor = 'rgb(96, 62, 20)'
-        sClicked(false);
-        eClicked(false);
-      }
-      else {
-        //highlight button
-        
+            //highlight button
         document.getElementById('colorpicker').style.display = "flex"
-        sbutton.style.backgroundColor = 'rgb(25, 25, 25)';
-        ubutton.style.backgroundColor = 'rgb(0, 0, 0)'
+        ubutton.style.backgroundColor = '#ECFEBE';
+        sbutton.style.backgroundColor = '#D0EB50'
         sClicked(true);
         eClicked(false);
-      }
+      
     }
     else if (m === "use") {
-      if (eClick) {
-        document.getElementById('colorpicker').style.display = "none"
-
-        //unhighlight button
-        ubutton.style.backgroundColor = 'rgb(0, 0, 0)'
-        eClicked(false);
-        sClicked(false);
-      }
-      else {
-        //highlight button
-        ubutton.style.backgroundColor = 'rgb(25, 25, 25)';
-        sbutton.style.backgroundColor = 'rgb(0, 0, 0)';
+              //highlight button
+        sbutton.style.backgroundColor = '#ECFEBE';
+        ubutton.style.backgroundColor = '#D0EB50';
         eClicked(true);
         sClicked(false);
 
+  }
+}
+
+  function toggleSideNav(e) {
+    var b = document.getElementById(e);
+    var ebutton = document.getElementById('navedit');
+    var pbutton = document.getElementById('navpattern');
+    var sbutton = document.getElementById('navsave');
+    var ops = document.getElementById('options');
+    var sops = document.getElementById('saveO');
+    var pat = document.getElementsByClassName('pattern');
+    if (e === ebutton.value){
+      ebutton.style.backgroundColor =  '#D0EB50';
+      pbutton.style.backgroundColor =  '#BACF1D';
+      sbutton.style.backgroundColor =  '#BACF1D';
+      ops.style.display = 'flex';
+      sops.style.display = 'none';
+      for(var i = 0; i <pat.length; i ++){
+        pat[i].style.display = 'none';
       }
+     
+      document.getElementById('grid').style.display = 'flex'
+    }
+    if (e === sbutton.value){
+      sbutton.style.backgroundColor =  '#D0EB50';
+      ebutton.style.backgroundColor =  '#BACF1D';
+      pbutton.style.backgroundColor =  '#BACF1D';
+      sops.style.display = 'flex';
+      ops.style.display = 'none';
+      for(var i = 0; i <pat.length; i ++){
+        pat[i].style.display = 'none';
+      }      document.getElementById('grid').style.display = 'flex'
+
+    }
+    if (e === pbutton.value){
+      pbutton.style.backgroundColor =  '#D0EB50';
+      sbutton.style.backgroundColor =  '#BACF1D';
+      ebutton.style.backgroundColor =  '#BACF1D';
+      ops.style.display = 'none';
+      sops.style.display = 'none';
+      for(var i = 0; i <pat.length; i ++){
+        pat[i].style.display = 'flex';
+      }    
+        document.getElementById('grid').style.display = 'none'
+
     }
   }
 
-  function initColors(n, t) {
-    // var rows = [];
-    // var row = 0; 
-    // for (let j = 0; j < 2; j++) {
-      let colors = [];
-      // row+=1;
-      for (let i = 0; i < n; i++) {
-        let id = i.toString() + t
-        // if(row===2 ){
-        // colors.push(<div onClick={() => (useColor(id))}><Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
-        // }
-        // else{
-          colors.push(<div onClick={() => (useColor(id))}> <Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
-
-      }
-    // rows.push(<div div className = 'colors'  id={row}>{colors}</div>)
-  // }
-  // console.log(rows)
+  function initColors() {
+    let colors = [];
+    for (let i = 0; i < 8; i++) {
+      let id = i.toString() + 'c'
+      colors.push(<div onClick={() => (useColor(id))}> <Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
+    }
     return colors;
   }
 
   function drawGrid() {
     grid = <Grid id='g' width={panelWidth} height={panelHeight} selectedColor={selectedColor} mode={mode} stitch={stitch} clicked={isClicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom}></Grid>
     return grid;
+  }
+
+  function drawGrid2() {
+    var colors = []
+    var pix = document.getElementsByClassName('pixel');
+    var len = pix.length
+    for(var i = 0; i < len -1; i++){
+      var p=pix[i];
+      colors.push( p.style.backgroundColor);
+        }
+    console.log(colors);
+  
+      return <Pattern colors={colors} height={panelHeight} width={panelWidth}></Pattern>
+   
+
+  }
+
+  
+
+  function uploadImg(){
+      setHidden('visible');
+   
   }
 
   function useColor(id) {
@@ -170,166 +198,222 @@ function Container() {
       console.log(color)
       var colortohex = color.split("(")[1].split(")")[0];
       colortohex = colortohex.split(", ");
-      var hex =colortohex.map(function(x){            
-        x = parseInt(x).toString(16);      
-        return (x.length==1) ? "0"+x : x;  
-    })
-    hex = "#"+hex.join("");  
+      var hex = colortohex.map(function (x) {
+        x = parseInt(x).toString(16);
+        return (x.length === 1) ? "0" + x : x;
+      })
+      hex = "#" + hex.join("");
       console.log(hex)
       setColor(hex);
-      colorToUse.style.border = '2px solid green'
+      colorToUse.style.border = '1px solid white'
     }
 
   }
- 
+
+  function hideSection(e){
+    var section=document.getElementById(e);
+    var button = document.getElementById(e + 'b')
+    if(section.style.display === 'none'){
+      section.style.display = 'inline-flex';
+      button.innerHTML = '^'
+    }
+    else{
+      section.style.display = 'none';
+      button.innerHTML = 'v'
+    }
+  }
+
   function colorPicker() {
     let cp = <HexColorPicker id='colorpick' color={selectedColor} onChange={setColor} />
     return cp;
   }
   useEffect(() => {
     drawGrid();
-  }, [bgFill])
+    drawGrid2();
+  }, [bgFill, hidden])
 
   return (
     <div className="Container">
       <div className="header">
-        <img className='head' src={logo} alt="Logo" id="logo" style={{ height: '20px' }} />
-        <h1 className="head">crochetgrid</h1>
+          <img className='head' src={logo} alt="Logo" id="logo" style={{ height: '60px' }} />
+      
         <div className='headButtons'>
-          <ul>
-            <li><button value='file' id='hidenav' onClick={(e) => { hideNav(e) }}>File</button></li>
-            <li><button value='edit' id='hidenav' onClick={(e) => { hideNav(e) }}>Edit</button></li>
-            {/* <div  id='hidebox'className='hidebox'>collapse nav</div> */}
-            {/* <li><button value='save' id='hidenav' onClick={(e) => { hideNav(e) }}>Save</button></li> */}
-          </ul>
+          <a>login</a>|
+          <a>sign up</a>
         </div>
       </div>
       <div className='page'>
+      <div className='popUpCont' id="pop">
+        <UploadImg hidden={hidden}></UploadImg>
+      </div>
+      <div className='navContainer'>
+      <div className='sidenav'>
+        <button className='navButts' id='navedit' value = 'navedit' onClick = {(e) => {toggleSideNav(e.target.value)}}> <TiEdit size='20'/></button>   
+        <button className='navButts' id='navpattern'  value = 'navpattern' onClick = {(e) => {toggleSideNav(e.target.value)}}> <TiDocumentText size='20'/></button>   
+        <button className='navButts' id='navsave'  value = 'navsave' onClick = {(e) => {toggleSideNav(e.target.value)}}> <TiDownloadOutline size='20'/></button>   
+
+      </div>
+        <div><button>x</button></div>
         <div id="navbar" className="navbar">
           <div id="options">
-            <div className="option">
-              <span>Grid Type:</span>
-              <select
-                className="panelInput"
-                defaultValue='grid'
-                onChange={e => {
-                  changeMode(e)
-                }}>
-                <option name="grid"> grid</option>
-                <option name="offset">offset</option>
-              </select>
-            </div>
-            <div className="option">
-              <span>Stitch Size:</span>
-              <select
-                className="panelInput"
-                defaultValue='double'
-                onChange={e => {
-                  changeStitch(e)
-                }}>
-                <option name="single"> single</option>
-                <option name="double">double</option>
-                <option name="triple">triple</option>
-              </select>
-            </div>
-            <div className="option">
-              <span>Width:</span>
-              <input
-                type="number"
-                id='sizew'
-                className="panelInput"
-                defaultValue={panelWidth}
-                onChange={e => {
-                  // setColor('white');
-                  setPanelWidth(e.target.value);
-                }}
-              />
-            </div>
-            <div className="option">
-              <span>Height:</span>
-              <input
-                type="number"
-                id='sizeh'
-                className="panelInput"
-                defaultValue={panelHeight}
-                onChange={e => {
-                  // setColor('white');
-                  console.log(e.target.value)
-                  setPanelHeight(e.target.value);
-                }}
-              />
-            </div>
-            -----------------------------
-            <div className="small" id='colorpicker'style={{display:'none'}}>
-              {colorPicker()}
-            </div>
-            <div className='colors'>
-              <div className="preset">
-              <SwatchesPicker
-        color={selectedColor}
-        onChange={setColor}
-        presetColors={presetColors}
-      />
-            </div>
-              <div className="colorCont">
-              {initColors(8,'custom')}
+            <div className='lbl'>
+              <p>Grid</p>
+              <button className='showOP' id='gridOPb' value='gridOP'onClick={(e) => {hideSection(e.target.value)}}>^</button>
               </div>
-              <button
-                className='export'
-                id='set'
-                value='set'
-                clicked={sClick}
-                onClick={(e) => { handleClick(e) }}
-                style={{ backgroundColor: 'rgb(25, 25, 25)' }}>
-                set color</button>
-              <button
-                className='export'
-                id='use'
-                value='use'
-                clicked={eClick}
-                onClick={(e) => { handleClick(e) }}>
-                use color</button><br></br>
-              -----------------------------
-
+            <div className='size' id='gridOP'>
+              <div className="option">
+                <span>Grid Type:</span>
+                <select
+                  className="panelInput"
+                  defaultValue='grid'
+                  onChange={e => {
+                    changeMode(e)
+                  }}>
+                  <option name="grid"> grid</option>
+                  <option name="offset">offset</option>
+                </select>
+              </div>
+              <div className="option">
+                <span>Stitch Size:</span>
+                <select
+                  className="panelInput"
+                  defaultValue='double'
+                  onChange={e => {
+                    changeStitch(e)
+                  }}>
+                  <option name="single"> single</option>
+                  <option name="double">double</option>
+                  <option name="triple">triple</option>
+                </select>
+              </div>
+              <div className="option">
+                <span>Width:</span>
+                <input
+                  type="number"
+                  id='sizew'
+                  className="panelInput"
+                  defaultValue={panelWidth}
+                  onChange={e => {
+                    // setColor('white');
+                    setPanelWidth(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="option">
+                <span>Height:</span>
+                <input
+                  type="number"
+                  id='sizeh'
+                  className="panelInput"
+                  defaultValue={panelHeight}
+                  onChange={e => {
+                    // setColor('white');
+                    console.log(e.target.value)
+                    setPanelHeight(e.target.value);
+                  }}
+                />
+              </div>
+              <div className='exps'>
+                <span>Zoom:</span>
+                <button className='zoom' onClick={() => { setZoom(zoom - 1) }}>-</button>
+              <button className='zoom' onClick={() => { setZoom(zoom + 1) }}>+</button>
             </div>
-            <div className='exps'>
-              <button
-                className="export"
-                value='undo'
-                onClick={() => Undo()}>
-                Undo</button>
-              <button
-                className="export"
-                value='reset'
-                onClick={Reset}>
-                Reset</button>
-              <button
-                className="export"
-                value='fill'
-                onClick={Fill}>
-                Fill </button>
             </div>
-            <div className='exps'>
-              <button className='export' onClick={() => { setZoom(zoom + 1) }}>Zoom In</button>
-              <button className='export' onClick={() => { setZoom(zoom - 1) }}>Zoom Out</button>
+            <div className='lbl'>
+              <p>Colors</p>
+              <button className='showOP' value='colorOP' id='colorOPb'onClick={(e) => {hideSection(e.target.value)}}>^</button>
+              </div>
+            <div className='colors' id='colorOP'> 
+              <div className='colorpick'>
+                <div className="small" id='colorpicker' style={{ display: 'flex' }}>
+                  {colorPicker()}
+                </div>
+                <div className="preset">
+                  <SwatchesPicker
+                    color={selectedColor}
+                    onChange={setColor}
+                    presetColors={presetColors}
+                  />
+                </div>
+                <div className="colorCont">
+                  {initColors()}
+                </div>
+                <button
+                  className='export'
+                  id='set'
+                  value='set'
+                  clicked={sClick}
+                  onClick={(e) => { handleClick(e) }}
+                  style={{ backgroundColor: '#D0EB50' }}>
+                  set color</button>
+                <button
+                  className='export'
+                  id='use'
+                  value='use'
+                  clicked={eClick}
+                  onClick={(e) => { handleClick(e) }}>
+                  use color</button><br></br>
+              </div>
+              <div className='exps'>
+                <button
+                  className="export"
+                  value='undo'
+                  onClick={() => Undo()}>
+                  Undo</button>
+                <button
+                  className="export"
+                  value='reset'
+                  onClick={Reset}>
+                  Reset</button>
+                <button
+                  className="export"
+                  value='fill'
+                  onClick={Fill}>
+                  Fill </button>
+              </div>
             </div>
           </div>
-          <div id='export'>
-            <button
+          <div className='saveO' id='saveO'>
+          <div className='lbl'>
+              <p>Save</p>
+              <button className='showOP' value='saveOP' id='saveOPb'onClick={(e) => {hideSection(e.target.value)}}>^</button>
+              </div>
+          <div className='saveOP' id='saveOP'>
+             <button
               className="export"
-              value='upload'
-            // onClick={}
-            >
-              Upload Image</button>
-            <button
-              className="export"
+              id='saveOPs'
               value='export'
               onClick={() => exportComponentAsPNG(panelRef, { html2CanvasOptions: { backgroundColor: null } })}>
               Export</button>
+              <button
+              className="export"
+              id='saveOPs2'
+              value='upload'
+              onClick={uploadImg}
+            > Upload Image</button>
           </div>
-
         </div>
+        <div className='pattern'>
+        <span>Start From:</span>
+                <select
+                  className="panelInput"
+                  id='patStart'
+                  defaultValue='tr'
+                  onChange={e => {
+                    console.log('e:' , e.target.value)
+                    drawGrid2()
+                  }}>
+                  <option name="tr" value='tr'> top right 1,1</option>
+                  <option name="bl" value='bl'>bottom left {panelHeight},{panelWidth}</option>
+                </select>
+        </div>
+        </div>
+        </div>
+     
         <div className="gridcontainer" onMouseDown={() => { setClick(true); }} onMouseUp={() => { setClick(false); }}  >
+        <div className='pattern' id='pattern' >
+          {drawGrid2()}
+         </div>
           <div className="grid" id='grid' ref={panelRef}>
             {drawGrid()}
           </div>
