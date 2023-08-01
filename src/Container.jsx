@@ -158,7 +158,7 @@ function Container() {
     let colors = [];
     for (let i = 0; i < 8; i++) {
       let id = i.toString() + 'c'
-      colors.push(<div onClick={() => {useColor(id)}}> <Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
+      colors.push(<div onClick={() => {useColorX(id)}}> <Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
     }
     return colors;
   }
@@ -190,7 +190,7 @@ function Container() {
    
   }
 
-  function useColor(id) {
+  function useColorX(id) {
     console.log(id);
     if (modeC === "use") {
       let colorToUse = document.getElementById(id)
