@@ -250,7 +250,7 @@ function Container() {
       <div className='sidenav'>
         <button className='navButts' id='navedit' value = 'navedit' onClick = {(e) => {toggleSideNav(e.target.value)}}> edit</button>   
         <button className='navButts' id='navpattern'  value = 'navpattern' onClick = {(e) => {toggleSideNav(e.target.value)}}> pattern</button>   
-        <button className='navButts' id='navsave'  value = 'navsave' onClick = {(e) => {toggleSideNav(e.target.value)}}> save</button>   
+        {/* <button className='navButts' id='navsave'  value = 'navsave' onClick = {(e) => {toggleSideNav(e.target.value)}}> save</button>    */}
 
       </div>
         <div><button>x</button></div>
@@ -395,6 +395,12 @@ function Container() {
           
         </div>
         <div className='pattern'>
+        <button
+              className="export"
+              id='saveOPs'
+              value='export'
+              onClick={() => exportComponentAsPNG(panelRef, { html2CanvasOptions: { backgroundColor: null } })}>
+              Export</button>
         {/* <span>Start From:</span>
                 <select
                   className="panelInput"
