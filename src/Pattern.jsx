@@ -12,8 +12,8 @@ function Pattern(props) {
     const [highlightedRow, setHighlightedRow] = useState('0')
 
     function highlightRow(row) {
-       
-        
+        setHighlightedRow(row);
+
 
         let rp = document.getElementsByClassName('rowNum');
         for (let i = 0; i < rp.length; i++) {
@@ -33,9 +33,9 @@ function Pattern(props) {
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
         if((id+1) % 15 === 0){
-            setHighlightedRow(15/(id+1));
             highlightRow(15/(id+1));
         }
+       
    
 
     }
