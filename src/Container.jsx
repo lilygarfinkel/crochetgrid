@@ -37,7 +37,7 @@ function Container() {
   var grid = <Grid></Grid>
 
   const panelRef = useRef()
-
+  const panelRefp = useRef()
   function changeMode(e) {
     const m = e.target.value;
     setMode(m);
@@ -398,26 +398,15 @@ function Container() {
               className="export"
               id='saveOPs'
               value='export'
-              onClick={() => exportComponentAsPNG(panelRef, { html2CanvasOptions: { backgroundColor: null } })}>
+              onClick={() => exportComponentAsPNG(panelRefp, { html2CanvasOptions: { backgroundColor: null } })}>
               Export</button>
-        {/* <span>Start From:</span>
-                <select
-                  className="panelInput"
-                  id='patStart'
-                  defaultValue='tr'
-                  onChange={e => {
-                    console.log('e:' , e.target.value)
-                    drawGrid2()
-                  }}>
-                  <option name="tr" value='tr'> top right 1,1</option>
-                  <option name="bl" value='bl'>bottom left {panelHeight},{panelWidth}</option>
-                </select> */}
+      
         </div>
         </div>
         </div>
      
         <div className="gridcontainer" onMouseDown={() => { setClick(true); }} onMouseUp={() => { setClick(false); }}  >
-        <div className='pattern' id='pattern' >
+        <div className='pattern' id='pattern' ref={panelRefp}>
           {drawGrid2()}
          </div>
           <div className="grid" id='grid' ref={panelRef}>
