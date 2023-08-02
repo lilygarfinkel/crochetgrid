@@ -32,9 +32,9 @@ function Pattern(props) {
         }
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
-        if(height % (id+1) === 0){
-            highlightRow((height/id+1));
-        }
+        // if(height % (id+1) === 0){
+        //     highlightRow((height/id+1));
+        // }
    
 
     }
