@@ -399,7 +399,7 @@ function Container() {
               className="export"
               id='savePat'
               value='export'
-              onClick={() => exportComponentAsPNG(panelRefp, { html2CanvasOptions: { backgroundColor: null } })}>
+              onClick={() => exportComponentAsJPEG(panelRefp, { html2CanvasOptions: { backgroundColor: null } })}>
               Export</button>
       
         </div>
