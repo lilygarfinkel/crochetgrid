@@ -110,17 +110,16 @@ function Container() {
 }
 
   function toggleSideNav(e) {
-    var b = document.getElementById(e);
     var ebutton = document.getElementById('navedit');
     var pbutton = document.getElementById('navpattern');
-    var sbutton = document.getElementById('navsave');
+    // var sbutton = document.getElementById('navsave');
     var ops = document.getElementById('options');
     var sops = document.getElementById('saveO');
     var pat = document.getElementsByClassName('pattern');
     if (e === ebutton.value){
       ebutton.style.backgroundColor =  '#D0EB50';
       pbutton.style.backgroundColor =  '#BACF1D';
-      sbutton.style.backgroundColor =  '#BACF1D';
+      // sbutton.style.backgroundColor =  '#BACF1D';
       ops.style.display = 'flex';
       sops.style.display = 'none';
       for(var i = 0; i <pat.length; i ++){
@@ -129,20 +128,20 @@ function Container() {
      
       document.getElementById('grid').style.display = 'flex'
     }
-    if (e === sbutton.value){
-      sbutton.style.backgroundColor =  '#D0EB50';
-      ebutton.style.backgroundColor =  '#BACF1D';
-      pbutton.style.backgroundColor =  '#BACF1D';
-      sops.style.display = 'flex';
-      ops.style.display = 'none';
-      for(var i = 0; i <pat.length; i ++){
-        pat[i].style.display = 'none';
-      }      document.getElementById('grid').style.display = 'flex'
+    // if (e === sbutton.value){
+    //   // sbutton.style.backgroundColor =  '#D0EB50';
+    //   ebutton.style.backgroundColor =  '#BACF1D';
+    //   pbutton.style.backgroundColor =  '#BACF1D';
+    //   sops.style.display = 'flex';
+    //   ops.style.display = 'none';
+    //   for(var i = 0; i <pat.length; i ++){
+    //     pat[i].style.display = 'none';
+    //   }      document.getElementById('grid').style.display = 'flex'
 
-    }
+    // }
     if (e === pbutton.value){
       pbutton.style.backgroundColor =  '#D0EB50';
-      sbutton.style.backgroundColor =  '#BACF1D';
+      // sbutton.style.backgroundColor =  '#BACF1D';
       ebutton.style.backgroundColor =  '#BACF1D';
       ops.style.display = 'none';
       sops.style.display = 'none';
