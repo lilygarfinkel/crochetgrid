@@ -13,8 +13,6 @@ function Pattern(props) {
 
     function highlightRow(row) {
         setHighlightedRow(row);
-
-
         let rp = document.getElementsByClassName('rowNum');
         for (let i = 0; i < rp.length; i++) {
             rp[i].style.backgroundColor = '#FBFFF2'
