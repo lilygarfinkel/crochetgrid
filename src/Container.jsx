@@ -38,6 +38,7 @@ function Container() {
 
   const panelRef = useRef()
   const panelRefp = useRef()
+
   function changeMode(e) {
     const m = e.target.value;
     setMode(m);
@@ -396,7 +397,7 @@ function Container() {
         <div className='pattern'>
         <button
               className="export"
-              id='saveOPs'
+              id='savePat'
               value='export'
               onClick={() => exportComponentAsPNG(panelRefp, { html2CanvasOptions: { backgroundColor: null } })}>
               Export</button>
