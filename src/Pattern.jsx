@@ -30,11 +30,12 @@ function Pattern(props) {
             rp[i].style.border = '1px solid black'
          
         }
+        let r = document.getElementById(id);
+        r.style.border = '2px solid black';
         if(height % (id+1) === 0){
             highlightRow((height/id+1));
         }
-        let r = document.getElementById(id);
-        r.style.border = '2px solid black';
+   
 
     }
 
