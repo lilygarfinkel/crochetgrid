@@ -1,0 +1,22 @@
+type SavedGrids @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  grids: [String]
+  patterns: [String]
+  Users: Users @belongsTo
+}
+
+type AccountInfo @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  username: String!
+  password: String!
+  email: String!
+  Users: Users @belongsTo
+}
+
+type Users @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  firstname: String!
+  lastname: String!
+  SavedGrids: SavedGrids @hasOne
+  AccountInfo: AccountInfo @hasOne
+}
