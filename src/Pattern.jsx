@@ -28,6 +28,9 @@ function Pattern(props) {
         let rp = document.getElementsByClassName('patternPix');
         for (let i = 0; i < rp.length; i++) {
             rp[i].style.border = '1px solid black'
+            if(height % i === 0){
+                highlightRow(height/i)
+            }
         }
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
