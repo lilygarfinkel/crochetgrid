@@ -26,18 +26,18 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
-                "Users": {
-                    "name": "Users",
+                "AccountInfo": {
+                    "name": "AccountInfo",
                     "isArray": false,
                     "type": {
-                        "model": "Users"
+                        "model": "AccountInfo"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
                         "targetNames": [
-                            "savedGridsUsersId"
+                            "savedGridsAccountInfoId"
                         ]
                     }
                 },
@@ -57,8 +57,8 @@ export const schema = {
                     "attributes": [],
                     "isReadOnly": true
                 },
-                "savedGridsUsersId": {
-                    "name": "savedGridsUsersId",
+                "savedGridsAccountInfoId": {
+                    "name": "savedGridsAccountInfoId",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": false,
@@ -100,6 +100,27 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "firstname": {
+                    "name": "firstname",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "lastname": {
+                    "name": "lastname",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "email": {
+                    "name": "email",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "username": {
                     "name": "username",
                     "isArray": false,
@@ -114,25 +135,21 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "email": {
-                    "name": "email",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "Users": {
-                    "name": "Users",
+                "SavedGrids": {
+                    "name": "SavedGrids",
                     "isArray": false,
                     "type": {
-                        "model": "Users"
+                        "model": "SavedGrids"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
-                        "connectionType": "BELONGS_TO",
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": [
+                            "id"
+                        ],
                         "targetNames": [
-                            "accountInfoUsersId"
+                            "accountInfoSavedGridsId"
                         ]
                     }
                 },
@@ -152,8 +169,8 @@ export const schema = {
                     "attributes": [],
                     "isReadOnly": true
                 },
-                "accountInfoUsersId": {
-                    "name": "accountInfoUsersId",
+                "accountInfoSavedGridsId": {
+                    "name": "accountInfoSavedGridsId",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": false,
@@ -184,126 +201,10 @@ export const schema = {
                     }
                 }
             ]
-        },
-        "Users": {
-            "name": "Users",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "firstname": {
-                    "name": "firstname",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "lastname": {
-                    "name": "lastname",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "SavedGrids": {
-                    "name": "SavedGrids",
-                    "isArray": false,
-                    "type": {
-                        "model": "SavedGrids"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": [
-                            "id"
-                        ],
-                        "targetNames": [
-                            "usersSavedGridsId"
-                        ]
-                    }
-                },
-                "AccountInfo": {
-                    "name": "AccountInfo",
-                    "isArray": false,
-                    "type": {
-                        "model": "AccountInfo"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": [
-                            "id"
-                        ],
-                        "targetNames": [
-                            "usersAccountInfoId"
-                        ]
-                    }
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "usersSavedGridsId": {
-                    "name": "usersSavedGridsId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "usersAccountInfoId": {
-                    "name": "usersAccountInfoId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            },
-            "syncable": true,
-            "pluralName": "Users",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
         }
     },
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "101e131baba9470ab2765b70cb6c036f"
+    "version": "0d0dfe02993c96c6dbb70a193c3654e7"
 };

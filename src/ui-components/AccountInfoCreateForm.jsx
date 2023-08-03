@@ -23,24 +23,32 @@ export default function AccountInfoCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
+    firstname: "",
+    lastname: "",
+    email: "",
     username: "",
     password: "",
-    email: "",
   };
+  const [firstname, setFirstname] = React.useState(initialValues.firstname);
+  const [lastname, setLastname] = React.useState(initialValues.lastname);
+  const [email, setEmail] = React.useState(initialValues.email);
   const [username, setUsername] = React.useState(initialValues.username);
   const [password, setPassword] = React.useState(initialValues.password);
-  const [email, setEmail] = React.useState(initialValues.email);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
+    setFirstname(initialValues.firstname);
+    setLastname(initialValues.lastname);
+    setEmail(initialValues.email);
     setUsername(initialValues.username);
     setPassword(initialValues.password);
-    setEmail(initialValues.email);
     setErrors({});
   };
   const validations = {
+    firstname: [{ type: "Required" }],
+    lastname: [{ type: "Required" }],
+    email: [{ type: "Required" }],
     username: [{ type: "Required" }],
     password: [{ type: "Required" }],
-    email: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -68,9 +76,11 @@ export default function AccountInfoCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
+          firstname,
+          lastname,
+          email,
           username,
           password,
-          email,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -117,7 +127,111 @@ export default function AccountInfoCreateForm(props) {
       {...rest}
     >
       <TextField
-        label="Username"
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Firstname</span>
+            <span style={{ color: "red" }}>*</span>
+          </span>
+        }
+        isRequired={true}
+        isReadOnly={false}
+        value={firstname}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              firstname: value,
+              lastname,
+              email,
+              username,
+              password,
+            };
+            const result = onChange(modelFields);
+            value = result?.firstname ?? value;
+          }
+          if (errors.firstname?.hasError) {
+            runValidationTasks("firstname", value);
+          }
+          setFirstname(value);
+        }}
+        onBlur={() => runValidationTasks("firstname", firstname)}
+        errorMessage={errors.firstname?.errorMessage}
+        hasError={errors.firstname?.hasError}
+        {...getOverrideProps(overrides, "firstname")}
+      ></TextField>
+      <TextField
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Lastname</span>
+            <span style={{ color: "red" }}>*</span>
+          </span>
+        }
+        isRequired={true}
+        isReadOnly={false}
+        value={lastname}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              firstname,
+              lastname: value,
+              email,
+              username,
+              password,
+            };
+            const result = onChange(modelFields);
+            value = result?.lastname ?? value;
+          }
+          if (errors.lastname?.hasError) {
+            runValidationTasks("lastname", value);
+          }
+          setLastname(value);
+        }}
+        onBlur={() => runValidationTasks("lastname", lastname)}
+        errorMessage={errors.lastname?.errorMessage}
+        hasError={errors.lastname?.hasError}
+        {...getOverrideProps(overrides, "lastname")}
+      ></TextField>
+      <TextField
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Email</span>
+            <span style={{ color: "red" }}>*</span>
+          </span>
+        }
+        isRequired={true}
+        isReadOnly={false}
+        value={email}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              firstname,
+              lastname,
+              email: value,
+              username,
+              password,
+            };
+            const result = onChange(modelFields);
+            value = result?.email ?? value;
+          }
+          if (errors.email?.hasError) {
+            runValidationTasks("email", value);
+          }
+          setEmail(value);
+        }}
+        onBlur={() => runValidationTasks("email", email)}
+        errorMessage={errors.email?.errorMessage}
+        hasError={errors.email?.hasError}
+        {...getOverrideProps(overrides, "email")}
+      ></TextField>
+      <TextField
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Username</span>
+            <span style={{ color: "red" }}>*</span>
+          </span>
+        }
         isRequired={true}
         isReadOnly={false}
         value={username}
@@ -125,9 +239,11 @@ export default function AccountInfoCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              firstname,
+              lastname,
+              email,
               username: value,
               password,
-              email,
             };
             const result = onChange(modelFields);
             value = result?.username ?? value;
@@ -143,7 +259,12 @@ export default function AccountInfoCreateForm(props) {
         {...getOverrideProps(overrides, "username")}
       ></TextField>
       <TextField
-        label="Password"
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Password</span>
+            <span style={{ color: "red" }}>*</span>
+          </span>
+        }
         isRequired={true}
         isReadOnly={false}
         value={password}
@@ -151,9 +272,11 @@ export default function AccountInfoCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              firstname,
+              lastname,
+              email,
               username,
               password: value,
-              email,
             };
             const result = onChange(modelFields);
             value = result?.password ?? value;
@@ -167,32 +290,6 @@ export default function AccountInfoCreateForm(props) {
         errorMessage={errors.password?.errorMessage}
         hasError={errors.password?.hasError}
         {...getOverrideProps(overrides, "password")}
-      ></TextField>
-      <TextField
-        label="Email"
-        isRequired={true}
-        isReadOnly={false}
-        value={email}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              username,
-              password,
-              email: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.email ?? value;
-          }
-          if (errors.email?.hasError) {
-            runValidationTasks("email", value);
-          }
-          setEmail(value);
-        }}
-        onBlur={() => runValidationTasks("email", email)}
-        errorMessage={errors.email?.errorMessage}
-        hasError={errors.email?.hasError}
-        {...getOverrideProps(overrides, "email")}
       ></TextField>
       <Flex
         justifyContent="space-between"
