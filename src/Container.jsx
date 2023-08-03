@@ -418,7 +418,7 @@ function Container() {
           </div>
         </div>
       </div>
-     < AccountInfoCreateForm></AccountInfoCreateForm>
+     < AccountInfoCreateForm/>
     </div>
 
   );
