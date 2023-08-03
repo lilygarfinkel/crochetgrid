@@ -11,7 +11,8 @@ import Pattern from './Pattern.jsx'
 import { HexColorPicker } from "react-colorful"
 import { exportComponentAsPNG, exportComponentAsJPEG } from "react-component-export-image"
 
-import AccountInfoCreateForm from '.ui-components/AccountInfoCreateForm.jsx'
+import {AccountInfoCreateForm} from './ui-components'
+
 // import { TiEdit, TiDocumentText, TiDownloadOutline } from "react-icons/ti";
 
 
