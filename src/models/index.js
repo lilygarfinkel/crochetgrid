@@ -4,9 +4,10 @@ import { schema } from './schema';
 
 
 
-const { SavedGrids, AccountInfo } = initSchema(schema);
+const { SavedGrids, AccountInfo, Users } = initSchema(schema);
 
 export {
   SavedGrids,
-  AccountInfo
+  AccountInfo,
+  Users
 };

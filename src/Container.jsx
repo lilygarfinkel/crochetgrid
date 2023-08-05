@@ -10,9 +10,6 @@ import UploadImg from './UploadImg.jsx'
 import Pattern from './Pattern.jsx'
 import { HexColorPicker } from "react-colorful"
 import { exportComponentAsPNG, exportComponentAsJPEG } from "react-component-export-image"
-
-import {AccountInfoCreateForm} from './ui-components'
-
 // import { TiEdit, TiDocumentText, TiDownloadOutline } from "react-icons/ti";
 
 
@@ -418,7 +415,6 @@ function Container() {
           </div>
         </div>
       </div>
-     < AccountInfoCreateForm/>
     </div>
 
   );

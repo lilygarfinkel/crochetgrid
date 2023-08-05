@@ -14,10 +14,10 @@ type EagerSavedGrids = {
   readonly id: string;
   readonly grids?: (string | null)[] | null;
   readonly patterns?: (string | null)[] | null;
-  readonly AccountInfo?: AccountInfo | null;
+  readonly Users?: Users | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly savedGridsAccountInfoId?: string | null;
+  readonly savedGridsUsersId?: string | null;
 }
 
 type LazySavedGrids = {
@@ -28,10 +28,10 @@ type LazySavedGrids = {
   readonly id: string;
   readonly grids?: (string | null)[] | null;
   readonly patterns?: (string | null)[] | null;
-  readonly AccountInfo: AsyncItem<AccountInfo | undefined>;
+  readonly Users: AsyncItem<Users | undefined>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly savedGridsAccountInfoId?: string | null;
+  readonly savedGridsUsersId?: string | null;
 }
 
 export declare type SavedGrids = LazyLoading extends LazyLoadingDisabled ? EagerSavedGrids : LazySavedGrids
@@ -46,15 +46,13 @@ type EagerAccountInfo = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly firstname: string;
-  readonly lastname: string;
-  readonly email: string;
   readonly username: string;
   readonly password: string;
-  readonly SavedGrids?: SavedGrids | null;
+  readonly email: string;
+  readonly Users?: Users | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly accountInfoSavedGridsId?: string | null;
+  readonly accountInfoUsersId?: string | null;
 }
 
 type LazyAccountInfo = {
@@ -63,19 +61,55 @@ type LazyAccountInfo = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly firstname: string;
-  readonly lastname: string;
-  readonly email: string;
   readonly username: string;
   readonly password: string;
-  readonly SavedGrids: AsyncItem<SavedGrids | undefined>;
+  readonly email: string;
+  readonly Users: AsyncItem<Users | undefined>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly accountInfoSavedGridsId?: string | null;
+  readonly accountInfoUsersId?: string | null;
 }
 
 export declare type AccountInfo = LazyLoading extends LazyLoadingDisabled ? EagerAccountInfo : LazyAccountInfo
 
 export declare const AccountInfo: (new (init: ModelInit<AccountInfo>) => AccountInfo) & {
   copyOf(source: AccountInfo, mutator: (draft: MutableModel<AccountInfo>) => MutableModel<AccountInfo> | void): AccountInfo;
+}
+
+type EagerUsers = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Users, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly firstname: string;
+  readonly lastname: string;
+  readonly SavedGrids?: SavedGrids | null;
+  readonly AccountInfo?: AccountInfo | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly usersSavedGridsId?: string | null;
+  readonly usersAccountInfoId?: string | null;
+}
+
+type LazyUsers = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Users, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly firstname: string;
+  readonly lastname: string;
+  readonly SavedGrids: AsyncItem<SavedGrids | undefined>;
+  readonly AccountInfo: AsyncItem<AccountInfo | undefined>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly usersSavedGridsId?: string | null;
+  readonly usersAccountInfoId?: string | null;
+}
+
+export declare type Users = LazyLoading extends LazyLoadingDisabled ? EagerUsers : LazyUsers
+
+export declare const Users: (new (init: ModelInit<Users>) => Users) & {
+  copyOf(source: Users, mutator: (draft: MutableModel<Users>) => MutableModel<Users> | void): Users;
 }
