@@ -92,6 +92,11 @@ function Pattern(props) {
                 break;
         }
     };
+
+    useEffect(() => {
+       
+      }, [highlightedRow])
+
     return (
         <div id="Pattern">
             {getPattern()}
