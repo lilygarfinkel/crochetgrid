@@ -30,9 +30,8 @@ function Pattern(props) {
         }
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
-        if((id) % 15 === 0){
             highlightRow(r.row);
-        }
+      
        
    
 
