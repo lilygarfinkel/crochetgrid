@@ -12,6 +12,7 @@ function Pattern(props) {
     const [highlightedRow, setHighlightedRow] = useState('0')
 
     function highlightRow(row) {
+
         setHighlightedRow(row);
         let rp = document.getElementsByClassName('rowNum');
         for (let i = 0; i < rp.length; i++) {
@@ -91,7 +92,9 @@ function Pattern(props) {
         }
     };
 
-
+  useEffect(() => {
+    highlightRow(highlightedRow)
+  }, [highlightedRow])
 
     return (
         <div id="Pattern">
