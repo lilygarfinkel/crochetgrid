@@ -14,6 +14,8 @@ function Pattern(props) {
     function highlightRow(row) {
 
         setHighlightedRow(row);
+        console.log(row)
+
         let rp = document.getElementsByClassName('rowNum');
         for (let i = 0; i < rp.length; i++) {
             rp[i].style.backgroundColor = '#FBFFF2'
@@ -24,6 +26,7 @@ function Pattern(props) {
 
     function highlightPix(id) {
         setHighlightedPix(id)
+
         let rp = document.getElementsByClassName('patternPix');
         for (let i = 0; i < rp.length; i++) {
             rp[i].style.border = '1px solid black'
@@ -31,10 +34,8 @@ function Pattern(props) {
         }
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
-            highlightRow(r.row.toString());
-     
-   
-
+            highlightRow(r.row);
+            console.log(r)
     }
 
     function getPattern() {
