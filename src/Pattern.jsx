@@ -54,7 +54,7 @@ function Pattern(props) {
 
             }
             // loc += counter;
-            row.push(<div className='rowNum' id={'row' + i.toString()} onClick={() => { highlightRow(i) }}>{i + 1}<div className='rowP'>{pix}</div></div>)
+            row.push(<div className='rowNum' id={'row' + i.toString()} onClick={() => { highlightRow(i) }}  style={{ backgroundColor: '#FBFFF2'}}>{i + 1}<div className='rowP'>{pix}</div></div>)
         }
         pattern.push(row)
         return (pattern)
@@ -95,9 +95,9 @@ function Pattern(props) {
         }
     };
 
-  useEffect(() => {
-    highlightRow(highlightedRow)
-  }, [])
+//   useEffect(() => {
+//     highlightRow(highlightedRow)
+//   }, [])
 
     return (
         <div id="Pattern">
