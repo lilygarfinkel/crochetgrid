@@ -8,8 +8,8 @@ import React, { useState, useEffect } from "react"
 function Pattern(props) {
     const { colors, width, height, start } = props;
 
-    const [highlightedPix, setHighlightedPix] = useState('0')
-    const [highlightedRow, setHighlightedRow] = useState('0')
+    const [highlightedPix, setHighlightedPix] = useState(0)
+    const [highlightedRow, setHighlightedRow] = useState(0)
 
     function highlightRow(row) {
 
@@ -20,7 +20,7 @@ function Pattern(props) {
         for (let i = 0; i < rp.length; i++) {
             rp[i].style.backgroundColor = '#FBFFF2'
         }
-        let r = document.getElementById('row' + row);
+        let r = document.getElementById('row' + row.toString());
         r.style.backgroundColor = '#D3D4CA'
     }
 

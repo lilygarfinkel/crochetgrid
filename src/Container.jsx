@@ -176,7 +176,7 @@ function Container() {
       var p=pix[i];
       colors.push( p.style.backgroundColor);
         }
-    console.log(colors);
+    // console.log(colors);
   
       return <Pattern colors={colors} height={panelHeight} width={panelWidth}></Pattern>
    
