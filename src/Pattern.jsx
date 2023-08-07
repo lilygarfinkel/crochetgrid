@@ -14,7 +14,7 @@ function Pattern(props) {
     function highlightRow(row) {
 
         setHighlightedRow(row);
-        console.log(row)
+        // console.log(row)
 
         let rp = document.getElementsByClassName('rowNum');
         for (let i = 0; i < rp.length; i++) {
@@ -34,8 +34,9 @@ function Pattern(props) {
         }
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
-            highlightRow(r.row);
-            console.log(r)
+        console.log(r)
+
+        highlightRow(r.row);
     }
 
     function getPattern() {
@@ -47,7 +48,7 @@ function Pattern(props) {
             let pix = []
             for (let j = 0; j < width; j = j + counter) {
                 let idx = loc;//i.toString() + j.toString();
-                pix.push(<div className='patternPix' onClick={() => { highlightPix(idx); }} id={idx}  row={'row' + i.toString()} style={{ backgroundColor: colors[loc], width: '20px', height: '20px' }} >{j + 1}</div>);
+                pix.push(<div className='patternPix' onClick={() => { highlightPix(idx); }} id={idx}  row={i} style={{ backgroundColor: colors[loc], width: '20px', height: '20px' }} >{j + 1}</div>);
                 loc += counter;
 
             }
