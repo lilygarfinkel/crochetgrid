@@ -95,9 +95,9 @@ function Pattern(props) {
         }
     };
 
-//   useEffect(() => {
-//     highlightRow(highlightedRow)
-//   }, [highlightedRow])
+  useEffect(() => {
+    highlightRow(highlightedRow)
+  }, [])
 
     return (
         <div id="Pattern">
