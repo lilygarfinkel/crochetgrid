@@ -18,7 +18,7 @@ function Pattern(props) {
         for (let i = 0; i < rp.length; i++) {
             rp[i].style.backgroundColor = '#FBFFF2'
         }
-        let r = document.getElementById('row' + highlightedRow.toString());
+        let r = document.getElementById('row' + row.toString());
         r.style.backgroundColor = '#D3D4CA'
     }
 
