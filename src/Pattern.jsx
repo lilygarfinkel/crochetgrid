@@ -20,7 +20,7 @@ function Pattern(props) {
         for (let i = 0; i < rp.length; i++) {
             rp[i].style.backgroundColor = '#FBFFF2'
         }
-        let rstring  = row.toString()
+        // let rstring  = row.toString()
         let r = document.getElementById('row' + rstring);
         r.style.backgroundColor = '#D3D4CA'
     }
@@ -49,7 +49,8 @@ function Pattern(props) {
             let pix = []
             for (let j = 0; j < width; j = j + counter) {
                 let idx = loc;//i.toString() + j.toString();
-                pix.push(<div className='patternPix'id={idx}  row={i}  onClick={() => { highlightPix(idx); }}  style={{ backgroundColor: colors[loc], width: '20px', height: '20px' }} >{j + 1}</div>);
+                let r = i.toString();
+                pix.push(<div className='patternPix' id={idx}  row={r}  onClick={() => { highlightPix(idx); }}  style={{ backgroundColor: colors[loc], width: '20px', height: '20px' }} >{j + 1}</div>);
                 loc += counter;
 
             }
