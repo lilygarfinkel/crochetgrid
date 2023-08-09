@@ -117,7 +117,7 @@ function Pattern(props) {
 
         var pix;
         var row;
-        if (thisPix < 10 && thisRow >=10){
+        if (thisPix < 10){
             pix = '0' + thisPix.toString()
         }
         else{
