@@ -1,5 +1,6 @@
 import './App.css';
 import './Pattern.css';
+import PatternPix from './PatternPix.jsx';
 
 import React, { useState, useEffect } from "react"
 
@@ -50,7 +51,8 @@ function Pattern(props) {
             for (let j = 0; j < width; j = j + counter) {
                 let idx = loc;//i.toString() + j.toString();
                 let r = i.toString();
-                pix.push(<div className='patternPix' id={idx}  data-row={r}  onClick={() => { highlightPix(idx); }}  style={{ backgroundColor: colors[loc], width: '20px', height: '20px' }} >{j + 1}</div>);
+                let numInRow=j+1;
+                pix.push(<PatternPix className='patternPix' id={idx}  rowN={r} numInRow={numInRow} onClick={() => { highlightPix(idx); }}  style={{ backgroundColor: colors[loc], width: '20px', height: '20px' }} ></PatternPix>);
                 loc += counter;
 
             }
