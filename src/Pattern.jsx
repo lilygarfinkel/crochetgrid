@@ -132,9 +132,9 @@ function Pattern(props) {
         }
         // var row = pix.substring(1,3);
 
-        console.log(pix, row);
+        console.log(row, pix);
 
-        highlightPix(pix);
+        highlightPix(row+pix);
         highlightRow(row);
 
     };
