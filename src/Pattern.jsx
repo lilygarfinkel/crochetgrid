@@ -43,10 +43,23 @@ function Pattern(props) {
         let row = []
         var loc = 0;
         let counter = 1;
+        let idx = '0';
         for (let i = 0; i < height; i = i + counter) {
             let pix = []
             for (let j = 0; j < width; j = j + counter) {
-                let idx = i.toString() + j.toString();
+                if (i < 10 && j >=10){
+                    idx = '0' + i.toString() + j.toString();
+                }
+                else if( j < 10 && i >= 10){
+                    idx = i.toString() + '0' + j.toString();
+                }
+                else if( i < 10 && j < 10){
+                    idx = i.toString() + '0' + j.toString();
+                }
+                else{
+                    idx = i.toString() + j.toString();
+                }
+                 
                 console.log(idx)
                 let r = i.toString();
                 let numInRow=j+1;
