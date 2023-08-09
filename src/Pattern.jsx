@@ -27,7 +27,7 @@ function Pattern(props) {
 
     function highlightPix(id) {
         setHighlightedPix(id)
-
+        console.log(id)
         let rp = document.getElementsByClassName('patternPix');
         for (let i = 0; i < rp.length; i++) {
             rp[i].style.border = '1px solid black'
@@ -54,13 +54,13 @@ function Pattern(props) {
                     idx = i.toString() + '0' + j.toString();
                 }
                 else if( i < 10 && j < 10){
-                    idx = i.toString() + '0' + j.toString();
+                    idx = '0' i.toString() + '0' + j.toString();
                 }
                 else{
                     idx = i.toString() + j.toString();
                 }
                  
-                console.log(idx)
+                
                 let r = i.toString();
                 let numInRow=j+1;
                 pix.push(<PatternPix className='patternPix' id={idx}  rowN={r} numInRow={numInRow} onClick={() => { highlightPix(idx); }}  style={{ backgroundColor: colors[loc], width: '20px', height: '20px', border:'1px solid black'}} ></PatternPix>);
@@ -68,7 +68,7 @@ function Pattern(props) {
 
             }
             // loc += counter;
-            row.push(<div className='rowNum' id={'row' + i.toString()} onClick={() => { highlightRow(i) }}  style={{ backgroundColor: '#FBFFF2'}}>{i + 1}<div className='rowP'>{pix}</div></div>)
+            row.push(<div className='rowNum' id={idx.substring(0, 2)} onClick={() => { highlightRow(i) }}  style={{ backgroundColor: '#FBFFF2'}}>{i + 1}<div className='rowP'>{pix}</div></div>)
         }
         pattern.push(row)
         return (pattern)
