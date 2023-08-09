@@ -111,22 +111,24 @@ function Pattern(props) {
                 thisRow = thisRow - 1;
                 break;
         }
-        var pix;
-        var row;
-        if (thisPix < 10 && thisRow >=10){
-            pix = '0' + thisPix.toString() + thisRow.toString();
-        }
-        else if( thisRow < 10 && thisPix >= 10){
-            pix =thisPix.toString() + '0' + thisRow.toString();
-        }
-        else if( thisPix < 10 && thisRow < 10){
-            pix = '0' + thisPix.toString() + '0' + thisRow.toString();
-        }
-        else{
-            pix = thisPix.toString() + thisRow.toString();
-        }
-        highlightPix(pix);
-        highlightRow(pix.substring(0,2));
+        console.log(thisPix, thisRow);
+
+        // var pix;
+        // var row;
+        // if (thisPix < 10 && thisRow >=10){
+        //     pix = '0' + thisPix.toString() + thisRow.toString();
+        // }
+        // else if( thisRow < 10 && thisPix >= 10){
+        //     pix =thisPix.toString() + '0' + thisRow.toString();
+        // }
+        // else if( thisPix < 10 && thisRow < 10){
+        //     pix = '0' + thisPix.toString() + '0' + thisRow.toString();
+        // }
+        // else{
+        //     pix = thisPix.toString() + thisRow.toString();
+        // }
+        // highlightPix(pix);
+        // highlightRow(pix.substring(0,2));
 
     };
 
