@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react"
 
 
 function Pattern(props) {
-    const { colors, width, height, start } = props;
+    const { colors, width, height } = props;
 
     const [highlightedPix, setHighlightedPix] = useState(0)
     const [highlightedRow, setHighlightedRow] = useState(0)
@@ -47,9 +47,10 @@ function Pattern(props) {
             let pix = []
             for (let j = 0; j < width; j = j + counter) {
                 let idx = i.toString() + j.toString();
+                console.log(idx)
                 let r = i.toString();
                 let numInRow=j+1;
-                pix.push(<PatternPix className='patternPix' id={idx}  rowN={r} numInRow={numInRow} onClick={() => { highlightPix(idx); }}  style={{ backgroundColor: colors[loc], width: '20px', height: '20px' }} ></PatternPix>);
+                pix.push(<PatternPix className='patternPix' id={idx}  rowN={r} numInRow={numInRow} onClick={() => { highlightPix(idx); }}  style={{ backgroundColor: colors[loc], width: '20px', height: '20px', border:'1px solid black'}} ></PatternPix>);
                 loc += counter;
 
             }
