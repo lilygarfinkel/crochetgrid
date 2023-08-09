@@ -131,6 +131,7 @@ function Pattern(props) {
 
   useEffect(() => {
 console.log(highlightedRow)
+console.log(highlightedPix)
   }, [])
 
     return (
