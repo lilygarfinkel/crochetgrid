@@ -14,7 +14,7 @@ function Pattern(props) {
     function highlightRow(row) {
 
         setHighlightedRow(row);
-        // console.log(row)
+        console.log(row)
 
         let rp = document.getElementsByClassName('rowNum');
         for (let i = 0; i < rp.length; i++) {
@@ -35,7 +35,7 @@ function Pattern(props) {
         }
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
-        console.log(r)
+        // console.log(r)
 
         highlightRow(r.row);
     }
