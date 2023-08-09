@@ -37,7 +37,7 @@ function Pattern(props) {
         r.style.border = '2px solid black';
         // console.log(r)
 
-        highlightRow(r.getAttribute(row));
+        highlightRow(r.data-row);
     }
 
     function getPattern() {
@@ -50,7 +50,7 @@ function Pattern(props) {
             for (let j = 0; j < width; j = j + counter) {
                 let idx = loc;//i.toString() + j.toString();
                 let r = i.toString();
-                pix.push(<div className='patternPix' id={idx}  row={r}  onClick={() => { highlightPix(idx); }}  style={{ backgroundColor: colors[loc], width: '20px', height: '20px' }} >{j + 1}</div>);
+                pix.push(<div className='patternPix' id={idx}  data-row={r}  onClick={() => { highlightPix(idx); }}  style={{ backgroundColor: colors[loc], width: '20px', height: '20px' }} >{j + 1}</div>);
                 loc += counter;
 
             }
