@@ -79,8 +79,8 @@ function Pattern(props) {
     document.onkeydown = function (e) {
         console.log(e.key);
         let thisPix = parseInt(highlightedPix);
-        hrow = highlightedRow.substring(3,4);
-        let thisRow = parseInt(highlightedRow);
+        let hrow = highlightedRow.substring(3,4);
+        let thisRow = parseInt(hrow);
         console.log(thisPix, thisRow);
         switch (e.key) {
             case 'ArrowRight':
