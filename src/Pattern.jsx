@@ -55,7 +55,7 @@ function Pattern(props) {
                     idx = i.toString() + '0' + j.toString();
                 }
                 else if( i < 10 && j < 10){
-                    idx = '0' i.toString() + '0' + j.toString();
+                    idx = '0' + i.toString() + '0' + j.toString();
                 }
                 else{
                     idx = i.toString() + j.toString();
