@@ -38,7 +38,7 @@ function Pattern(props) {
         r.style.border = '2px solid black';
         // console.log(r)
 
-        highlightRow(r.data-row);
+        // highlightRow();
     }
 
     function getPattern() {
