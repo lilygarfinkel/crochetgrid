@@ -35,7 +35,7 @@ function Pattern(props) {
         }
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
-        highlightRow(id.substring(0,1));
+        highlightRow(id.substring(2,3));
 
     }
 
@@ -78,7 +78,7 @@ function Pattern(props) {
 
     document.onkeydown = function (e) {
         console.log(e.key);
-        let hpix = highlightedPix.substring(0,1);
+        let hpix = highlightedPix;
         let thisPix = parseInt(hpix);
         let hrow = highlightedRow;
         let thisRow = parseInt(hrow);
@@ -116,19 +116,21 @@ function Pattern(props) {
         console.log(thisPix, thisRow);
 
         var pix;
+        var row;
         if (thisPix < 10 && thisRow >=10){
-            pix = '0' + thisPix.toString() + thisRow.toString();
-        }
-        else if( thisRow < 10 && thisPix >= 10){
-            pix =thisPix.toString() + '0' + thisRow.toString();
-        }
-        else if( thisPix < 10 && thisRow < 10){
-            pix = '0' + thisPix.toString() + '0' + thisRow.toString();
+            pix = '0' + thisPix.toString()
         }
         else{
-            pix = thisPix.toString() + thisRow.toString();
+            pix =thisPix.toString()
         }
-        var row = pix.substring(1,3);
+
+         if(thisRow < 10){
+            row = '0' + thisRow.toString();
+        }
+        else{
+            row = thisRow.toString();
+        }
+        // var row = pix.substring(1,3);
 
         console.log(pix, row);
 
