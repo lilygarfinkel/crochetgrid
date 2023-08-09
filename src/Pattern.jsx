@@ -78,7 +78,7 @@ function Pattern(props) {
 
     document.onkeydown = function (e) {
         console.log(e.key);
-        let thisPix = parseInt(highlightedPix);
+        let thisPix = parseInt(highlightedPix.substring(0,1));
         let hrow = highlightedRow;
         let thisRow = parseInt(hrow);
         console.log(thisPix, thisRow);
