@@ -127,7 +127,7 @@ function Pattern(props) {
         else{
             pix = thisPix.toString() + thisRow.toString();
         }
-        var row = pix.substring(2,3);
+        var row = pix.substring(1,3);
 
         console.log(pix, row);
 
