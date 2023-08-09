@@ -44,7 +44,7 @@ function Pattern(props) {
         let row = []
         var loc = 0;
         let counter = 1;
-        let idx;
+        let idx = '00';
         for (let i = 0; i < height; i = i + counter) {
             let pix = []
             for (let j = 0; j < width; j = j + counter) {
