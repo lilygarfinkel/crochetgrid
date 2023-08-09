@@ -35,7 +35,7 @@ function Pattern(props) {
         }
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
-        highlightRow(id.substring(2,3));
+        highlightRow(id.substring(0,1));
 
     }
 
