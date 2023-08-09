@@ -35,7 +35,7 @@ function Pattern(props) {
         }
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
-        highlightRow(id.substring(0,1));
+        highlightRow(id.substring(0,2));
 
     }
 
@@ -113,7 +113,7 @@ function Pattern(props) {
                 thisRow = thisRow - 1;
                 break;
         }
-        console.log(thisPix, thisRow);
+        console.log(thisRow, thisPix);
 
         var pix;
         var row;
@@ -140,8 +140,8 @@ function Pattern(props) {
     };
 
   useEffect(() => {
-console.log(highlightedRow)
-console.log(highlightedPix)
+console.log(highlightedRow, highlightedPix)
+
   }, [])
 
     return (
