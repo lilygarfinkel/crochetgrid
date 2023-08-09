@@ -35,7 +35,7 @@ function Pattern(props) {
         }
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
-        highlightRow(id.substring(0,2));
+        highlightRow(id.substring(0,1));
 
     }
 
@@ -82,7 +82,7 @@ function Pattern(props) {
         let thisPix = parseInt(hpix);
         let hrow = highlightedRow;
         let thisRow = parseInt(hrow);
-        console.log(thisPix, thisRow);
+        console.log(thisRow, thisPix);
         switch (e.key) {
             case 'ArrowRight':
                
