@@ -12,7 +12,8 @@ function Pattern(props) {
     const [highlightedPix, setHighlightedPix] = useState(0)
     const [highlightedRow, setHighlightedRow] = useState(0)
 
-    function highlightRow() {
+    function highlightRow(row) {
+        setHighlightedRow(row);
 
         console.log(row)
 
@@ -34,7 +35,6 @@ function Pattern(props) {
         }
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
-        setHighlightedRow(row);
 
     }
 
