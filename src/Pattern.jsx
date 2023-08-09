@@ -78,37 +78,55 @@ function Pattern(props) {
 
     document.onkeydown = function (e) {
         console.log(e.key);
+        let thisPix = pasreInt(highlightedPix);
+        let thisRow = parseInt(highlightedRow)
         switch (e.key) {
-
             case 'ArrowRight':
                
-                 if(highlightedPix >= (width*height)-1){
+                 if(thisPix >= (width*height)-1){
                     break;
                  }
-                highlightPix(highlightedPix + 1)
+                thisPix = thisPix + 1;
                 break;
 
             case 'ArrowLeft':
-                if(highlightedPix <= 0){
+                if(thisPix <= 0){
                     break;
                  }
-                highlightPix(highlightedPix - 1)
+                 thisPix = thisPix - 1;
                 break;
             case 'ArrowDown':
-                if(highlightedRow >= height-1){
+                if(thisRow >= height-1){
                     break;
                  }
-                highlightPix(highlightedPix + width)
-                highlightRow(highlightedRow + 1)
+                thisPix = thisPix + width;
+                thisRow = thisRow + 1;
                 break;
             case 'ArrowUp':
-                if(highlightedPix <= width){
+                if(thisPix <= width){
                    break;
                 }
-                highlightPix(highlightedPix - width)
-                highlightRow(highlightedRow - 1)
+                thisPix = thisPix - width;
+                thisRow = thisRow - 1;
                 break;
         }
+        var pix;
+        var row;
+        if (thisPix < 10 && thisRow >=10){
+            pix = '0' + thisPix.toString() + thisRow.toString();
+        }
+        else if( thisRow < 10 && thisPix >= 10){
+            pix =thisPix.toString() + '0' + thisRow.toString();
+        }
+        else if( thisPix < 10 && thisRow < 10){
+            pix = '0' + thisPix.toString() + '0' + thisRow.toString();
+        }
+        else{
+            pix = thisPix.toString() + thisRow.toString();
+        }
+        highlightPix(pix);
+        highlightRow(pix.substring(0,2));
+
     };
 
   useEffect(() => {
