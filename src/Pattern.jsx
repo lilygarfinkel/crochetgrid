@@ -21,7 +21,7 @@ function Pattern(props) {
         for (let i = 0; i < rp.length; i++) {
             rp[i].style.backgroundColor = '#FBFFF2'
         }
-        let r = document.getElementById('row' + row);
+        let r = document.getElementById(row);
         r.style.backgroundColor = '#D3D4CA'
     }
 
@@ -35,6 +35,7 @@ function Pattern(props) {
         }
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
+        highlightRow(id.substring(0,2));
 
     }
 
