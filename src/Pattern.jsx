@@ -35,7 +35,7 @@ function Pattern(props) {
         }
         let r = document.getElementById(id);
         r.style.border = '2px solid black';
-        highlightRow(id.substring(0,2));
+        highlightRow(id.substring(0,1));
 
     }
 
@@ -127,7 +127,7 @@ function Pattern(props) {
         else{
             pix = thisPix.toString() + thisRow.toString();
         }
-        var row = pix.substring(0,2);
+        var row = pix.substring(2,3);
 
         console.log(pix, row);
 
