@@ -9,8 +9,8 @@ import React, { useState, useEffect } from "react"
 function Pattern(props) {
     const { colors, width, height } = props;
 
-    const [highlightedPix, setHighlightedPix] = useState(0)
-    const [highlightedRow, setHighlightedRow] = useState(0)
+    const [highlightedPix, setHighlightedPix] = useState('0')
+    const [highlightedRow, setHighlightedRow] = useState('0')
 
     function highlightRow(row) {
         setHighlightedRow(row);
@@ -78,7 +78,7 @@ function Pattern(props) {
 
     document.onkeydown = function (e) {
         console.log(e.key);
-        let hpix = highlightedPix;
+        let hpix = highlightedPix.substring(0,2);
         let thisPix = parseInt(hpix);
         let hrow = highlightedRow;
         let thisRow = parseInt(hrow);
