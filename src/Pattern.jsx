@@ -27,14 +27,15 @@ function Pattern(props) {
 
     function highlightPix(id) {
         setHighlightedPix(id)
+        let r = document.getElementById(id);
+        r.style.border = '2px solid black';
         console.log(id)
         let rp = document.getElementsByClassName('patternPix');
         for (let i = 0; i < rp.length; i++) {
             rp[i].style.border = '1px solid black'
          
         }
-        let r = document.getElementById(id);
-        r.style.border = '2px solid black';
+     
         highlightRow(id.substring(0,2));
 
     }

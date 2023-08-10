@@ -2,7 +2,7 @@
      /* padding:5px; */
      margin:auto;
     border: 1px solid black;
-    z-index: 2;
+    z-index: 3;
 }
 #Pattern{
     position: absolute;
