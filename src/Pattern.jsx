@@ -70,7 +70,7 @@ function Pattern(props) {
             }
             // loc += counter;
             let idy = idx.substring(0, 2)
-            row.push(<div className='rowNum' id={idy} style={{ backgroundColor: '#FBFFF2'}}>{i}<div className='rowP'>{pix}</div></div>)
+            row.push(<div className='rowNum' id={idy} onClick={() => { highlightRow(idy) }}  style={{ backgroundColor: '#FBFFF2'}}>{i}<div className='rowP'>{pix}</div></div>)
         }
         pattern.push(row)
         return (pattern)
