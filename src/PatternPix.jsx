@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react"
 
 
 function PatternPix(props) {
-    const {id, rowN, numInRow } = props;
+    const {id, rowN, numInRow, color } = props;
 
    
     return (
@@ -15,7 +15,7 @@ function PatternPix(props) {
         className='patternPix' 
         id={id} 
         // onClick={highlightPix} 
-        style={{width: '20px', height: '20px'}} >
+        style={{backgroundColor: color;,width: '20px', height: '20px'}} >
          {numInRow}</div>);
 
 }

@@ -42,7 +42,7 @@ function Pattern(props) {
     function getPattern() {
         let pattern = []
         let row = []
-        var loc = 1;
+        var loc = 0;
         let counter = 1;
         let idx = '00';
         for (let i = 1; i <= height; i = i + counter) {
@@ -64,7 +64,7 @@ function Pattern(props) {
                 
                 let r = i.toString();
                 let numInRow=j;
-                pix.push(<PatternPix className='patternPix' id={idx}  rowN={r} numInRow={numInRow} onClick={() => { highlightPix(idx); }}  style={{ backgroundColor: colors[loc], width: '20px', height: '20px', border:'1px solid black'}} ></PatternPix>);
+                pix.push(<PatternPix className='patternPix' id={idx}  rowN={r} numInRow={numInRow} color={colors[loc]} onClick={() => { highlightPix(idx); }}  style={{ width: '20px', height: '20px', border:'1px solid black'}} ></PatternPix>);
                 loc += counter;
 
             }
