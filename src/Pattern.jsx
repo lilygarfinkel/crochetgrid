@@ -42,7 +42,7 @@ function Pattern(props) {
     function getPattern() {
         let pattern = []
         let row = []
-        var loc = 0;
+        var loc = 1;
         let counter = 1;
         let idx = '00';
         for (let i = 1; i <= height; i = i + counter) {
