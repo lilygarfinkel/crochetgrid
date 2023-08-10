@@ -45,7 +45,7 @@ function Pattern(props) {
         var loc = 0;
         let counter = 1;
         let idx = '00';
-        for (let i = 0; i < height; i = i + counter) {
+        for (let i = 1; i < height; i = i + counter) {
             let pix = []
             for (let j = 0; j < width; j = j + counter) {
                 if (i < 10 && j >=10){
@@ -80,6 +80,7 @@ function Pattern(props) {
         console.log(e.key);
         let hpix = highlightedPix;
         let thisPix = parseInt(hpix);
+        let tPix = thisPix.substring(2,4);
         let hrow = highlightedRow;
         let thisRow = parseInt(hrow);
         console.log(highlightedRow,highlightedPix)
