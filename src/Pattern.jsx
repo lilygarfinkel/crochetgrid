@@ -45,9 +45,9 @@ function Pattern(props) {
         var loc = 0;
         let counter = 1;
         let idx = '00';
-        for (let i = 1; i < height; i = i + counter) {
+        for (let i = 1; i <= height; i = i + counter) {
             let pix = []
-            for (let j = 1; j < width; j = j + counter) {
+            for (let j = 1; j <= width; j = j + counter) {
                 if (i < 10 && j >=10){
                     idx = '0' + i.toString() + j.toString();
                 }
@@ -87,14 +87,14 @@ function Pattern(props) {
         switch (e.key) {
             case 'ArrowRight':
                
-                 if(thisPix >= (width*height)-1){
+                 if(thisPix >= width){
                     break;
                  }
                 thisPix = thisPix + 1;
                 break;
 
             case 'ArrowLeft':
-                if(thisPix <= 0){
+                if(thisPix <= 1){
                     break;
                  }
                  thisPix = thisPix - 1;
