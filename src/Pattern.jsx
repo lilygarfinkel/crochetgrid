@@ -80,7 +80,6 @@ function Pattern(props) {
         console.log(e.key);
         let hpix = highlightedPix;
         let thisPix = parseInt(hpix);
-        let tPix = hpix.substring(2,4);
         let hrow = highlightedRow;
         let thisRow = parseInt(hrow);
         console.log(highlightedRow,highlightedPix)
