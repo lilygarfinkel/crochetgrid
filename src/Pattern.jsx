@@ -70,7 +70,7 @@ function Pattern(props) {
             }
             // loc += counter;
             let idy = idx.substring(0, 2)
-            row.push(<div className='rowNum' id={idy} onClick={() => { highlightRow(idy) }}  style={{ backgroundColor: '#FBFFF2'}}>{i + 1}<div className='rowP'>{pix}</div></div>)
+            row.push(<div className='rowNum' id={idy} onClick={() => { highlightRow(idy) }}  style={{ backgroundColor: '#FBFFF2'}}>{i}<div className='rowP'>{pix}</div></div>)
         }
         pattern.push(row)
         return (pattern)
@@ -85,7 +85,7 @@ function Pattern(props) {
         console.log(highlightedRow,highlightedPix)
         console.log(thisRow, thisPix);
         switch (e.key) {
-            case 'ArrowRight':
+            case 'ArrowLeft':
                 if(thisPix >= width && thisRow >= height){
                     break;
                 }
@@ -97,7 +97,7 @@ function Pattern(props) {
                 thisPix = thisPix + 1;
                 break;
 
-            case 'ArrowLeft':
+            case 'ArrowRight':
                 if(thisPix <= 1 && thisRow <= 1){
                     break;
                  }
