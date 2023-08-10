@@ -15,7 +15,7 @@ function PatternPix(props) {
         className='patternPix' 
         id={id} 
         // onClick={highlightPix} 
-        style={{backgroundColor: color;,width: '20px', height: '20px'}} >
+        style={{backgroundColor: color,width: '20px', height: '20px'}} >
          {numInRow}</div>);
 
 }
