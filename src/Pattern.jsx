@@ -85,7 +85,7 @@ function Pattern(props) {
         console.log(highlightedRow,highlightedPix)
         console.log(thisRow, thisPix);
         switch (e.key) {
-            case 'ArrowLeft':
+            case 'ArrowRight':
                 if(thisPix >= width && thisRow >= height){
                     break;
                 }
@@ -97,11 +97,11 @@ function Pattern(props) {
                 thisPix = thisPix + 1;
                 break;
 
-            case 'ArrowRight':
+            case 'ArrowLeft':
                 if(thisPix <= 1 && thisRow <= 1){
                     break;
                  }
-                 if (thisPix <= width){
+                 if (thisPix <= 1){
                     thisRow = thisRow - 1;
                     thisPix = width;
                 }
