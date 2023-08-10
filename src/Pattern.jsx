@@ -104,14 +104,14 @@ function Pattern(props) {
                  thisPix = thisPix - 1;
                 break;
             case 'ArrowDown':
-                if(thisRow >= height-1){
+                if(thisRow >= height){
                     break;
                  }
                 // thisPix = thisPix + width;
                 thisRow = thisRow + 1;
                 break;
             case 'ArrowUp':
-                if(thisRow <= height){
+                if(thisRow <= 1){
                    break;
                 }
                 // thisPix = thisPix - width;
