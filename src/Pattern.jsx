@@ -64,7 +64,7 @@ function Pattern(props) {
                  
                 
                 let numInRow=j;
-                pix.push(<PatternPix className='patternPix' id={idx} numInRow={numInRow} color={colors[loc]} onClick={() => { highlightPix(idx); }}  style={{ width: '20px', height: '20px', border:'1px solid black'}} ></PatternPix>);
+                pix.push(<PatternPix className='patternPix' id={idx} numInRow={numInRow} color={colors[loc]} onClick={() => {setHighlightedPix(idx); highlightPix(idx); }}  style={{ width: '20px', height: '20px', border:'1px solid black'}} ></PatternPix>);
                 loc += counter;
 
             }
