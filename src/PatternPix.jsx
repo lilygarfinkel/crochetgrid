@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react"
 
 
 function PatternPix(props) {
-    const {id, rowN, numInRow, color } = props;
+    const {id, numInRow, color } = props;
 
    
     return (
