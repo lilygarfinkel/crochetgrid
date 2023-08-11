@@ -67,7 +67,7 @@
  --w : 150px;
   width:  var(--w);
   position: absolute;
-  left: 35px;
+  left: 50px;
   background:var(--yel2);
 border: none; 
  }
