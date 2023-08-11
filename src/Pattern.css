@@ -1,9 +1,10 @@
-.patternPix{
+PatternPix {
      /* padding:5px; */
      margin:auto;
     border: 1px solid black;
     z-index: 3;
 }
+
 #Pattern{
     position: absolute;
     display: inline-flex;
