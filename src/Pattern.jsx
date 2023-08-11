@@ -48,6 +48,7 @@ function Pattern(props) {
         let idx = '00';
         for (let i = 1; i <= height; i = i + counter) {
             let pix = []
+            var idy;
             for (let j = 1; j <= width; j = j + counter) {
                 if (i < 10 && j >=10){
                     idx = '0' + i.toString() + j.toString();
@@ -62,7 +63,7 @@ function Pattern(props) {
                     idx = i.toString() + j.toString();
                 }
                  
-                let idy = idx.substring(0, 2)
+                idy = idx.substring(0, 2)
  
                 let numInRow=j;
                 pix.push(<PatternPix className='patternPix' id={idx} numInRow={numInRow} color={colors[loc]} onClick={() => {highlightPix(idx); highlightRow(idy); }}  style={{ width: '20px', height: '20px', border:'1px solid black'}} ></PatternPix>);
