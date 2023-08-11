@@ -6,16 +6,21 @@ import React, { useState, useEffect } from "react"
 
 
 function PatternPix(props) {
-    const {id, numInRow, color } = props;
+    const {id, numInRow, color, bord } = props;
 
-   
+   const [border, setBorder] = useState(bord);
+
+   function highlightPix(){
+    setBorder('2px solid black')
+   }
+
     return (
 
         <div 
         className='patternPix' 
         id={id} 
-        // onClick={highlightPix} 
-        style={{backgroundColor: color,width: '20px', height: '20px'}} >
+        onClick={highlightPix} 
+        style={{backgroundColor: color,width: '20px', height: '20px', border: border}} >
          {numInRow}</div>);
 
 }

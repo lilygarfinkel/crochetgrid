@@ -9,8 +9,8 @@ import React, { useState, useEffect } from "react"
 function Pattern(props) {
     const { colors, width, height } = props;
 
-    const [highlightedPix, setHighlightedPix] = useState('0000')
-    const [highlightedRow, setHighlightedRow] = useState('00')
+    const [highlightedPix, setHighlightedPix] = useState('0101')
+    const [highlightedRow, setHighlightedRow] = useState('01')
 
     function highlightRow(row) {
         setHighlightedRow(row);
