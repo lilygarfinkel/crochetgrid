@@ -43,7 +43,7 @@
 
 .sidenav{
   height: 100vh;
-  width: 35px;
+  width: 50px;
   left: 0;
   background-color: var(--yel);
   position: absolute;
@@ -54,7 +54,7 @@
 }
 
 .navButts{
-  width:35px;
+  width:50px;
   padding-bottom: 5px;
   background-color: var(--yel);
   border: 0px;
