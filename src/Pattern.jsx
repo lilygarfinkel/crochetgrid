@@ -62,14 +62,14 @@ function Pattern(props) {
                     idx = i.toString() + j.toString();
                 }
                  
-                
+                let idy = idx.substring(0, 2)
+ 
                 let numInRow=j;
-                pix.push(<PatternPix className='patternPix' id={idx} numInRow={numInRow} color={colors[loc]} onClick={() => {highlightPix(idx); }}  style={{ width: '20px', height: '20px', border:'1px solid black'}} ></PatternPix>);
+                pix.push(<PatternPix className='patternPix' id={idx} numInRow={numInRow} color={colors[loc]} onClick={() => {highlightPix(idx); highlightRow(idy); }}  style={{ width: '20px', height: '20px', border:'1px solid black'}} ></PatternPix>);
                 loc += counter;
 
             }
             // loc += counter;
-            let idy = idx.substring(0, 2)
             row.push(<div className='rowNum' id={idy} style={{ backgroundColor: '#FBFFF2'}}>{i}<div className='rowP'>{pix}</div></div>)
         }
         pattern.push(row)
@@ -152,7 +152,7 @@ function Pattern(props) {
   useEffect(() => {
 console.log(highlightedRow, highlightedPix)
 
-  }, [highlightedPix, highlightedRow])
+  }, [highlightedPix])
 
     return (
         <div id="Pattern">
