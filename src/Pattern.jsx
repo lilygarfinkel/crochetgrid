@@ -153,7 +153,7 @@ function Pattern(props) {
   useEffect(() => {
 console.log(highlightedRow, highlightedPix)
 
-  }, [])
+  }, [highlightedPix])
 
     return (
         <div id="Pattern">
