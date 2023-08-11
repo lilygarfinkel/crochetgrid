@@ -251,8 +251,8 @@ function Container() {
       </div>
       <div className='navContainer'>
       <div className='sidenav'>
-        <button className='navButts' id='navedit' value = 'navedit' onClick = {(e) => {toggleSideNav(e.target.value)}}> <img src={gridpng} style={{ height: '40px' , width:'40px'}}/></button>   
-        <button className='navButts' id='navpattern'  value = 'navpattern' onClick = {(e) => {toggleSideNav(e.target.value)}}> <img src={patternpng} style={{ height: '40px' , width:'40px'}}/></button>   
+        <button className='navButts' id='navedit' value = 'navedit' onClick = {(e) => {toggleSideNav(e.target.value)}}> <img src={gridpng} style={{ height: '25px' , width:'25px'}}/></button>   
+        <button className='navButts' id='navpattern'  value = 'navpattern' onClick = {(e) => {toggleSideNav(e.target.value)}}> <img src={patternpng} style={{ height: '25px' , width:'25px'}}/></button>   
         {/* <button className='navButts' id='navsave'  value = 'navsave' onClick = {(e) => {toggleSideNav(e.target.value)}}> save</button>    */}
 
       </div>
