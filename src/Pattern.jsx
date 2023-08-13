@@ -151,7 +151,8 @@ function Pattern(props) {
     };
 
   useEffect(() => {
-console.log(highlightedRow, highlightedPix)
+    highlightPix(highlightedPix)
+    highlightRow(highlightedRow)
 
   }, [highlightedPix, highlightedRow])
 
