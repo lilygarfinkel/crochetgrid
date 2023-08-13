@@ -1,6 +1,7 @@
 import './App.css';
 import './Pattern.css';
 import PatternPix from './PatternPix.jsx';
+import PatternRow from './PatternRow';
 
 import React, { useState, useEffect } from "react"
 
@@ -71,7 +72,7 @@ function Pattern(props) {
 
             }
             // loc += counter;
-            row.push(<div className='rowNum' id={idy} style={{ backgroundColor: '#FBFFF2'}}>{i}<div className='rowP'>{pix}</div></div>)
+            row.push(<PatternRow className='rowNum' id={idy} numRow={i} bg={'#FBFFF2'}style={{ backgroundColor: '#FBFFF2'}}>{pix}</PatternRow>)
         }
         pattern.push(row)
         return (pattern)
