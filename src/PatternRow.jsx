@@ -18,7 +18,7 @@ function PatternRow(props) {
     return (
 
         <div 
-        className='patternPix' 
+        className='rowP' 
         id={id} 
         onClick={highlightRow} 
         style={{backgroundColor: background,width: '20px', height: '20px', border: border}} >
