@@ -14,6 +14,11 @@ function PatternPix(props) {
     setBorder('2px solid black')
    }
 
+   useEffect(() => {
+    
+    setBorder(bord)
+      }, [bord])
+      
     return (
 
         <div 
