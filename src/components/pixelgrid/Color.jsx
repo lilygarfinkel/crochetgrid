@@ -38,7 +38,7 @@ return (
     className="Color"
     id={id}
     onClick={handleClick}
-    style={{backgroundColor: currColor, border:bord, height: "10px", width: "10px" }}
+    style={{backgroundColor: currColor, border:bord, height: "25px", width: "25px" }}
   ></div>
 )
 }

@@ -1,0 +1,26 @@
+.Container{
+  --yel: #BACF1D;
+  --yel2: #DFF988;
+  --yel3:#ECFEBE;
+}
+.page{
+ height:100vh;
+ width:100vw;
+  position:relative;
+  --hei: 60px;
+  display:flex;
+  flex-direction: row-reverse;
+  /* background-color: #ECFEBE; */
+  /* padding-top:var(--hei); */
+
+}
+
+
+
+#patStart{
+  width:75px;
+  margin: 10;
+  margin-top:5px;
+
+}
+

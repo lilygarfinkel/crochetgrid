@@ -4,7 +4,7 @@ import Pixel from "./Pixel.jsx"
 import Pixelholder from "./Pixelholder.jsx"
 
 export default function Row(props) {
-  const {width, selectedColor, stitch, clicked, drawMode, bgFill, zoom, borderB, x, y } = props
+  const {width, selectedColor, stitch, clicked, drawMode, bgFill, zoom, borderB, x, y, bold } = props
 
   let borderR = false;
   let pixels = []
@@ -13,7 +13,7 @@ export default function Row(props) {
 
     for (let i = -1; i < width; i++) {
       //bold every 5 gridlines
-      if((i+1) % 5 === 0){
+      if((i+1) % bold === 0){
         borderR = true;
       }
       else{
@@ -22,20 +22,20 @@ export default function Row(props) {
       // horizontal numbers
       if(y){
         if(i===-1){
-          pixels.push(<Pixelholder key={i} zoom={zoom} x={''}></Pixelholder>)
+          pixels.push(<Pixelholder key={i} zoom={zoom} x={''} bold={bold}></Pixelholder>)
         }
         else{
-          pixels.push(<Pixelholder key={i} zoom={zoom} x={i+1}></Pixelholder>)
+          pixels.push(<Pixelholder key={i} zoom={zoom} x={i+1}  bold={bold}></Pixelholder>)
 
         }
       }
       else{
       // vertical numbers
       if(i===-1){
-        pixels.push(<Pixelholder key={i} zoom={zoom} x={x}></Pixelholder>)
+        pixels.push(<Pixelholder key={i} zoom={zoom} x={x}  bold={bold}></Pixelholder>)
       }
       else{
-      pixels.push(<Pixel key={i} selectedColor={selectedColor} stitch={stitch} clicked={clicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} borderR={borderR} borderB={borderB}/>)
+      pixels.push(<Pixel key={i} selectedColor={selectedColor} stitch={stitch} clicked={clicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} borderR={borderR} borderB={borderB}  bold={bold}/>)
     }
   }
   }

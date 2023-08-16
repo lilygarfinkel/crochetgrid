@@ -2,15 +2,15 @@ import React, { useState,useEffect } from "react"
 import "./Pixel.css"
 
 export default function Pixel(props) {
-  const { selectedColor, stitch, clicked, drawMode, bgFill, zoom, borderR, borderB } = props
+  const { selectedColor, stitch, clicked, drawMode, bgFill, zoom, borderR, borderB, bold } = props
 
   const [pixelColor, setPixelColor] = useState('#ffffff')
   const [oldColor, setOldColor] = useState(pixelColor)
   const [canChangeColor, setCanChangeColor] = useState(true)
   const [dm, setDM] = useState(drawMode)
   const [bg, setbgFill] = useState(bgFill)
-  const [bordR, setBordR] = useState( "1px solid grey")
-  const [bordB, setBordB] = useState( "1px solid grey")
+  const [bordR, setBordR] = useState( "1px solid black")
+  const [bordB, setBordB] = useState( "1px solid black")
 
 useEffect(() => {
   setDM(drawMode);
@@ -19,10 +19,17 @@ useEffect(() => {
   if(borderR){
     setBordR('2px solid black')
   }
+  else{
+    setBordR('1px solid black')
+  }
   if(borderB){
     setBordB('2px solid black')
   }
-}, [bgFill])
+  else{
+    setBordB('1px solid black')
+
+  }
+}, [bgFill, bordB, bordR, bold])
 
  function applyColor() {
     setPixelColor(selectedColor)

@@ -1,6 +1,6 @@
 .row {
     display: flex;
-    width: fit-content;
+    /* width: fit-content; */
     /* outline: black; */
   }
   

@@ -10,80 +10,56 @@
   --hei: 60px;
   display:flex;
   flex-direction: row-reverse;
-  padding-top:var(--hei);
+  /* padding-top:var(--hei); */
 
 }
-.header{
-  width: 100vw;
-  height: 60px;
-  position: absolute;
-  top: 0;
-  background: var(--yel);
-  border: 1px solid rgb(0, 0, 0);
-  z-index: 1;
-}
 
-.head {
-  position:relative;
-  top:0;
-  padding:0px;
-}
-.headButtons{
-  position: absolute; 
-  bottom: 0;
-  right:0;
-  padding-right: 10px;
-}
 .navContainer{
   left:0;
+  top: 0;
   display:inline-flex;
   flex-direction: row;
   position:absolute;
 }
 
-.sidenav{
-  height: 100vh;
-  width: 35px;
-  left: 0;
-  background-color: var(--yel);
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items:center;
 
-}
-
-.navButts{
-  width:35px;
-  padding-bottom: 5px;
-  background-color: var(--yel);
-  border: 0px;
-  z-index: 3;
+#navedit, #navpattern{
+  background-color:var(--yel);
 }
 
 
-.navbar {
- height: 100vh;
- --w : 150px;
+.navbar, .bottomnavbar {
+ height: 50px;
+ left:0;
+  --w : calc(100vw - 15px);
   width:  var(--w);
   position: absolute;
-  left: 35px;
+  /* margin-right: -25px; */
+  padding: 10px;
+  margin-bottom: 20px;
   background:var(--yel2);
-border: none; 
+  border: none; 
+  display:flex;
+  flex-direction:row;
  }
 
- .react-icons{
-  width: 40px;
-  height:40px;
- }
  #options {
   display: flex;
   flex-direction: column;
-  align-items:flex-start;
+  /* align-items:flex-start; */
   padding-right: 10px;
-
 }
- 
+
+ .input{
+  border:0px;
+  background-color:var(--yel2);
+  width:100px;
+  left:50%;
+  position:absolute;
+  /* padding:auto; */
+  text-align: center;
+  height:35px;
+ }
  .panelInput, .export{
   background-color: var(--yel3);
   color: black;
@@ -91,11 +67,13 @@ border: none;
   border-radius: 0.25rem;
   font-size:10px;
   width: 35px;
+  /* height:auto; */
   margin: auto;
   padding:0px;
   text-align:center;
   vertical-align: middle;
 }
+
 
 .zoom {
   background-color: var(--yel3);
@@ -107,49 +85,47 @@ border: none;
   margin:3px;
   color:black;
   }
-  
-  .export{
-    margin: 5px;
 
+  .exps{
+    display:inline-flex;
+    flex-direction:row;
+    position:relative;
+    padding-right:50px;
   }
-
+  
+  #saveOPs{
+    /* margin: 0; */
+    position:relative; 
+    right:0;
+  }
+  .noBord{
+    border:none;
+    background: none;
+  }
 
 .panelInput{
   margin: 0 1rem 0.5rem 1rem;
 }
 
-#saveOPs{
-  align-items:center;
-  display: inline-flex;
-  flex-direction: row;
-  width:45px;
-
-}
-span{
-  font-size:10px;
-  margin: auto 0;
-  padding-left:5px;
-}
-
-.lbl{
-  background-color:var(--yel);
-  width:150px;
-  font-size:10px;
-  height:18px;
-  display:flex;
-  flex-direction: row;
-  left:0;
-
+.settings{
+  background-color: #DFF988 ;
+  width:100px;
+  height:calc(70vh - 15px);
+  margin-top: 50px;
+  padding-left: 10px;
   position:relative;
+  left:0;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
 }
 .size, .colors{
   width:  var(--w);
-  display: flex;
-  flex-direction: column;
-  align-items:flex-start;
+  /* display: inline-flex;
+  flex-direction: column; */
+  position: relative;
   font-size:10px;
   padding:0px;
-  padding-top:8px;
 }
 
 .showOP{
@@ -165,10 +141,9 @@ span{
 
 }
 .saveOP{
-  display:flex;
-  flex-direction:row;
-  width:150px;
- position:relative;
+  position:absolute;
+  right:0;
+  padding-right: 20px;
 }
 
 #save{
@@ -184,27 +159,45 @@ span{
 .option{
   display:inline-flex;
   flex-direction: row;
-  
+  padding-bottom:10px;
+  padding-left:5px;
 }
 
 
 .small .react-colorful {
   margin: 5px;
-  width: 120px;
-  height: 65px;
+  /* margin-left: 25px; */
+  width: 200px;
+  height: 60px;
   /* border: 1px solid rgb(19, 19, 24); */
   border-radius: 0.5rem;
-  z-index:2;
+ 
 }
 
 .small .react-colorful__hue {
-  height: 15px;
+  height: 10px;
 }
 
 .colorCont, .preset{
   display: inline-flex;
   flex-direction: row;
+position:relative;
 
+}
+.colorPick{
+  position: relative;
+
+}
+
+#colorpick{
+  display:none;
+  background-color: #DFF988;
+  width:auto;
+  padding:5px;
+  z-index:2;
+  bottom:0;
+  position: absolute;
+  align-items:center;
 }
 
 .pattern{
@@ -219,21 +212,41 @@ span{
 
 }
 .gridcontainer{
-  width:calc(100vw - 185px);
-  height: 90vh;
-  position:absolute;
+  width: calc(100vw - 15px);;
+  height: 70vh;
+  position:relative;
   align-items:center;
-  padding:20px;
+  /* padding:50px; */
   overflow:scroll;
+  /* margin-top: 50px; */
+
 }
 .grid {
-  padding: 20px;
+  /* padding: 20px; */
   width: 300px;
   height:300px;
   margin:auto;
+  margin-top: 50px;
   position:relative;
 }
 
+.bottomnav{
+  bottom: 0;
+  display:inline-flex;
+  flex-direction: row;
+  position:absolute;
+}
+.snaptobtm{
+  display:inline-flex;
+  flex-direction:column;
+  position: absolute;
+  margin-top: 50px;
+}
+.zooms{
+  position: absolute;
+  right:0;
+  padding-right:20px;
+}
 .popUpCont + #pop{
   position:relative;
   margin:auto;

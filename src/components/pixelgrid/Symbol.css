@@ -1,0 +1,22 @@
+.scontainer{
+    position:relative;
+
+}
+
+
+.settIcon{
+    padding:2px;
+    height:25px;
+}
+.settingsText{
+    background-color: antiquewhite;
+    width: 50px;
+    height: auto;
+    z-index:10;
+    position:absolute;
+
+}
+
+.one{
+position:relative;
+}
