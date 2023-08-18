@@ -49,16 +49,19 @@
   /* align-items:flex-start; */
   padding-right: 10px;
 }
+.inputC{
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
 
  .input{
-  border:0px;
+  border:2px solid black;
+  border-radius: 5px;
   background-color:var(--yel2);
   width:100px;
-  left:50%;
   position:absolute;
-  /* padding:auto; */
   text-align: center;
-  height:35px;
  }
  .panelInput, .export{
   background-color: var(--yel3);

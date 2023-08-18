@@ -4,22 +4,18 @@ import reportWebVitals from './reportWebVitals';
 import React from "react"
 import {BrowserRouter as Router} from 'react-router-dom';
 
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { Amplify, API, graphqlOperation } from 'aws-amplify';
+import awsconfig from './aws-exports.js';
+Amplify.configure(awsconfig);
 
-const client = new ApolloClient({
-  uri: 'https://flyby-router-demo.herokuapp.com/',
-  cache: new InMemoryCache(),
-});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-      <ApolloProvider client={client}>
     <Router>
       <App />
     </Router>
-    </ApolloProvider>
   </React.StrictMode>
 );
 

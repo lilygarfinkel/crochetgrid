@@ -14,11 +14,13 @@ import saveicon from './icons/8.png'
 import settingsicon from './icons/9.png'
 
 
+
 import { HexColorPicker } from "react-colorful"
 import { exportComponentAsPNG, exportComponentAsJPEG } from "react-component-export-image"
 
 
 function Container() {
+  
   const [panelWidth, setPanelWidth] = useState(15);
   const [panelHeight, setPanelHeight] = useState(15);
   const [selectedColor, setColor] = useState("#ff0000");
@@ -65,6 +67,7 @@ function Container() {
   }
 
   function Reset() {
+    
     // setPanelHeight(15);
     // setPanelWidth(15);
     setZoom(0);
@@ -121,7 +124,7 @@ function Container() {
       hex = "#" + hex.join("");
       console.log(hex)
       setColor(hex);
-      colorToUse.style.border = '1px solid white'
+      colorToUse.style.border = '3px solid black'
     }
 
   }
@@ -134,7 +137,7 @@ function Container() {
       var b = document.getElementById('showcolor');
       b.innerHTML = "v";
     }
-    if (modeC == 'set') {
+    if (modeC === 'set') {
       var cp = document.getElementById('colorpick');
       cp.style.display = 'none';
       setModeC("use");
@@ -173,7 +176,7 @@ function Container() {
               <div className='size' id='gridOP'>
                 <div >
                   <div className="option">
-                    <Symbol src={gridicon} id="gicon" text= 'grid layout' />
+                  <Symbol src={gridicon} id="gicon" text= 'grid layout' />
                     <select
                       className="panelInput"
                       defaultValue='grid'
@@ -228,7 +231,7 @@ function Container() {
                   </div>
                 </div>
                 <div className="option">
-                <Symbol src={outlineicon} id="oicon" text= 'set outline frequency' />
+                <Symbol src={outlineicon} id="oicon" text= 'outline frequency' />
                   <input
                     type="number"
                     id='outlineSize'
@@ -246,8 +249,9 @@ function Container() {
           </div>
 
           <div id="navbar" className="navbar">
-            <button className='noBord'>
-              <img src={settingsicon} alt="Logo" id="sticon" onClick={hideSettings} class='icon' style={{ height: '25px' }} />
+            <button className='noBord'  onClick={hideSettings}>
+            <Symbol src={settingsicon} id="seticon" text= 'settings'  style={{ height: '25px' }}/>
+              {/* <img src={} alt="Logo" id="sticon" onClick={hideSettings} class='icon' style={{ height: '25px' }} /> */}
             </button>
             <div className='inputC'>
               <input className='input' id='docname' type='text' value={fname} onChange={(e) => (setFName(e.target.value))}></input>
@@ -258,7 +262,9 @@ function Container() {
                 id='saveOPs'
                 value='export'
                 onClick={() => exportComponentAsPNG(panelRef, { fileName: fname, html2CanvasOptions: { backgroundColor: null } })}>
-                <img src={saveicon} alt="Logo" id="sicon" class='icon' style={{ height: '25px' }} />
+                
+                <Symbol src={saveicon} id="sicon" text= 'export grid'  style={{ height: '25px' }}/>
+{/* <img src={saveicon} alt="Logo" id="sicon" class='icon' style={{ height: '25px' }} /> */}
               </button>
             </div>
 
@@ -278,7 +284,7 @@ function Container() {
               {drawGrid()}
             </div>
           </div>
-          <div className='colorpick' id='colorpick' style={{ display: 'none' }}>
+          <div className='colorpick' id='colorpick' style={{ display: 'flex' }}>
             <div className="small" id='colorpicker' >
               <HexColorPicker color={selectedColor} onChange={setColor} />
             </div>
@@ -295,19 +301,19 @@ function Container() {
 
               <div className="colorCont">
                 {initColors()}
-                <button onClick={showColor} id='showcolor' className='zoom'>^</button>
+                <button onClick={showColor} id='showcolor' className='zoom'>v</button>
                 <div className='exps'>
                   <button
                     className="noBord"
                     value='reset'
                     onClick={Reset}>
-                    <img src={reseticon} alt="Logo" id="ricon" class='icon' style={{ height: '25px' }} />
+                    <Symbol src={reseticon} id="ricon" text= 'clear grid'  style={{ height: '25px' }}/>
                   </button>
                   <button
                     className="noBord"
                     value='fill'
                     onClick={Fill}>
-                    <img src={fillicon} alt="Logo" id="ficon" class='icon' style={{ height: '25px' }} />
+                    <Symbol src={fillicon} id="ficon" text= 'fill grid'  style={{ height: '25px' }}/>
                   </button>
                 </div>
               </div>

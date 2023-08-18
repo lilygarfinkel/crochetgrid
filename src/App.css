@@ -1,19 +1,4 @@
-/* 
-body,
-html {
-  margin: 5;
-  padding: 5;
-  width: 100%;
-
+.App{
+  font-family: 'Montserrat', sans-serif;
+/* font-family: 'Petit Formal Script', cursive; */
 }
-
-body {
-  background:#FBFFF2;
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-width: fit-content;
-}
- */

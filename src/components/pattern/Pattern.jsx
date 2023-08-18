@@ -1,7 +1,5 @@
 // import './App.css';
 import './Pattern.css';
-import PatternPix from './PatternPix.jsx';
-import PatternRow from './PatternRow';
 
 import React, { useState, useEffect } from "react"
 
@@ -133,8 +131,8 @@ function Pattern(props) {
             default:
                 break;
         }
-        if(x>0){
-        console.log(thisRow, thisPix);
+        // if(x>0){
+        // console.log(thisRow, thisPix);
 
         var pix;
         var row;
@@ -157,7 +155,7 @@ function Pattern(props) {
 
         highlightPix(row+pix);
         highlightRow(row);
-    }
+    
     }
 
     return (
