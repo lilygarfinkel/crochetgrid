@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react"
 import "./Pixel.css"
 
 export default function Pixel(props) {
-  const { selectedColor, stitch, clicked, drawMode, bgFill, zoom, borderR, borderB, bold } = props
+  const { selectedColor, width, stitch, clicked, drawMode, bgFill, zoom, borderR, borderB, bold, x, y, count } = props
 
   const [pixelColor, setPixelColor] = useState('#ffffff')
   const [oldColor, setOldColor] = useState(pixelColor)
@@ -36,12 +36,28 @@ useEffect(() => {
     setCanChangeColor(false)
     if(dm === 2){
       setDM(0)
-    }
-   
+    } 
+  //  if( dm == 3){
+  //     // let xid = x.toString();
+  //     let pid ='pixel' + x.toString();
+  //     let rid = 'row' + count;
+  //     console.log(pid)
+  //     console.log(rid)
+  //     var pix = document.getElementsByClassName(count.toString());
+  //     // .getElementsByClassName(rid);
+  //     // var pix = document.getElementsByClassName(rid);
+  //     console.log(pix)
+  //     // console.log(p)
+  //     for (var i = 1; i < pix.length; i++) {
+  //       pix[i].style.backgroundColor = selectedColor;
+  //       }
+      
+  //     setDM(0)
+  //  }
    }
 
   function changeColorOnHover() {
-    console.log(dm)
+    // console.log(dm)
     if (clicked) {
       applyColor()
     }
@@ -53,6 +69,10 @@ useEffect(() => {
     }
     //background filled
     else if(dm === 2){
+      setOldColor(bg)
+      setPixelColor(selectedColor)
+    }
+    else if(dm === 3){
       setOldColor(bg)
       setPixelColor(selectedColor)
     }

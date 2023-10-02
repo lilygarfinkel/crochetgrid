@@ -13,10 +13,12 @@ import reseticon from './icons/1.png'
 import saveicon from './icons/8.png'
 import settingsicon from './icons/9.png'
 
-
+import NavContainer from "../Header/NavContainer.jsx";
+import SaveButton from './SaveButton.jsx'
 
 import { HexColorPicker } from "react-colorful"
-import { exportComponentAsPNG, exportComponentAsJPEG } from "react-component-export-image"
+import { exportComponentAsPNG } from "react-component-export-image"
+import { colors } from "@mui/material";
 
 
 function Container() {
@@ -36,12 +38,11 @@ function Container() {
 
   const [hidden, setHidden] = useState('hidden');
 
-  const [fname, setFName] = useState('untitled')
+  const [name, setFName] = useState('untitled')
 
   var grid = <Grid></Grid>
 
   const panelRef = useRef()
-  const panelRefp = useRef()
 
   function changeMode(e) {
     const m = e.target.value;
@@ -89,6 +90,12 @@ function Container() {
     setBg(selectedColor);
     setDrawMode(2);
   }
+
+  function FillRow() {
+    setBg(selectedColor);
+    setDrawMode(3);
+  }
+
 
   function Undo() {
 
@@ -162,6 +169,7 @@ function Container() {
   function showText(e){
     console.log(e)
   }
+
 
   useEffect(() => {
     drawGrid();
@@ -249,32 +257,25 @@ function Container() {
           </div>
 
           <div id="navbar" className="navbar">
+          <NavContainer/>
             <button className='noBord'  onClick={hideSettings}>
             <Symbol src={settingsicon} id="seticon" text= 'settings'  style={{ height: '25px' }}/>
               {/* <img src={} alt="Logo" id="sticon" onClick={hideSettings} class='icon' style={{ height: '25px' }} /> */}
             </button>
+            
             <div className='inputC'>
-              <input className='input' id='docname' type='text' value={fname} onChange={(e) => (setFName(e.target.value))}></input>
+              <input className='input' id='docname' type='text' value={name} onChange={(e) => (setFName(e.target.value))}></input>
             </div>
             <div className='saveOP' id='saveOP'>
+            <SaveButton fname={name} width={panelWidth} height={panelHeight} stSize={stitch} offset={mode} boldLines={boldOutline}/>
               <button
                 className="noBord"
                 id='saveOPs'
                 value='export'
-                onClick={() => exportComponentAsPNG(panelRef, { fileName: fname, html2CanvasOptions: { backgroundColor: null } })}>
+                onClick={() => exportComponentAsPNG(panelRef, { fileName: name, html2CanvasOptions: { backgroundColor: null } })}>
                 
                 <Symbol src={saveicon} id="sicon" text= 'export grid'  style={{ height: '25px' }}/>
-{/* <img src={saveicon} alt="Logo" id="sicon" class='icon' style={{ height: '25px' }} /> */}
               </button>
-            </div>
-
-            <div className='pattern'>
-              <button
-                className="export"
-                id='savePat'
-                value='export'
-                onClick={() => exportComponentAsJPEG(panelRefp, { html2CanvasOptions: { backgroundColor: null } })}>
-                Export</button>
             </div>
           </div>
         </div>
@@ -314,6 +315,12 @@ function Container() {
                     value='fill'
                     onClick={Fill}>
                     <Symbol src={fillicon} id="ficon" text= 'fill grid'  style={{ height: '25px' }}/>
+                  </button>
+                  <button
+                    className="noBord"
+                    value='fill'
+                    onClick={FillRow}>
+                    <Symbol src={fillicon} id="fricon" text= 'fill row' h='10px' style={{  width:'10px' }}/>
                   </button>
                 </div>
               </div>

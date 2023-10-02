@@ -4,7 +4,7 @@ import React from "react"
 
 
 function Symbol(props) {
-    const {id, src, text}= props
+    const {id, src, text, h}= props
  
     function handleHover(){
         let tid = 't' + id;
@@ -20,7 +20,7 @@ function Symbol(props) {
         <div className='scontainer'>
             <div id={'t'+ id} className='settingstext' style={{display:'none', backgroundColor:'white', borderRadius:'5px', zIndex:10, position:'absolute', marginLeft:'30px', marginBottom:'30px',padding:'4px'}}>{text}</div>  
             <div id='one'>
-            <img  id={id} className="settIcon" src={src} onMouseEnter={handleHover} onMouseLeave={exitHover} style={{ height: '25px' }} ></img>
+            <img  id={id} className="settIcon" src={src} onMouseEnter={handleHover} onMouseLeave={exitHover} style={{ height: '25px', width: h }} ></img>
           </div>
         </div>
     )

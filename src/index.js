@@ -3,18 +3,22 @@ import App from './App.jsx';
 import reportWebVitals from './reportWebVitals';
 import React from "react"
 import {BrowserRouter as Router} from 'react-router-dom';
+import config from './aws-exports.js'
+import { AmplifyProvider } from '@aws-amplify/ui-react';
 
 import { Amplify, API, graphqlOperation } from 'aws-amplify';
-import awsconfig from './aws-exports.js';
-Amplify.configure(awsconfig);
+// import { config } from 'process';
 
+Amplify.configure(config)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
     <Router>
+      <AmplifyProvider>
       <App />
+      </AmplifyProvider>
     </Router>
   </React.StrictMode>
 );

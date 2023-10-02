@@ -2,8 +2,39 @@
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
-type Todo @model {
-  id: ID!
-  name: String!
-  description: String
+schema {
+  query: Query
+  mutation: Mutation
 }
+
+type Grid @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  fname: String!
+  colors: [String]!
+  width: Int!
+  height: Int!
+  offset: boolean!
+  linebold: Int!
+  stitch: Int!
+}
+
+input CreateGrid {
+  id: ID!
+  fname: String!
+  colors: [String]!
+  width: Int!
+  height: Int!
+  offset: boolean!
+  linebold: Int!
+  stitch: Int!
+}
+
+type Mutation {
+  addGrid(input: [CreateGrid]): Grid
+}
+
+mutation create {
+  createGrid(input: {fname: "test", height: 10, id: "", linebold: 10, offset: false, stitch: 10, width: 10, _version: 10}
+  ){
+    fname height id width linebold offset _version
+  } }

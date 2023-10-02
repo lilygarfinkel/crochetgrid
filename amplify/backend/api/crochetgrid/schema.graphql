@@ -1,0 +1,11 @@
+type Grid @model @auth(rules: [{allow: owner}, {allow: public}]) {
+  id: ID!
+  fname: String!
+  width: Int!
+  height: Int!
+  stitch: Int!
+  offset: Boolean!
+  linebold: Int!
+  colors: [String!]!
+}
+ 

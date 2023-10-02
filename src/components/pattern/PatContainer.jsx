@@ -2,17 +2,22 @@ import React, { useState, useRef, useEffect, useContext } from "react"
 import './PatContainer.css';
 
 import Pattern from './Pattern.jsx'
-import { HexColorPicker } from "react-colorful"
+import { exportComponentAsPNG } from "react-component-export-image"
+import Symbol from '../pixelgrid/Symbol.jsx'
+import saveicon from '../pixelgrid/icons/8.png'
+import NavContainer from "../Header/NavContainer.jsx";
+
 
 
 function Container() {
   const [panelWidth, setPanelWidth] = useState(15);
   const [panelHeight, setPanelHeight] = useState(15);
-  const [selectedColor, setColor] = useState("#ff0000");
+  const [fname, setFName] = useState('untitled')
+
   const panelRef = useRef()
 
 
- 
+
   function drawGrid2() {
     var colors = []
     var pix = document.getElementsByClassName('pixel');
@@ -25,6 +30,11 @@ function Container() {
 
     return <Pattern colors={colors} height={panelHeight} width={panelWidth}></Pattern>
   }
+
+  function pull_name(name){
+    console.log(name);
+    setFName(name);
+  }
   useEffect(() => {
     drawGrid2();
   }, [])
@@ -32,11 +42,22 @@ function Container() {
   return (
     <div className="Container">
       <div className='page'>
-            <div className="grid" id='grid' ref={panelRef}>
-              {drawGrid2()}
-            </div>
-          </div>
+        <div className='navContainer'>
+          <NavContainer func={pull_name}/>
+          <button
+            className="noBord"
+            id='saveicon'
+            value='export'
+            onClick={() => exportComponentAsPNG(panelRef, { fileName: fname, html2CanvasOptions: { backgroundColor: null } })}>
+
+            <Symbol src={saveicon} id="sicon" text='export grid' style={{ height: '25px' }} />
+          </button>
         </div>
+        <div className="grid" id='grid' ref={panelRef}>
+          {drawGrid2()}
+        </div>
+      </div>
+    </div>
 
   );
 }

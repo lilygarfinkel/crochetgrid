@@ -33,14 +33,14 @@ function Grid(props) {
         }
         //draw grid
         if (mode === "grid") {
-            rows.push(<div><Row key={i} width={width} selectedColor={color} mode={mode} stitch={stitch} clicked={clicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} borderB={borderB}  x={x} y={y}  bold={bold}/></div>)
+            rows.push(<div><Row id= {i}  key={i} width={width} selectedColor={color} mode={mode} stitch={stitch} clicked={clicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} borderB={borderB}  x={x} y={y} count={i} bold={bold}/></div>)
         }
         else if (mode === "offset") {
             if (i % 2 === 1) {
-                rows.push(<div className="offset" style={{paddingRight: '5px', paddingLeft:'5px'}}><Row key={i} width={width} selectedColor={color} mode={mode} stitch={stitch} clicked={clicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} borderB={borderB}  x={x} y={y}  bold={bold}/></div>)
+                rows.push(<div className="offset" style={{paddingRight: '5px', paddingLeft:'5px'}}><Row key={i} width={width} selectedColor={color} mode={mode} stitch={stitch} clicked={clicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} borderB={borderB}  x={x} y={y} count={i} bold={bold}/></div>)
             }
             else {
-                rows.push(<div><Row key={i} width={width} selectedColor={color} mode={mode} stitch={stitch} clicked={clicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} borderB={borderB}  x={x} y={y}  bold={bold}/></div>)
+                rows.push(<div><Row id= {'row' + i} key={i} width={width} selectedColor={color} mode={mode} stitch={stitch} clicked={clicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} borderB={borderB}  x={x} y={y}  bold={bold} count={i}/></div>)
 
             }
 

@@ -1,22 +1,19 @@
 import React from 'react'
 import logo from '../.././cgwiwmt.png'
-import gridicon from '../.././icons/2.png'
-import paticon from '../.././icons/1.png'
 import login from '../.././icons/3.png'
 
-import { PrimaryNav, MenuLink, LoginLink, Menu } from './NavElement.js'
+import { PrimaryNav, MenuLink, LoginLink, Menu, DropDownContent, SubA, DropDownLi, StyledA } from './NavElement.js'
 import { Link, useNavigate } from 'react-router-dom';
-import { AUTH_TOKEN } from '../.././constants';
 
 const Navbar = () => {
-  const navigate = useNavigate();
-  const authToken = localStorage.getItem(AUTH_TOKEN);
+
+
   return (
     <>
       <PrimaryNav>
         <Menu>
           <MenuLink to="/home" >
-            <img src={logo} alt="Logo" id="logo" style={{ height: '40px' }} />
+            <img src={logo} alt="Logo" id="logo" style={{ height: '30px' }} />
 
           </MenuLink>
           <MenuLink to="/pattern_editor" >
@@ -25,11 +22,28 @@ const Navbar = () => {
           <MenuLink to="/pattern_viewer" >
             Pattern Reader          
             </MenuLink>
-          <LoginLink to="/login"  >
-            <img src={login} alt="Logo" id="logo" style={{ height: '40px' }} />
+            <DropDownLi>
+                    <StyledA>
+                    <img src={login} alt="Logo" id="logo" style={{ height: '40px' }} />
+                    </StyledA>
+                    <DropDownContent>
+                        {" "}
+                        <SubA to='/files'>
+                            Files
+                        </SubA>
+                        <SubA to="/login">
+                            Login | Sign Up
+                        </SubA>
+                        <SubA onClick={() => this.handleClick("Link3")}>
+                            Sign out
+                        </SubA>
+                    </DropDownContent>
+                </DropDownLi>
 
-          </LoginLink>
 
+                    {/* <LoginLink to="/login"  >
+
+          </LoginLink> */}
         </Menu>
       </PrimaryNav>
     </>
