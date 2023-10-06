@@ -4,7 +4,7 @@ export const PrimaryNav = styled.nav`
   z-index: 14;
   height: 40px;
   display: flex;
-  background: #BACF1D;
+  background: #6a9c89;
   justify-content: space-between;
   padding: 0.18rem calc((100vw - 1000px) / 2);
 `
@@ -15,9 +15,10 @@ export const MenuLink = styled(Link)`
   color: #000000;
   height: 40px;
   margin-top:5px;
+  font-size: 10px;
   &.active {
-    background: #DFF988;
-    border:1px solid #DFF988;
+    background: #f5e8b7;
+    border:1px solid #f5e8b7;
     border-radius:3px;
   }
 `
@@ -30,7 +31,7 @@ export const LoginLink = styled(Link)`
   right: 0;
   position: absolute;
   &.active {
-    color: #DFF988;
+    color: #FFFBEF;
   }
 `
 export const Menu = styled.div`
@@ -75,7 +76,7 @@ export const SubA = styled(StyledA)`
     text-decoration: none;
     display: block;
     text-align: right;
-    background-color: #BACF1D;
+    background-color: #FFFBEF;
     padding: 10px;
  
  

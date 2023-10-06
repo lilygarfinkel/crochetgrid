@@ -1,6 +1,6 @@
 .Container{
   --yel: #BACF1D;
-  --yel2: #DFF988;
+  --yel2: #f5e8b7;
   --yel3:#ECFEBE;
 }
 .page{
@@ -54,12 +54,13 @@
   justify-content: center;
   position: relative;
   margin-left: 10px;
+  /* background-color: #FFFBEF; */
 
 }
 
  .inputP{
   border:2px solid black;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   background-color:var(--yel2);
   width:100px;
   height:30px;

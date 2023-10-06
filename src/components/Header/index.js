@@ -1,6 +1,10 @@
 import React from 'react'
-import logo from '../.././cgwiwmt.png'
+import logo from './big_logo.png'
+import small_logo from './gridgraph_icon.png'
 import login from '../.././icons/3.png'
+
+// import icon from '../.././icons/gridgraph_icon.png'
+
 
 import { PrimaryNav, MenuLink, LoginLink, Menu, DropDownContent, SubA, DropDownLi, StyledA } from './NavElement.js'
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,7 +17,7 @@ const Navbar = () => {
       <PrimaryNav>
         <Menu>
           <MenuLink to="/home" >
-            <img src={logo} alt="Logo" id="logo" style={{ height: '30px' }} />
+            <img src={small_logo} alt="Logo" id="logo" style={{ height: '30px' }} />
 
           </MenuLink>
           <MenuLink to="/pattern_editor" >

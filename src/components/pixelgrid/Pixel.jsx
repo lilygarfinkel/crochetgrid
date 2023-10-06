@@ -4,6 +4,8 @@ import "./Pixel.css"
 export default function Pixel(props) {
   const { selectedColor, width, stitch, clicked, drawMode, bgFill, zoom, borderR, borderB, bold, x, y, count } = props
 
+  var id = x.toString() + count.toString();
+
   const [pixelColor, setPixelColor] = useState('#ffffff')
   const [oldColor, setOldColor] = useState(pixelColor)
   const [canChangeColor, setCanChangeColor] = useState(true)
@@ -11,6 +13,8 @@ export default function Pixel(props) {
   const [bg, setbgFill] = useState(bgFill)
   const [bordR, setBordR] = useState( "1px solid black")
   const [bordB, setBordB] = useState( "1px solid black")
+  const [yid, setYID] = useState(id)
+
 
 useEffect(() => {
   setDM(drawMode);
@@ -37,23 +41,20 @@ useEffect(() => {
     if(dm === 2){
       setDM(0)
     } 
-  //  if( dm == 3){
-  //     // let xid = x.toString();
-  //     let pid ='pixel' + x.toString();
-  //     let rid = 'row' + count;
-  //     console.log(pid)
-  //     console.log(rid)
-  //     var pix = document.getElementsByClassName(count.toString());
-  //     // .getElementsByClassName(rid);
-  //     // var pix = document.getElementsByClassName(rid);
-  //     console.log(pix)
-  //     // console.log(p)
-  //     for (var i = 1; i < pix.length; i++) {
-  //       pix[i].style.backgroundColor = selectedColor;
-  //       }
+   if( dm === 3){
+     
+      var pix = document.getElementsByClassName('pixel');
+       for (var i = 1; i < pix.length; i++) {
+        var y = pix[i].id.at(-1);
+        // console.log(y)
+        if (pix[i].id.at[-1] === yid){
+          pix[i].style.backgroundColor = selectedColor;
+        }
+        // 
+        }
       
-  //     setDM(0)
-  //  }
+      setDM(0)
+   }
    }
 
   function changeColorOnHover() {
@@ -68,14 +69,14 @@ useEffect(() => {
       setPixelColor(selectedColor)
     }
     //background filled
-    else if(dm === 2){
+    else if(dm === 2 || dm===3){
       setOldColor(bg)
       setPixelColor(selectedColor)
     }
-    else if(dm === 3){
-      setOldColor(bg)
-      setPixelColor(selectedColor)
-    }
+    // else if(dm === 3){
+    //   setOldColor(bg)
+    //   setPixelColor(selectedColor)
+    // }
    }
   
   }
@@ -92,6 +93,7 @@ function resetColor() {
 
 return (
   <div
+    id = {id}
     className="pixel"
     onClick={applyColor}
     onMouseEnter={changeColorOnHover}

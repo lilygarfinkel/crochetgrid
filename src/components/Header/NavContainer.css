@@ -1,7 +1,7 @@
 .Container{
-  --yel: #BACF1D;
-  --yel2: #DFF988;
-  --yel3:#ECFEBE;
+  --yel: #FFFBEF;
+  --yel2: #f5e8b7;
+  --yel3:#FFFBEF;
 }
 .page{
  height:100vh;
@@ -44,7 +44,7 @@
   width:100vw;
   height:50px;
   position:absolute;
-  background:var(--yel2);
+  background-color: #f5e8b7;
 }
 
 .inputPC{
@@ -54,6 +54,7 @@
   justify-content: center;
   position: relative;
   margin-left: 10px;
+  background-color: #f5e8b7;
 
 }
 

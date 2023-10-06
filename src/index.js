@@ -9,7 +9,8 @@ import { AmplifyProvider } from '@aws-amplify/ui-react';
 import { Amplify, API, graphqlOperation } from 'aws-amplify';
 // import { config } from 'process';
 
-Amplify.configure(config)
+Amplify.configure(config);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

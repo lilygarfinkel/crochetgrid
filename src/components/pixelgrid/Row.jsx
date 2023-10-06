@@ -10,7 +10,7 @@ export default function Row(props) {
   let pixels = []
 
   let xid = x.toString();
-
+  var yid = 0;
 
     for (let i = -1; i < width; i++) {
       //bold every 5 gridlines
@@ -36,10 +36,11 @@ export default function Row(props) {
         pixels.push(<Pixelholder className={ 'pixel' + xid} width ={width} zoom={zoom} x={x} count={count} bold={bold}></Pixelholder>)
       }
       else{
-      pixels.push(<Pixel className={count} width ={width} id={ 'pixel' + xid} selectedColor={selectedColor} count={count} stitch={stitch} clicked={clicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} borderR={borderR} borderB={borderB} x={x} y={y} bold={bold}/>)
+      pixels.push(<Pixel className={count} width ={width}  selectedColor={selectedColor} count={yid} stitch={stitch} clicked={clicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} borderR={borderR} borderB={borderB} x={xid} y={y} bold={bold}/>)
     }
   }
+  yid+=1;
   }
   
-  return <div className="row" key="row" id={'row' + count}>{pixels}</div>
+  return <div className="row" key="row" id={'row' + (count+1)}>{pixels}</div>
 }

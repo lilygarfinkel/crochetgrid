@@ -4,7 +4,7 @@ import Pattern from "./components/pattern/PatContainer.jsx";
 import Login from './components/Login.js'
 import Header from './components/Header'
 import { Routes, Route } from 'react-router-dom'
-import Home from './components/Home.js'
+import Home from './components/Home.jsx'
 import Files from './components/Files.js'
 
 
@@ -17,7 +17,7 @@ function App() {
     <div className="App">
    <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/pattern_editor" element={<Container />} />
         <Route path="/pattern_viewer" element={<Pattern />} />
         <Route path="/login"   element={<Login />} />

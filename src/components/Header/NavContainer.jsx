@@ -8,7 +8,7 @@ function NavContainer() {
   return (
     <div className='navContainer'>
       <div className='inputPC'>
-        <input className='inputP' id='docname' type='text' value={fname} onChange={(e) => { setFName(e.target.value)}}></input>
+        {/* <input className='inputP' id='docname' type='text' value={fname} onChange={(e) => { setFName(e.target.value)}}></input> */}
       </div>
     </div>
 

@@ -3,14 +3,21 @@ import './Container.css';
 import Grid from "../pixelgrid/Grid.jsx";
 import Color from "../pixelgrid/Color.jsx";
 import Symbol from './Symbol.jsx'
-import gridicon from './icons/7.png'
-import stitchicon from './icons/2.png'
-import widicon from './icons/3.png'
-import heiicon from './icons/4.png'
-import outlineicon from './icons/5.png'
-import fillicon from './icons/6.png'
+import gridicon from './icons/offset.png'
+import stitchicon from './icons/stitch.png'
+import widicon from './icons/width.png'
+import heiicon from './icons/height.png'
+import outlineicon from './icons/border.png'
+import fillicon from './icons/fill.png'
 import reseticon from './icons/1.png'
-import saveicon from './icons/8.png'
+import expicon from './icons/export.png'
+import saveicon from './icons/save.png'
+import colicon from './icons/fill_col.png'
+import plusicon from './icons/plus.png'
+import minusicon from './icons/minus.png'
+import paint_palette from './icons/paint_palette.png'
+
+
 import settingsicon from './icons/9.png'
 
 import NavContainer from "../Header/NavContainer.jsx";
@@ -20,9 +27,12 @@ import { HexColorPicker } from "react-colorful"
 import { exportComponentAsPNG } from "react-component-export-image"
 import { colors } from "@mui/material";
 
+import Grid2 from "../pixelgrid/Grid2.jsx"
 
 function Container() {
-  
+
+
+
   const [panelWidth, setPanelWidth] = useState(15);
   const [panelHeight, setPanelHeight] = useState(15);
   const [selectedColor, setColor] = useState("#ff0000");
@@ -41,6 +51,11 @@ function Container() {
   const [name, setFName] = useState('untitled')
 
   var grid = <Grid></Grid>
+
+
+
+
+  // console.log(colors);
 
   const panelRef = useRef()
 
@@ -68,12 +83,7 @@ function Container() {
   }
 
   function Reset() {
-    
-    // setPanelHeight(15);
-    // setPanelWidth(15);
     setZoom(0);
-    // document.getElementById('sizew').value = '15';
-    // document.getElementById('sizeh').value = '15';
     var pixel = document.getElementsByClassName('pixel');
     for (var i = 0; i < pixel.length; i++) {
       pixel[i].style.backgroundColor = '#ffffff';
@@ -92,24 +102,25 @@ function Container() {
   }
 
   function FillRow() {
+    // var pixel = document.getElementsByClassName('pixel');
+    // for (var i = 0; i < pixel.length; i++) {
+    //   pixel[i].style.backgroundColor = selectedColor;
+    // }
     setBg(selectedColor);
     setDrawMode(3);
   }
-
-
-  function Undo() {
-
-  }
-
-
   function initColors() {
     let colors = [];
     for (let i = 0; i < 8; i++) {
       let id = i.toString() + 'c'
       colors.push(<div onClick={() => { xuseColorX(id) }}> <Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
     }
-    return colors;
+    return <div id="colorbox" >{colors}</div>;
   }
+  // function drawGrid(){
+  //   grid = <Grid2 id='g' width={panelWidth} height={panelHeight} colors={colors} selectedColor={selectedColor} mode={mode} stitch={stitch} clicked={isClicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} bold={boldOutline}></Grid2>
+  //   return grid;
+  // }
 
   function drawGrid() {
     grid = <Grid id='g' width={panelWidth} height={panelHeight} selectedColor={selectedColor} mode={mode} stitch={stitch} clicked={isClicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} bold={boldOutline}></Grid>
@@ -166,7 +177,7 @@ function Container() {
 
   }
 
-  function showText(e){
+  function showText(e) {
     console.log(e)
   }
 
@@ -179,12 +190,12 @@ function Container() {
     <div className="Container">
       <div className='page'>
         <div className='navContainer'>
-          <div className='settings' id='settings'onMouseEnter={(e)=> {showText('settings')}} style={{ display: 'none' }}>
+          <div className='settings' id='settings' onMouseEnter={(e) => { showText('settings') }} style={{ display: 'none' }}>
             <div id="options">
               <div className='size' id='gridOP'>
                 <div >
                   <div className="option">
-                  <Symbol src={gridicon} id="gicon" text= 'grid layout' />
+                    <Symbol src={gridicon} id="gicon" text='grid layout' />
                     <select
                       className="panelInput"
                       defaultValue='grid'
@@ -196,7 +207,7 @@ function Container() {
                     </select>
                   </div>
                   <div className="option">
-                  <Symbol src={stitchicon} id="sticon" text= 'stitch size' />
+                    <Symbol src={stitchicon} id="sticon" text='stitch size' />
                     <select
                       className="panelInput"
                       defaultValue='double'
@@ -211,7 +222,7 @@ function Container() {
                 </div>
                 <div >
                   <div className="option">
-                  <Symbol src={widicon} id="wicon" text= 'width' />
+                    <Symbol src={widicon} id="wicon" text='width' />
                     <input
                       type="number"
                       id='sizew'
@@ -224,7 +235,7 @@ function Container() {
                     />
                   </div>
                   <div className="option">
-                  <Symbol src={heiicon} id="hicon" text= 'height' />
+                    <Symbol src={heiicon} id="hicon" text='height' />
                     <input
                       type="number"
                       id='sizeh'
@@ -239,7 +250,7 @@ function Container() {
                   </div>
                 </div>
                 <div className="option">
-                <Symbol src={outlineicon} id="oicon" text= 'outline frequency' />
+                  <Symbol src={outlineicon} id="oicon" text='outline frequency' />
                   <input
                     type="number"
                     id='outlineSize'
@@ -257,24 +268,24 @@ function Container() {
           </div>
 
           <div id="navbar" className="navbar">
-          <NavContainer/>
-            <button className='noBord'  onClick={hideSettings}>
-            <Symbol src={settingsicon} id="seticon" text= 'settings'  style={{ height: '25px' }}/>
+            <NavContainer />
+            <button className='noBord' onClick={hideSettings}>
+              <Symbol src={settingsicon} id="seticon" text='settings' style={{ height: '25px' }} />
               {/* <img src={} alt="Logo" id="sticon" onClick={hideSettings} class='icon' style={{ height: '25px' }} /> */}
             </button>
-            
+
             <div className='inputC'>
               <input className='input' id='docname' type='text' value={name} onChange={(e) => (setFName(e.target.value))}></input>
             </div>
             <div className='saveOP' id='saveOP'>
-            <SaveButton fname={name} width={panelWidth} height={panelHeight} stSize={stitch} offset={mode} boldLines={boldOutline}/>
+              <SaveButton src={saveicon} text="save grid" fname={name} width={panelWidth} height={panelHeight} stSize={stitch} offset={mode} boldLines={boldOutline} />
               <button
                 className="noBord"
                 id='saveOPs'
                 value='export'
                 onClick={() => exportComponentAsPNG(panelRef, { fileName: name, html2CanvasOptions: { backgroundColor: null } })}>
-                
-                <Symbol src={saveicon} id="sicon" text= 'export grid'  style={{ height: '25px' }}/>
+
+                <Symbol src={expicon} id="sicon" text='export grid' style={{ height: '25px' }} />
               </button>
             </div>
           </div>
@@ -285,43 +296,50 @@ function Container() {
               {drawGrid()}
             </div>
           </div>
-          <div className='colorpick' id='colorpick' style={{ display: 'flex' }}>
-            <div className="small" id='colorpicker' >
-              <HexColorPicker color={selectedColor} onChange={setColor} />
-            </div>
-          </div>
+
           <div className="bottomnav">
             <div className='bottomnavbar'>
               <div className='zooms'>
                 <span>Zoom:</span>
                 <div className='exps'>
-                  <button className='zoom' onClick={() => { setZoom(zoom - 1) }}>-</button>
-                  <button className='zoom' onClick={() => { setZoom(zoom + 1) }}>+</button>
+                  <button className='noBord' onClick={() => { setZoom(zoom + 1) }}> <Symbol src={plusicon} id="picon" text='zoom in' style={{ height: '25px' }} /></button>
+                  <button className='noBord' onClick={() => { setZoom(zoom - 1) }}> <Symbol src={minusicon} id="micon" text='zoom out' style={{ width: '10px' }} /></button>
                 </div>
               </div>
+              <div className='colors'>
+                  <div className="colorCont" style={{ backgroundColor: '#c1d8c3' }}>
+                    <div className='colorpick' id='colorpick' style={{ display: 'flex' }}>
+                      <div className="small" id='colorpicker' >
+                        <HexColorPicker color={selectedColor} onChange={setColor} />
+                      </div>
+                    </div>
+                    <div className='colorButts'>
+                       {initColors()}
+                      <button onClick={showColor} id='showcolor' className='noBord'>^
+                      {/* <Symbol src={paint_palette} id="ricon" text='select color' className='noBord' style={{ height: '30px' }} /> */}
+                      </button>
+                    </div>
+                  </div>
 
-              <div className="colorCont">
-                {initColors()}
-                <button onClick={showColor} id='showcolor' className='zoom'>v</button>
-                <div className='exps'>
-                  <button
-                    className="noBord"
-                    value='reset'
-                    onClick={Reset}>
-                    <Symbol src={reseticon} id="ricon" text= 'clear grid'  style={{ height: '25px' }}/>
-                  </button>
-                  <button
-                    className="noBord"
-                    value='fill'
-                    onClick={Fill}>
-                    <Symbol src={fillicon} id="ficon" text= 'fill grid'  style={{ height: '25px' }}/>
-                  </button>
-                  <button
-                    className="noBord"
-                    value='fill'
-                    onClick={FillRow}>
-                    <Symbol src={fillicon} id="fricon" text= 'fill row' h='10px' style={{  width:'10px' }}/>
-                  </button>
+                  <div className='colorButtsRight'>
+                    <button
+                      className="noBord"
+                      value='reset'
+                      onClick={Reset}>
+                      <Symbol src={reseticon} id="ricon" text='clear grid' style={{ height: '25px' }} />
+                    </button>
+                    <button
+                      className="noBord"
+                      value='fill'
+                      onClick={Fill}>
+                      <Symbol src={fillicon} id="ficon" text='fill grid' style={{ height: '25px' }} />
+                    </button>
+                    <button
+                      className="noBord"
+                      value='fill'
+                      onClick={FillRow}>
+                      <Symbol src={colicon} id="fricon" text='fill column' h='10px' style={{ width: '15px' }} />
+                    </button>
                 </div>
               </div>
             </div>

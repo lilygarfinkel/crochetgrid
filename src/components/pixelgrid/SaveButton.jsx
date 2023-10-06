@@ -2,9 +2,10 @@ import './Container.css';
 import React from "react"
 import { DataStore } from '@aws-amplify/datastore';
 import { Grid } from '../../models/';
+import saveicon from './icons/save.png'
 
 function SaveButton(props) {
-    const {fname,  width, height, stSize, offset, boldLines}= props
+    const {id, text, fname, src,  width, height, stSize, offset, boldLines}= props
  
     var off; 
     if(offset === 'offset'){
@@ -26,6 +27,18 @@ function SaveButton(props) {
      //  console.log(c);
       colors.push(c);
      }
+
+     function handleHover(){
+      let tid = 't' + id;
+      let t = document.getElementById(tid);
+      t.style.display='flex'
+  }
+  function exitHover(){
+      let tid = 't' + id;
+      let t = document.getElementById(tid);
+      t.style.display='none'
+  }
+
     const saveInfo = async (e) => {
    
 
@@ -46,9 +59,10 @@ function SaveButton(props) {
 
     return (
         <div className='savebutt'>
-          <button onClick={saveInfo}> 
-            Save
-          </button>
+          {/* <button >  */}
+          <div id={'t'+ id} className='settingstext' style={{display:'none', backgroundColor:'white', borderRadius:'5px', zIndex:10, position:'absolute', marginLeft:'30px', marginBottom:'30px',padding:'4px'}}>{text}</div>  
+            <img onClick={saveInfo} src={src} style={{height:'20px'}}  onMouseEnter={handleHover} onMouseLeave={exitHover} /> 
+          {/* </button> */}
         </div>
     )
 }
