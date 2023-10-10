@@ -2,6 +2,8 @@ import React from 'react'
 import logo from './big_logo.png'
 import small_logo from './gridgraph_icon.png'
 import login from '../.././icons/3.png'
+import gg from './gridgraph_orange.png'
+
 
 // import icon from '../.././icons/gridgraph_icon.png'
 
@@ -17,7 +19,7 @@ const Navbar = () => {
       <PrimaryNav>
         <Menu>
           <MenuLink to="/home" >
-            <img src={small_logo} alt="Logo" id="logo" style={{ height: '30px' }} />
+            <img src={gg} alt="Logo" id="logo" style={{ height: '30px' }} />
 
           </MenuLink>
           <MenuLink to="/pattern_editor" >

@@ -15,10 +15,9 @@ import saveicon from './icons/save.png'
 import colicon from './icons/fill_col.png'
 import plusicon from './icons/plus.png'
 import minusicon from './icons/minus.png'
-import paint_palette from './icons/paint_palette.png'
 
 
-import settingsicon from './icons/9.png'
+import settingsicon from './icons/settings.png'
 
 import NavContainer from "../Header/NavContainer.jsx";
 import SaveButton from './SaveButton.jsx'
@@ -27,7 +26,6 @@ import { HexColorPicker } from "react-colorful"
 import { exportComponentAsPNG } from "react-component-export-image"
 import { colors } from "@mui/material";
 
-import Grid2 from "../pixelgrid/Grid2.jsx"
 
 function Container() {
 
@@ -107,20 +105,18 @@ function Container() {
     //   pixel[i].style.backgroundColor = selectedColor;
     // }
     setBg(selectedColor);
-    setDrawMode(3);
+    setDrawMode(4);
   }
   function initColors() {
     let colors = [];
     for (let i = 0; i < 8; i++) {
       let id = i.toString() + 'c'
-      colors.push(<div onClick={() => { xuseColorX(id) }}> <Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
+      // colors.push(<div onClick={() => { xuseColorX(id) }}> <Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
+      colors.push(<div onClick={() => { xuseColorX(id) }}> <Color id={id} mode={modeC} setColorC={setColor} selectedColor={selectedColor}></Color></div>)
+
     }
     return <div id="colorbox" >{colors}</div>;
   }
-  // function drawGrid(){
-  //   grid = <Grid2 id='g' width={panelWidth} height={panelHeight} colors={colors} selectedColor={selectedColor} mode={mode} stitch={stitch} clicked={isClicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} bold={boldOutline}></Grid2>
-  //   return grid;
-  // }
 
   function drawGrid() {
     grid = <Grid id='g' width={panelWidth} height={panelHeight} selectedColor={selectedColor} mode={mode} stitch={stitch} clicked={isClicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} bold={boldOutline}></Grid>
@@ -128,42 +124,11 @@ function Container() {
   }
 
   function xuseColorX(id) {
-    console.log(id);
-    if (modeC === "use") {
       let colorToUse = document.getElementById(id)
-      let color = colorToUse.style.backgroundColor;
-      console.log(color)
-      var colortohex = color.split("(")[1].split(")")[0];
-      colortohex = colortohex.split(", ");
-      var hex = colortohex.map(function (x) {
-        x = parseInt(x).toString(16);
-        return (x.length === 1) ? "0" + x : x;
-      })
-      hex = "#" + hex.join("");
-      console.log(hex)
-      setColor(hex);
-      colorToUse.style.border = '3px solid black'
-    }
-
+      let color = colorToUse.value;
+      setColor(color);
   }
 
-  function showColor() {
-    if (modeC === 'use') {
-      var cp = document.getElementById('colorpick');
-      cp.style.display = 'flex';
-      setModeC("set");
-      var b = document.getElementById('showcolor');
-      b.innerHTML = "v";
-    }
-    if (modeC === 'set') {
-      var cp = document.getElementById('colorpick');
-      cp.style.display = 'none';
-      setModeC("use");
-      var b = document.getElementById('showcolor');
-      b.innerHTML = "^";
-    }
-
-  }
   function hideSettings() {
     let s = document.getElementById('settings');
     if (hidden) {
@@ -181,10 +146,14 @@ function Container() {
     console.log(e)
   }
 
+   function storeFileName(fname){
+    localStorage.setItem("filename", fname);
+    console.log(localStorage.filename)
+      }
 
   useEffect(() => {
     drawGrid();
-  }, [bgFill, boldOutline])
+  }, [bgFill, boldOutline, selectedColor])
 
   return (
     <div className="Container">
@@ -275,7 +244,7 @@ function Container() {
             </button>
 
             <div className='inputC'>
-              <input className='input' id='docname' type='text' value={name} onChange={(e) => (setFName(e.target.value))}></input>
+              <input className='input' id='docname' type='text' value={localStorage.filename} onChange={(e)=>{setFName(e.target.value); storeFileName(e.target.value)}}></input>
             </div>
             <div className='saveOP' id='saveOP'>
               <SaveButton src={saveicon} text="save grid" fname={name} width={panelWidth} height={panelHeight} stSize={stitch} offset={mode} boldLines={boldOutline} />
@@ -307,17 +276,12 @@ function Container() {
                 </div>
               </div>
               <div className='colors'>
-                  <div className="colorCont" style={{ backgroundColor: '#c1d8c3' }}>
-                    <div className='colorpick' id='colorpick' style={{ display: 'flex' }}>
-                      <div className="small" id='colorpicker' >
-                        <HexColorPicker color={selectedColor} onChange={setColor} />
-                      </div>
-                    </div>
+                  <div className="colorCont" style={{ backgroundColor: '#c1d8c3' }}>                      
+               
                     <div className='colorButts'>
                        {initColors()}
-                      <button onClick={showColor} id='showcolor' className='noBord'>^
-                      {/* <Symbol src={paint_palette} id="ricon" text='select color' className='noBord' style={{ height: '30px' }} /> */}
-                      </button>
+                       {/* <input id='colorinp' type='color' value={selectedColor} onChange={e=>{showColor(e.target.value)}}></input> */}
+
                     </div>
                   </div>
 

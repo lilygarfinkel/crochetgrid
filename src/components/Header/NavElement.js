@@ -6,7 +6,7 @@ export const PrimaryNav = styled.nav`
   display: flex;
   background: #6a9c89;
   justify-content: space-between;
-  padding: 0.18rem calc((100vw - 1000px) / 2);
+  // padding: 0.18rem calc((100vw - 1000px) / 2);
 `
 export const MenuLink = styled(Link)`
   padding: 0 1.2rem;
@@ -67,7 +67,7 @@ export const StyledA = styled(Link)`
     text-decoration: none;
     color:black;
     &:hover {
-      background-color: #DFF988;
+      background-color: #f5e8b7;
       }
 
 `

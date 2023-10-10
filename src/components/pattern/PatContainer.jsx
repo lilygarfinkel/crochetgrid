@@ -6,17 +6,20 @@ import { exportComponentAsPNG } from "react-component-export-image"
 import Symbol from '../pixelgrid/Symbol.jsx'
 import saveicon from '../pixelgrid/icons/8.png'
 import NavContainer from "../Header/NavContainer.jsx";
-
+import { local } from "d3";
 
 
 function Container() {
   const [panelWidth, setPanelWidth] = useState(15);
   const [panelHeight, setPanelHeight] = useState(15);
-  const [fname, setFName] = useState('untitled')
 
   const panelRef = useRef()
+  const [name, setFName] = useState(localStorage.fileName);
 
-
+  function storeFileName(fname){
+    localStorage.setItem("filename", fname);
+    console.log(localStorage.filename)
+      }
 
   function drawGrid2() {
     var colors = []
@@ -31,10 +34,7 @@ function Container() {
     return <Pattern colors={colors} height={panelHeight} width={panelWidth}></Pattern>
   }
 
-  function pull_name(name){
-    console.log(name);
-    setFName(name);
-  }
+
   useEffect(() => {
     drawGrid2();
   }, [])
@@ -42,13 +42,16 @@ function Container() {
   return (
     <div className="Container">
       <div className='page'>
-        <div className='navContainer'>
-          <NavContainer func={pull_name}/>
+        <div className='navContainer '>
+          <NavContainer></NavContainer>
+          <div className='inputC'>
+              <input className='input' id='docname' type='text' value={localStorage.filename + "_pattern"} onChange={(e)=>{setFName(e.target.value); storeFileName(e.target.value)}}></input>
+            </div>
           <button
             className="noBord"
             id='saveicon'
             value='export'
-            onClick={() => exportComponentAsPNG(panelRef, { fileName: fname, html2CanvasOptions: { backgroundColor: null } })}>
+            onClick={() => exportComponentAsPNG(panelRef, { fileName: localStorage.filename, html2CanvasOptions: { backgroundColor: null } })}>
 
             <Symbol src={saveicon} id="sicon" text='export grid' style={{ height: '25px' }} />
           </button>

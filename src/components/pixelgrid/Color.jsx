@@ -3,42 +3,51 @@ import "./Color.css"
 
 export default function Color(props) {
 
-const {selectedColor, id, mode} = props;
+const {id, mode, setColorC, selectedColor} = props;
 
-const [currColor, setColor] = useState("#ffffff");
+const [currColor, setColor] = useState(selectedColor);
 const [bord, setBord] = useState('1px solid black');
 const [m, setMode] = useState(mode);
 
 
 useEffect(() => {
   setMode(mode);
-  setBord('1px solid black')
-}, [mode, currColor])
+  setColorC(currColor)
+  // setBord('1px solid black')
+}, [mode, currColor, bord])
 
-
-  function handleClick(){
-    var c = document.getElementsByClassName('Color');
-      if(m === 'set'){
-      setColor(selectedColor);
-      for (var i = 0; i < c.length; i++) {
-        c[i].style.border = '1px solid black';
-      }
-    }
-    else if(m === 'use'){
-      console.log(currColor)
+  function handleClick(id){
+    var c = document.getElementsByClassName('colorinp');
+      // console.log(currColor)
+      // setColor(currColor)
       for (var j = 0; j < c.length; j++) {
+        var i = (j.toString() + 'c')
+        if(i ===id){
+          c[j].style.border = '3px solid black';
+          let col =c[j].value
+          // console.log(col)
+          setColor(col)
+        }
+        else{
         c[j].style.border = '1px solid black';
+        }
       }
-    }
+      setBord('3px solid black');
 
-  }
- 
+    }
+    
+
+  
 return (
-  <div
-    className="Color"
-    id={id}
-    onClick={handleClick}
-    style={{backgroundColor: currColor, border:bord, height: "25px", width: "25px" }}
-  ></div>
+  // <div className="Color" id={id}> 
+    <input className='colorinp' 
+           id={id}
+           type='color' 
+           value={currColor} 
+           onClick={()=>{handleClick(id)}}
+           onChange={(e)=>{setColor(e.target.value)}}
+           style={{border:bord}}>
+     </input>
+  // </div>
 )
 }

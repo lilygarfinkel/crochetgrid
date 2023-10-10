@@ -12,14 +12,15 @@ flex-direction: column;
     height: 100px;
     display:flex;
     justify-content: center;
+    background-color: #f5e8b7;
+
     position:relative;
     margin: 0px;
 }
 
 #video{
     height:100px;
-    width:100vw;
-    background-color: #f5e8b7;
+    width:50vw;
     position:relative;
     margin: 0 auto;
 
@@ -38,6 +39,14 @@ flex-direction: column;
     display: inline-flex;
     flex-direction: row;
 }
+#secondrow{
+    position:relative;
+    display: inline-flex;
+    flex-direction: row;
+    width: 40vw;
+    margin: 0 auto;
+
+}
 .green{
     background-color: #6a9c89;
     border:2px solid #c1d8c3;
@@ -45,10 +54,25 @@ flex-direction: column;
     height:20vh;
     margin: 5vw;
 }
+.green:hover{
+    background-color: #c1d8c3;
+}
+
+.orange:hover{
+    background-color: #ffc9a3;
+}
 .orange{
-    background-color: #87481b;
+    background-color: #CD5C08;
     border:2px solid #ffc9a3;
     width: 40vw;
     height:20vh;
-    margin: 0 auto;
+}
+
+a{
+    color:black;
+}
+
+a:hover{
+    color:black;
+    
 }

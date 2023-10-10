@@ -41,13 +41,13 @@ useEffect(() => {
     if(dm === 2){
       setDM(0)
     } 
-   if( dm === 3){
+   if( dm === 4){
      
       var pix = document.getElementsByClassName('pixel');
        for (var i = 1; i < pix.length; i++) {
         var y = pix[i].id.at(-1);
-        // console.log(y)
-        if (pix[i].id.at[-1] === yid){
+        console.log(y)
+        if (y === yid){
           pix[i].style.backgroundColor = selectedColor;
         }
         // 
@@ -55,6 +55,20 @@ useEffect(() => {
       
       setDM(0)
    }
+  //  if( dm === 4){
+     
+  //   var pix = document.getElementsByClassName('pixel');
+  //    for (var i = 1; i < pix.length; i++) {
+  //     var y = pix[i].id.at(-1);
+  //     // console.log(y)
+  //     if (pix[i].id.at[-1] === yid){
+  //       pix[i].style.backgroundColor = selectedColor;
+  //     }
+  //     // 
+  //     }
+    
+//     setDM(0)
+//  }
    }
 
   function changeColorOnHover() {

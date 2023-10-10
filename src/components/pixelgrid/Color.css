@@ -1,4 +1,23 @@
-.Color{
+input[type="color"] {
+    border-radius: 50%;
+      height: 20px;
+      width: 20px;
+      border: none;
+      outline: none;
+      -webkit-appearance: none;
+      padding: 2px;
+      margin: 2px;
+  }
+  
+  .colorinp::-webkit-color-swatch-wrapper {
+    padding: 0; 
+  }
+  .colorinp::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+  }
+
+  .Color{
     padding: 2px;
     margin: 2px;
 }
