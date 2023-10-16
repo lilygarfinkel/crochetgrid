@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import logo from './gridgraph.png'
-import logovideo from '../components/pixelgrid/icons/logovideoy.mp4'
 import './Home.css'
-import svideo from './shoortvid.mp4'
-import src from './befgridpaper.png'
+
 
 
 

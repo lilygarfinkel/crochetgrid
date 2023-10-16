@@ -21,6 +21,7 @@ import settingsicon from './icons/settings.png'
 
 import NavContainer from "../Header/NavContainer.jsx";
 import SaveButton from './SaveButton.jsx'
+import ColorReplacer from "./ColorReplacer.jsx"
 
 import { HexColorPicker } from "react-colorful"
 import { exportComponentAsPNG } from "react-component-export-image"
@@ -33,7 +34,7 @@ function Container() {
 
   const [panelWidth, setPanelWidth] = useState(15);
   const [panelHeight, setPanelHeight] = useState(15);
-  const [selectedColor, setColor] = useState("#ff0000");
+  const [selectedColor, setColor] = useState("#ffffff");
   const [stitch, setStitch] = useState(15);
   const [mode, setMode] = useState("grid");
   const [isClicked, setClick] = useState(false);
@@ -43,7 +44,7 @@ function Container() {
   const [zoom, setZoom] = useState(0);
   const [boldOutline, setBoldOutline] = useState(5);
   const [modeC, setModeC] = useState('set');
-
+  const [colorNum, setColorNum] = useState(5)
   const [hidden, setHidden] = useState('hidden');
 
   const [name, setFName] = useState('untitled')
@@ -109,11 +110,10 @@ function Container() {
   }
   function initColors() {
     let colors = [];
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < colorNum; i++) {
       let id = i.toString() + 'c'
       // colors.push(<div onClick={() => { xuseColorX(id) }}> <Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
       colors.push(<div onClick={() => { xuseColorX(id) }}> <Color id={id} mode={modeC} setColorC={setColor} selectedColor={selectedColor}></Color></div>)
-
     }
     return <div id="colorbox" >{colors}</div>;
   }
@@ -124,9 +124,9 @@ function Container() {
   }
 
   function xuseColorX(id) {
-      let colorToUse = document.getElementById(id)
-      let color = colorToUse.value;
-      setColor(color);
+    let colorToUse = document.getElementById(id)
+    let color = colorToUse.value;
+    setColor(color);
   }
 
   function hideSettings() {
@@ -146,10 +146,10 @@ function Container() {
     console.log(e)
   }
 
-   function storeFileName(fname){
+  function storeFileName(fname) {
     localStorage.setItem("filename", fname);
     console.log(localStorage.filename)
-      }
+  }
 
   useEffect(() => {
     drawGrid();
@@ -244,7 +244,7 @@ function Container() {
             </button>
 
             <div className='inputC'>
-              <input className='input' id='docname' type='text' value={localStorage.filename} onChange={(e)=>{setFName(e.target.value); storeFileName(e.target.value)}}></input>
+              <input className='input' id='docname' type='text' value={localStorage.filename} onChange={(e) => { setFName(e.target.value); storeFileName(e.target.value) }}></input>
             </div>
             <div className='saveOP' id='saveOP'>
               <SaveButton src={saveicon} text="save grid" fname={name} width={panelWidth} height={panelHeight} stSize={stitch} offset={mode} boldLines={boldOutline} />
@@ -276,34 +276,36 @@ function Container() {
                 </div>
               </div>
               <div className='colors'>
-                  <div className="colorCont" style={{ backgroundColor: '#c1d8c3' }}>                      
-               
-                    <div className='colorButts'>
-                       {initColors()}
-                       {/* <input id='colorinp' type='color' value={selectedColor} onChange={e=>{showColor(e.target.value)}}></input> */}
-
-                    </div>
+                <div className="colorCont" style={{ backgroundColor: '#c1d8c3' }}>
+                  <div className='colorButts'>
+                    {initColors()}
                   </div>
-
-                  <div className='colorButtsRight'>
-                    <button
-                      className="noBord"
-                      value='reset'
-                      onClick={Reset}>
-                      <Symbol src={reseticon} id="ricon" text='clear grid' style={{ height: '25px' }} />
-                    </button>
-                    <button
-                      className="noBord"
-                      value='fill'
-                      onClick={Fill}>
-                      <Symbol src={fillicon} id="ficon" text='fill grid' style={{ height: '25px' }} />
-                    </button>
-                    <button
-                      className="noBord"
-                      value='fill'
-                      onClick={FillRow}>
-                      <Symbol src={colicon} id="fricon" text='fill column' h='10px' style={{ width: '15px' }} />
-                    </button>
+                  <div id="colorBtns">
+                    <button className='colorBtn' onClick={() => { setColorNum(colorNum - 1) }}>-</button>
+                    <button className='colorBtn' onClick={() => { setColorNum(colorNum + 1) }}>+</button>
+                  </div>
+                </div>
+                <div className='colorButtsRight'>
+                  <button
+                    className="noBord"
+                    value='reset'
+                    onClick={Reset}>
+                    <Symbol src={reseticon} id="ricon" text='clear grid' style={{ height: '25px' }} />
+                  </button>
+                  <button
+                    className="noBord"
+                    value='fill'
+                    onClick={Fill}>
+                    <Symbol src={fillicon} id="ficon" text='fill grid' style={{ height: '25px' }} />
+                  </button>
+                  <button
+                    className="noBord"
+                    value='fill'
+                    onClick={FillRow}>
+                    <Symbol src={colicon} id="fricon" text='fill column' h='10px' style={{ width: '15px' }} />
+                  </button>
+                 
+                  <ColorReplacer id='replacecolor' d='none'></ColorReplacer>
                 </div>
               </div>
             </div>

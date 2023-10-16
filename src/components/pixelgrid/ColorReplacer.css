@@ -1,0 +1,10 @@
+#replace{
+  display: inline-flex;
+  flex-direction: row;
+  display:none;
+
+}
+
+#currColor, #replaceColor{
+  border: 1px solid black;
+}

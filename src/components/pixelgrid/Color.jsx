@@ -5,7 +5,7 @@ export default function Color(props) {
 
 const {id, mode, setColorC, selectedColor} = props;
 
-const [currColor, setColor] = useState(selectedColor);
+const [currColor, setColor] = useState('#ffffff');
 const [bord, setBord] = useState('1px solid black');
 const [m, setMode] = useState(mode);
 

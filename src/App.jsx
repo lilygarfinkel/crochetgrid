@@ -4,7 +4,7 @@ import Pattern from "./components/pattern/PatContainer.jsx";
 import Login from './components/Login.js'
 import Header from './components/Header'
 import { Routes, Route } from 'react-router-dom'
-import Home from './components/Home.jsx'
+import Home from './pages/Home/Home.jsx'
 import Files from './components/Files.js'
 
 
