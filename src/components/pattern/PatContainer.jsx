@@ -5,7 +5,6 @@ import Pattern from './Pattern.jsx'
 import { exportComponentAsPNG } from "react-component-export-image"
 import Symbol from '../pixelgrid/Symbol.jsx'
 import saveicon from '../pixelgrid/icons/8.png'
-import NavContainer from "../Header/NavContainer.jsx";
 import { local } from "d3";
 
 
@@ -43,7 +42,6 @@ function Container() {
     <div className="Container">
       <div className='page'>
         <div className='navContainer '>
-          <NavContainer></NavContainer>
           <div className='inputC'>
               <input className='input' id='docname' type='text' value={localStorage.filename + "_pattern"} onChange={(e)=>{setFName(e.target.value); storeFileName(e.target.value)}}></input>
             </div>

@@ -18,7 +18,7 @@ const Navbar = () => {
     <>
       <PrimaryNav>
         <Menu>
-          <MenuLink to="/home" >
+          <MenuLink to="/" >
             <img src={gg} alt="Logo" id="logo" style={{ height: '30px' }} />
 
           </MenuLink>

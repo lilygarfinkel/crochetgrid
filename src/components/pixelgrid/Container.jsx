@@ -19,7 +19,6 @@ import minusicon from './icons/minus.png'
 
 import settingsicon from './icons/settings.png'
 
-import NavContainer from "../Header/NavContainer.jsx";
 import SaveButton from './SaveButton.jsx'
 import ColorReplacer from "./ColorReplacer.jsx"
 
@@ -129,8 +128,8 @@ function Container() {
     setColor(color);
   }
 
-  function hideSettings() {
-    let s = document.getElementById('settings');
+  function hideNavbar(id) {
+    let s = document.getElementById(id);
     if (hidden) {
       setHidden(false);
       s.style.display = 'flex';
@@ -159,7 +158,22 @@ function Container() {
     <div className="Container">
       <div className='page'>
         <div className='navContainer'>
+          <div className='sideSettings'>
+            <button 
+              className='noBord' 
+              onClick={()=>{hideNavbar('settings')}}>
+                <Symbol src={settingsicon} id="seticon" text='settings' style={{ height: '25px' }} />
+              </button>
+              <button 
+                className='noBord' 
+                onClick={()=>{hideNavbar('colors')}}>
+                <Symbol src={settingsicon} id="seticon" text='settings' style={{ height: '25px' }} />
+              </button>
+          </div>
           <div className='settings' id='settings' onMouseEnter={(e) => { showText('settings') }} style={{ display: 'none' }}>
+          <div className='settingsTitle'>
+              <p className='settingsTit'>Grid Layout</p> 
+            </div>
             <div id="options">
               <div className='size' id='gridOP'>
                 <div >
@@ -237,12 +251,7 @@ function Container() {
           </div>
 
           <div id="navbar" className="navbar">
-            <NavContainer />
-            <button className='noBord' onClick={hideSettings}>
-              <Symbol src={settingsicon} id="seticon" text='settings' style={{ height: '25px' }} />
-              {/* <img src={} alt="Logo" id="sticon" onClick={hideSettings} class='icon' style={{ height: '25px' }} /> */}
-            </button>
-
+   
             <div className='inputC'>
               <input className='input' id='docname' type='text' value={localStorage.filename} onChange={(e) => { setFName(e.target.value); storeFileName(e.target.value) }}></input>
             </div>
