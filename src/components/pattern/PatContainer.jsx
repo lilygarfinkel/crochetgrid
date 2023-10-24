@@ -3,12 +3,12 @@ import './PatContainer.css';
 
 import Pattern from './Pattern.jsx'
 import { exportComponentAsPNG } from "react-component-export-image"
-import Symbol from '../pixelgrid/Symbol.jsx'
+import Symbol from '../pixelgrid/Buttons/Symbol.jsx'
 import saveicon from '../pixelgrid/icons/8.png'
 import { local } from "d3";
 
 
-function Container() {
+function PatContainer() {
   const [panelWidth, setPanelWidth] = useState(15);
   const [panelHeight, setPanelHeight] = useState(15);
 
@@ -63,4 +63,4 @@ function Container() {
   );
 }
 
-export default Container;
+export default PatContainer;

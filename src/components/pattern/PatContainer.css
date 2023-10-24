@@ -3,7 +3,7 @@
   --yel2: #f5e8b7;
   --yel3:#ECFEBE;
 }
-.page{
+/* .page{
  height:100vh;
  width:100vw;
   position:relative;
@@ -11,9 +11,9 @@
   display:flex;
   flex-direction: row-reverse;
   /* background-color: #ECFEBE; */
-  /* padding-top:var(--hei); */
+  /* padding-top:var(--hei);
 
-}
+} */
 
 .grid{
   width:100vw;

@@ -1,0 +1,21 @@
+.scontainer{
+    position:relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.settIcon{
+    padding:2px;
+    /* height:25px; */
+}
+#one{
+position:relative;
+z-index:1;
+}
+
+#two{
+    padding-left: 3px;
+    font-size: 12px;
+}

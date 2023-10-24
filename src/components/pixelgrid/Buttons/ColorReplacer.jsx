@@ -3,7 +3,7 @@ import "./ColorReplacer.css"
 
 export default function ColorReplacer(props) {
 
-    const { d } = props;
+    const { d, setColorC } = props;
 
     const [color1, setColor1] = useState('#ffffff');
     const [color2, setColor2] = useState('#ffffff');
@@ -11,19 +11,11 @@ export default function ColorReplacer(props) {
 
     useEffect(() => {
         setDisplay(display)
+
     }, [display])
 
     
- function showReplace(){
-    var r = document.getElementById('replace')
-    if( display=== 'flex'){
-        setDisplay('none')
-    }
-    else if( display==='none' ){
-        setDisplay('flex')
 
-    }
-    }
   
     function ReplaceColor() {
         var g = document.getElementsByClassName('pixel')
@@ -35,7 +27,9 @@ export default function ColorReplacer(props) {
             if (currColor === color1) {
                 g[i].style.backgroundColor = color2;
             }
+           
         }
+        setColorC(color2)
     }
 
     function parseColor(color) {
@@ -48,23 +42,16 @@ export default function ColorReplacer(props) {
     }
     return (
         <div id="replaceC">
-            <button
-                className="noBord"
-                // value='replace'
-                onClick={showReplace}
-            >
-                replace color
-            </button>
-            <div id="replace" style={{ display: display }}>
+            <div id="replace" style={{ display: 'flex' }}>
 
-            <input className='colorinp'
+            <input className='colorinps'
                 id='currColor'
                 type='color'
                 value={color1}
                 onChange={(e) => { setColor1(e.target.value) }}>
             </input>
             →
-            <input className='colorinp'
+            <input className='colorinps'
                 id="replaceColor"
                 type='color'
                 value={color2}
@@ -72,6 +59,7 @@ export default function ColorReplacer(props) {
             </input>
             <button
                 id='doreplace'
+                className='noBord'
                 type='submit'
                 onClick={ReplaceColor}
             >

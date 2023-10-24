@@ -6,16 +6,22 @@ export const PrimaryNav = styled.nav`
   display: flex;
   background: #6a9c89;
   justify-content: space-between;
+  position: fixed;
+  left:0;
+  right:0; 
+  top: 0;
+  
   // padding: 0.18rem calc((100vw - 1000px) / 2);
 `
 export const MenuLink = styled(Link)`
-  padding: 0 1.2rem;
+  padding: 0 5px;
+  display:flex;
   align-items:center;
   bottom:0;
   color: #000000;
   height: 40px;
   margin-top:5px;
-  font-size: 10px;
+  font-size: 12px;
   &.active {
     background: #f5e8b7;
     border:1px solid #f5e8b7;
@@ -77,7 +83,7 @@ export const SubA = styled(StyledA)`
     display: block;
     text-align: right;
     background-color: #FFFBEF;
-    padding: 10px;
+    // padding: 10px;
  
  
 `

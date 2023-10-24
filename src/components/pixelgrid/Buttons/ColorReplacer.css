@@ -1,0 +1,41 @@
+#currColor, #replaceColor {
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    outline: none;
+    border:none;
+    background-color: none;
+    display: inline-flex;
+    flex-direction: row;
+    position: relative;
+    padding:0; 
+    margin:0;
+    align-items: center;
+}
+
+#replace{
+  display: inline-flex;
+  flex-direction: row;
+  display:none;
+
+}
+
+#replacebutt{
+  font-size: 10px;
+}
+
+  .colorinps::-webkit-color-swatch-wrapper {
+    padding: 0; 
+    margin:0;
+    height:15px;
+    width:15px; 
+    position: relative;
+    
+
+ }
+  .colorinps::-webkit-color-swatch {
+    /* border: none; */
+    border-radius: 50%;
+    border: 1px solid black;
+
+  }  

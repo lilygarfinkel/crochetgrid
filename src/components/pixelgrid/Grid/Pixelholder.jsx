@@ -8,7 +8,7 @@ export default function Pixelholder(props) {
 return (
   <div
     className="pixelH"
-    style={{height: stitch + zoom + "px", width: 15 + zoom + "px" }}
+    style={{height: stitch + zoom + "px", width: 15 + zoom + "px" , userSelect:"none"}}
   >{x}</div>
 )
 }

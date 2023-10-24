@@ -1,11 +1,11 @@
 import './App.css';
 import Container from "./components/pixelgrid/Container.jsx";
 import Pattern from "./components/pattern/PatContainer.jsx";
-import Login from './components/Login.js'
+import Login from './pages/Login/Login.js'
 import Header from './components/Header'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/Home.jsx'
-import Files from './components/Files.js'
+import Files from './pages/Files/Files.js'
 
 
 import React from "react";

@@ -4,19 +4,22 @@
   --yel3: #FFFBEF;
 }
 
-.page {
-  height: calc(100vh - 40px);
-  width: 100vw;
-  margin:0px;
-  position: relative;
-  /* --hei: 60px; */
-  display: flex;
-  flex-direction: row-reverse;
+.page{
+  position:fixed;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  height: 100vh;
+  overflow: auto;
+  margin-top: 40px;
 }
 
 .navContainer {
   left: 0;
   top: 0;
+  bottom:0;
+  height: calc(100vh - 40px - 35px);
   display: inline-flex;
   flex-direction: row;
   position: absolute;
@@ -32,7 +35,7 @@
 
 .navbar,
 .bottomnavbar {
-  height: 30px;
+  height: 35px;
   left: 0;
   --w: calc(100vw - 15px);
   width: var(--w);
@@ -43,13 +46,6 @@
 
 }
 
-
-
-#options {
-  display: flex;
-  flex-direction: column;
-  padding-right: 10px;
-}
 
 .inputC {
   width: 100vw;
@@ -78,14 +74,10 @@
   background-color: #ffc9a3;
   color: black;
   border: 2px solid rgb(47, 47, 47);
-  /* border-radius: 0.25rem; */
-  font-size: 10px;
-  width: 35px;
-  /* height:auto; */
-  margin: auto;
-  padding: 0px;
-  text-align: center;
-  vertical-align: middle;
+  font-size: 12px;
+  width: 55px;
+  height:20px;
+  position:relative;
 }
 
 
@@ -115,50 +107,83 @@
 }
 
 .panelInput {
-  margin: 0 1rem 0.5rem 1rem;
+  margin: 2px;
+  margin-bottom: 5px;
 }
 
 .settings {
   background-color: #f5e8b7;
-  width: 120px;
-  height: calc(75vh - 10px);
-  /* margin-top: 50px; */
-  /* padding-left: 5px; */
-  padding-top: 5px;
+  width: 150px;
+  height: calc(100vh - 40px - 30px);
   position: relative;
   left: 0;
   display: flex;
   flex-direction: column;
   z-index: 2;
+  
 }
 
+.togglenav{
+  margin-bottom: 10px;
+  height:20px;
+}
 .sideSettings {
   background-color: #faf0cc;
   width: 35px;
-  height: calc(75vh - 10px);
+  height: calc(100vh - 40px - 30px);
   /* margin-top: 30px; */
   padding-top: 5px;
   position: relative;
   left: 0;
   display: flex;
   flex-direction: column;
-  z-index: 3;
+  z-index: 1;
   align-items: center;
+   border-right: 1px solid #d2c89f;
 }
 
 .settingsTitle {
   height: 25px;
+  width:150px;
   font-size: 10px;
-  padding-bottom: 0px;
-  margin-bottom: 10px;
   border-bottom: 1px solid #d2c89f;
   box-shadow: 0 2px #ebdfb1;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+#gridSettingsTitle{
+  margin-top: 5px;
+
+}
+#colorSettingsTitle{
+  margin-top:2px;
+  border-top: 1px solid #d2c89f;
 }
 
 .settingsTit {
   left: 0;
   padding: 2px;
   margin: 2px;
+}
+
+
+.collapseOps{
+  display:flex;
+  position: absolute;
+  right:0;
+  margin-right: 5px; 
+  border: none;
+  background: none;
+  height: auto;
+}
+
+#gridOptions {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-right: 10px;
 }
 
 .size {
@@ -200,36 +225,71 @@
 
 .option {
   display: inline-flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   padding-bottom: 10px;
-  padding-left: 5px;
 }
 
 .colors {
-  display: inline-flex;
-  flex-direction: row;
-  height:30px;
+  display: flex;
+  flex-direction: column;
+  /* height:30px; */
 
 }
 
+.colorPick{
+  position: relative;
+
+}
+
+#colorpicker{
+  /* display:none; */
+  background-color: #f5e8b7 ;
+  width:auto;
+  padding:5px;
+  z-index:2;
+  left:0;
+  /* margin-bottom: 30px; */
+  position: relative;
+  align-items:center;
+  display: flex;
+  flex-direction: column;
+}
+
+.small .react-colorful {
+  margin: 5px;
+  /* margin-left: 25px; */
+  width: 100px;
+  height: 60px;
+  /* border: 1px solid rgb(19, 19, 24); */
+  border-radius: 0.5rem;
+ 
+}
+
+.small .react-colorful__hue {
+  height: 10px;
+}
+
+#hexpick{
+  width: 60px; 
+}
 
 .colorCont {
   display: inline-flex;
   flex-direction: row;
-  position: relative;
+  position: absolute;
   bottom: 0;
   padding-left: 5px;
   border: 1px solid #a3b5a4;
-  height: 30px;
+  height: 35px;
   width: auto;
 }
 
 #colorbox {
   display: inline-flex;
   flex-direction: row;
-  height:30px;
+  height:35px;
   position: relative;
-  background-color: #c1d8c3;
+  background-color: transparent;
   width: 190px;
   margin-right: 5px;
   overflow: auto;
@@ -241,6 +301,7 @@
   display: inline-flex;
   flex-direction: row;
   position: relative;
+  align-items: center;
 }
 
 .colorBtn {
@@ -256,21 +317,38 @@
   align-items: center;
   width: 10px;
   margin: 2px;
+  /* padding-left:5px; */
   text-align: center;
+}
+
+.colorinphold{
+  padding-left:5px;
+}
+
+#colorselectlabel{
+  display: flex;
+  flex-direction: row; 
+  position: relative;
 }
 
 .colorButtsRight {
   display: inline-flex;
-  flex-direction: row;
-  padding: 0px;
+  flex-direction: column;
   position: relative;
-  right: 0;
-  float: right;
+}
+
+#replaceC{
+  padding-top: 5px;
 }
 
 .pattern {
   display: none;
 
+}
+
+
+#colorOptions{
+  flex-direction: column;
 }
 
 #patStart {
@@ -281,12 +359,12 @@
 }
 
 .gridcontainer {
-  width: calc(100vw - 65px);
-  height: 70vh;
+  /* width: calc(100vw - 150px); */
+  height: calc(100vh - 40px - 35px - 30px );
   position: relative;
   align-items: center;
-  margin-left: 50px;
-  overflow: scroll;
+  /* margin-left: 155px; */
+  overflow: auto;
 
 }
 
@@ -298,16 +376,18 @@
   margin-top: 50px;
   position: relative;
 }
-
 .bottomnavbar {
-  height: auto;
+  z-index: 4;
+  height:35px;
 }
 
 .bottomnav {
   bottom: 0;
+  height:35px;
+  width:100vh;
   display: inline-flex;
   flex-direction: row;
-  position: absolute;
+  position: relative;
   z-index: 4;
 }
 
@@ -324,8 +404,9 @@
 .zooms {
   position: absolute;
   right: 0;
-  padding-right: 10px;
-  padding-top: 10px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom:5px;
 }
 
 .popUpCont+#pop {

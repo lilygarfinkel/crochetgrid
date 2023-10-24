@@ -1,8 +1,8 @@
-import './Container.css';
+import '.././Container.css';
 import React from "react"
 import { DataStore } from '@aws-amplify/datastore';
-import { Grid } from '../../models/';
-import saveicon from './icons/save.png'
+import { Grid } from '../../../models';
+import saveicon from '.././icons/save.png'
 
 function SaveButton(props) {
     const {id, text, fname, src,  width, height, stSize, offset, boldLines}= props

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react"
 import './Container.css';
-import Grid from "../pixelgrid/Grid.jsx";
-import Color from "../pixelgrid/Color.jsx";
-import Symbol from './Symbol.jsx'
+import Grid from "./Grid/Grid.jsx";
+import Color from "./Buttons/Color.jsx";
+import Symbol from './Buttons/Symbol.jsx'
 import gridicon from './icons/offset.png'
 import stitchicon from './icons/stitch.png'
 import widicon from './icons/width.png'
@@ -19,12 +19,10 @@ import minusicon from './icons/minus.png'
 
 import settingsicon from './icons/settings.png'
 
-import SaveButton from './SaveButton.jsx'
-import ColorReplacer from "./ColorReplacer.jsx"
-
-import { HexColorPicker } from "react-colorful"
+import SaveButton from './Buttons/SaveButton.jsx'
+import ColorReplacer from "./Buttons/ColorReplacer.jsx"
+import { HexColorPicker, HexColorInput  } from "react-colorful";
 import { exportComponentAsPNG } from "react-component-export-image"
-import { colors } from "@mui/material";
 
 
 function Container() {
@@ -43,8 +41,8 @@ function Container() {
   const [zoom, setZoom] = useState(0);
   const [boldOutline, setBoldOutline] = useState(5);
   const [modeC, setModeC] = useState('set');
-  const [colorNum, setColorNum] = useState(5)
-  const [hidden, setHidden] = useState('hidden');
+  const [colorNum, setColorNum] = useState(7)
+  const [savedColor, setSavedColor] = useState(0);
 
   const [name, setFName] = useState('untitled')
 
@@ -112,9 +110,45 @@ function Container() {
     for (let i = 0; i < colorNum; i++) {
       let id = i.toString() + 'c'
       // colors.push(<div onClick={() => { xuseColorX(id) }}> <Color selectedColor={selectedColor} id={id} mode={modeC} ></Color></div>)
-      colors.push(<div onClick={() => { xuseColorX(id) }}> <Color id={id} mode={modeC} setColorC={setColor} selectedColor={selectedColor}></Color></div>)
+      colors.push(<div className='colorinphold' onClick={() => { xuseColorX(id) }}> <Color id={id} mode={modeC} setColorC={setColor} selectedColor={selectedColor}></Color></div>)
     }
     return <div id="colorbox" >{colors}</div>;
+  }
+
+  function xuseColorX(id) {
+    let colorToUse = document.getElementById(id)
+    let color = colorToUse.style.backgroundColor;
+    console.log(selectedColor);
+    setColor(color);
+    console.log(selectedColor);
+  }
+
+  function saveColor(sColor){
+      var id = savedColor.toString() + 'c';
+      var saving = document.getElementById(id);
+      saving.style.backgroundColor = sColor;
+      var num = savedColor + 1 
+      console.log(savedColor, colorNum, num)
+      if(num === colorNum){
+        setSavedColor(0)
+      }
+      else{
+        setSavedColor(num)
+
+      }
+    
+    
+  }
+
+  function showColorPick(){
+    var disp = document.getElementById('colorpicker').style.display;
+    if(disp==='none'){
+      document.getElementById('colorpicker').style.display = 'flex'
+    }
+    else if(disp ==='flex'){
+      document.getElementById('colorpicker').style.display = 'none'
+    }
+
   }
 
   function drawGrid() {
@@ -122,28 +156,31 @@ function Container() {
     return grid;
   }
 
-  function xuseColorX(id) {
-    let colorToUse = document.getElementById(id)
-    let color = colorToUse.value;
-    setColor(color);
-  }
+
 
   function hideNavbar(id) {
-    let s = document.getElementById(id);
-    if (hidden) {
-      setHidden(false);
+    let s = document.getElementById('settings');
+    // let c = document.getElementById('colorsettings');
+    if ( s.style.display === 'none' ) {
       s.style.display = 'flex';
+
     }
     else {
-      setHidden(true);
       s.style.display = 'none';
     }
-
   }
 
-  function showText(e) {
-    console.log(e)
+  function collapseSettings(id){
+    var thisO = document.getElementById(id + 'Options');
+    var display = thisO.style.display;
+    if(display === 'none')
+      thisO.style.display ='flex';
+    else {
+      thisO.style.display ='none';
+
+    }
   }
+
 
   function storeFileName(fname) {
     localStorage.setItem("filename", fname);
@@ -162,19 +199,17 @@ function Container() {
             <button 
               className='noBord' 
               onClick={()=>{hideNavbar('settings')}}>
-                <Symbol src={settingsicon} id="seticon" text='settings' style={{ height: '25px' }} />
+                <img src={settingsicon} id="seticon" text='settings' className='togglenav' />
               </button>
-              <button 
-                className='noBord' 
-                onClick={()=>{hideNavbar('colors')}}>
-                <Symbol src={settingsicon} id="seticon" text='settings' style={{ height: '25px' }} />
-              </button>
-          </div>
-          <div className='settings' id='settings' onMouseEnter={(e) => { showText('settings') }} style={{ display: 'none' }}>
-          <div className='settingsTitle'>
-              <p className='settingsTit'>Grid Layout</p> 
             </div>
-            <div id="options">
+
+
+          <div className='settings' id='settings' style={{ display: 'none' }}>
+          <div id='gridSettingsTitle' className='settingsTitle'>
+              <p className='settingsTit'>Grid Layout</p> 
+              <button id="collapseGridOps" className='collapseOps' onClick={()=>{collapseSettings('grid')}}>v</button>
+            </div>
+            <div id="gridOptions" className='options' display='flex'>
               <div className='size' id='gridOP'>
                 <div >
                   <div className="option">
@@ -248,7 +283,53 @@ function Container() {
                 </div>
               </div>
             </div>
+      
+            <div id='colorSettingsTitle' className='settingsTitle'>
+              <p className='settingsTit'>Color Options</p> 
+              <button id="collapseColorOps" className='collapseOps' onClick={()=> {collapseSettings('color')}}>v</button>
+
+            </div>  
+            <div id='colorOptions' display='flex'>
+              <div id="colorselectlabel">
+              <div
+                  id= 'colorinput'
+                  className = 'colorinps' 
+                  onClick={showColorPick}
+                  style={{backgroundColor: selectedColor}}>
+              </div>
+              <p style={{paddingLeft: '2px'}}>select color</p> </div>
+              <ColorReplacer id='replacecolor' d='none' setColorC={setColor}></ColorReplacer>
+              <div className='colorButtsRight'>
+                  <button
+                    className="noBord"
+                    value='reset'
+                    onClick={Reset}>
+                    <Symbol src={reseticon} id="ricon" text='clear grid' style={{ height: '25px' }} />
+                  </button>
+                  <button
+                    className="noBord"
+                    value='fill'
+                    onClick={Fill}>
+                    <Symbol src={fillicon} id="ficon" text='fill grid' style={{ height: '25px' }} />
+                  </button>
+                  <button
+                    className="noBord"
+                    value='fill'
+                    onClick={FillRow}>
+                    <Symbol src={colicon} id="fricon" text='fill column' h='10px' style={{ width: '15px' }} />
+                  </button>
+                  <div className="small" id='colorpicker' style={{ display: 'none' }} >
+                    <HexColorPicker id='colorpick' color={selectedColor}  onChange={setColor}  />  
+                    <HexColorInput id='hexpick' color={selectedColor} onChange={setColor} prefixed />
+                    <button
+                      id="addcolor"
+                      onClick={()=> {saveColor(selectedColor)}}>+</button>
+                </div>
+           
+                </div>
+                </div>
           </div>
+         
 
           <div id="navbar" className="navbar">
    
@@ -280,42 +361,24 @@ function Container() {
               <div className='zooms'>
                 <span>Zoom:</span>
                 <div className='exps'>
-                  <button className='noBord' onClick={() => { setZoom(zoom + 1) }}> <Symbol src={plusicon} id="picon" text='zoom in' style={{ height: '25px' }} /></button>
-                  <button className='noBord' onClick={() => { setZoom(zoom - 1) }}> <Symbol src={minusicon} id="micon" text='zoom out' style={{ width: '10px' }} /></button>
+                  <button className='noBord' onClick={() => { setZoom(zoom + 1) }}> <Symbol src={plusicon} id="picon" style={{ height: '25px' }} /></button>
+                  <button className='noBord' onClick={() => { setZoom(zoom - 1) }}> <Symbol src={minusicon} id="micon" style={{ width: '10px' }} /></button>
                 </div>
               </div>
+            
               <div className='colors'>
+         
                 <div className="colorCont" style={{ backgroundColor: '#c1d8c3' }}>
-                  <div className='colorButts'>
+                 <div className='colorButts'>
+                 
                     {initColors()}
                   </div>
                   <div id="colorBtns">
-                    <button className='colorBtn' onClick={() => { setColorNum(colorNum - 1) }}>-</button>
-                    <button className='colorBtn' onClick={() => { setColorNum(colorNum + 1) }}>+</button>
+                    {/* <button className='colorBtn' onClick={() => { setColorNum(colorNum - 1) }}>-</button>
+                    <button className='colorBtn' onClick={() => { setColorNum(colorNum + 1) }}>+</button> */}
                   </div>
                 </div>
-                <div className='colorButtsRight'>
-                  <button
-                    className="noBord"
-                    value='reset'
-                    onClick={Reset}>
-                    <Symbol src={reseticon} id="ricon" text='clear grid' style={{ height: '25px' }} />
-                  </button>
-                  <button
-                    className="noBord"
-                    value='fill'
-                    onClick={Fill}>
-                    <Symbol src={fillicon} id="ficon" text='fill grid' style={{ height: '25px' }} />
-                  </button>
-                  <button
-                    className="noBord"
-                    value='fill'
-                    onClick={FillRow}>
-                    <Symbol src={colicon} id="fricon" text='fill column' h='10px' style={{ width: '15px' }} />
-                  </button>
-                 
-                  <ColorReplacer id='replacecolor' d='none'></ColorReplacer>
-                </div>
+            
               </div>
             </div>
           </div>
