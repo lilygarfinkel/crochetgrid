@@ -23,8 +23,8 @@ export const MenuLink = styled(Link)`
   margin-top:5px;
   font-size: 12px;
   &.active {
-    background: #f5e8b7;
-    border:1px solid #f5e8b7;
+    background: #FAE3DC;
+    border:1px solid #FAE3DC;
     border-radius:3px;
   }
 `
@@ -73,7 +73,7 @@ export const StyledA = styled(Link)`
     text-decoration: none;
     color:black;
     &:hover {
-      background-color: #f5e8b7;
+      background-color: #FAE3DC;
       }
 
 `
@@ -82,7 +82,7 @@ export const SubA = styled(StyledA)`
     text-decoration: none;
     display: block;
     text-align: right;
-    background-color: #FFFBEF;
+    background-color: #FAE3DC;
     // padding: 10px;
  
  

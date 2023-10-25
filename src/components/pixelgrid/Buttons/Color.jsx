@@ -3,28 +3,21 @@ import "./Color.css"
 
 export default function Color(props) {
 
-const {id, mode, setColorC, selectedColor} = props;
+const {id, setColorC} = props;
 
 const [currColor, setColor] = useState('#ffffff');
-const [bord, setBord] = useState('1px solid black');
-const [m, setMode] = useState(mode);
-const [modeC, setModeC] = useState('set');
-const [colorNum, setColorNum] = useState(10)
 
 useEffect(() => {
-  setMode(mode);
   setColorC(currColor)
-  // setBord('1px solid black')
-}, [mode, currColor, bord])
+
+}, [currColor])
 
   function handleClick(id){
     var color = document.getElementById(id);
     var backColor = color.style.backgroundColor;
     backColor = parseColor(backColor);
     setColor(backColor);
-    // console.log(backColor)
-
-    }
+  }
   
     function parseColor(color) {
       var arr=[]; color.replace(/[\d+\.]+/g, function(v) { arr.push(parseFloat(v)); });

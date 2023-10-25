@@ -23,20 +23,20 @@ export default function Row(props) {
       // horizontal numbers
       if(y){
         if(i===-1){
-          pixels.push(<Pixelholder className={ 'pixel' + xid} width ={width} zoom={zoom} x={''} y={''} bold={bold}></Pixelholder>)
+          pixels.push(<Pixelholder className={ 'pixel' + xid}  zoom={zoom} x={''} y={''} bold={bold}></Pixelholder>)
         }
         else{
-          pixels.push(<Pixelholder className={ 'pixel' + xid} width ={width} zoom={zoom} x={i+1} y={count} bold={bold}></Pixelholder>)
+          pixels.push(<Pixelholder className={ 'pixel' + xid} zoom={zoom} x={i+1} y={count} bold={bold}></Pixelholder>)
 
         }
       }
       else{
       // vertical numbers
       if(i===-1){
-        pixels.push(<Pixelholder className={ 'pixel' + xid} width ={width} zoom={zoom} x={x} count={count} bold={bold}></Pixelholder>)
+        pixels.push(<Pixelholder className={ 'pixel' + xid}  zoom={zoom} x={x} count={count} bold={bold}></Pixelholder>)
       }
       else{
-      pixels.push(<Pixel className={count} width ={width}  selectedColor={selectedColor} count={yid} stitch={stitch} clicked={clicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} borderR={borderR} borderB={borderB} x={xid} y={y} bold={bold}/>)
+      pixels.push(<Pixel className={count} selectedColor={selectedColor} count={yid} stitch={stitch} clicked={clicked} drawMode={drawMode} bgFill={bgFill} zoom={zoom} borderR={borderR} borderB={borderB} x={xid} y={y} bold={bold}/>)
     }
   }
   yid+=1;

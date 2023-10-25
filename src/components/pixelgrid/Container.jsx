@@ -48,11 +48,6 @@ function Container() {
 
   var grid = <Grid></Grid>
 
-
-
-
-  // console.log(colors);
-
   const panelRef = useRef()
 
   function changeMode(e) {
@@ -97,14 +92,6 @@ function Container() {
     setDrawMode(2);
   }
 
-  function FillRow() {
-    // var pixel = document.getElementsByClassName('pixel');
-    // for (var i = 0; i < pixel.length; i++) {
-    //   pixel[i].style.backgroundColor = selectedColor;
-    // }
-    setBg(selectedColor);
-    setDrawMode(4);
-  }
   function initColors() {
     let colors = [];
     for (let i = 0; i < colorNum; i++) {
@@ -160,7 +147,6 @@ function Container() {
 
   function hideNavbar(id) {
     let s = document.getElementById('settings');
-    // let c = document.getElementById('colorsettings');
     if ( s.style.display === 'none' ) {
       s.style.display = 'flex';
 
@@ -181,10 +167,17 @@ function Container() {
     }
   }
 
-
   function storeFileName(fname) {
     localStorage.setItem("filename", fname);
     console.log(localStorage.filename)
+  }
+
+  function FillCol(){
+    setDrawMode(3);
+  }
+
+  function FillRow(){
+    setDrawMode(4);
   }
 
   useEffect(() => {
@@ -238,30 +231,28 @@ function Container() {
                     </select>
                   </div>
                 </div>
-                <div >
+                <div > 
+                  Size: 
                   <div className="option">
-                    <Symbol src={widicon} id="wicon" text='width' />
+                    {/* <Symbol src={widicon} id="wicon" text='width' /> */}
                     <input
                       type="number"
                       id='sizew'
                       className="panelInput"
                       defaultValue={panelWidth}
                       onChange={e => {
-                        // setColor('white');
                         setPanelWidth(e.target.value);
                       }}
                     />
-                  </div>
+                  </div>x
                   <div className="option">
-                    <Symbol src={heiicon} id="hicon" text='height' />
+                    {/* <Symbol src={heiicon} id="hicon" text='height' /> */}
                     <input
                       type="number"
                       id='sizeh'
                       className="panelInput"
                       defaultValue={panelHeight}
                       onChange={e => {
-                        // setColor('white');
-                        console.log(e.target.value)
                         setPanelHeight(e.target.value);
                       }}
                     />
@@ -275,8 +266,6 @@ function Container() {
                     className="panelInput"
                     defaultValue={boldOutline}
                     onChange={e => {
-                      // setColor('white');
-                      console.log(e.target.value)
                       changeOutline(e);
                     }}
                   />
@@ -287,7 +276,6 @@ function Container() {
             <div id='colorSettingsTitle' className='settingsTitle'>
               <p className='settingsTit'>Color Options</p> 
               <button id="collapseColorOps" className='collapseOps' onClick={()=> {collapseSettings('color')}}>v</button>
-
             </div>  
             <div id='colorOptions' display='flex'>
               <div id="colorselectlabel">
@@ -315,8 +303,14 @@ function Container() {
                   <button
                     className="noBord"
                     value='fill'
-                    onClick={FillRow}>
+                    onClick={FillCol}>
                     <Symbol src={colicon} id="fricon" text='fill column' h='10px' style={{ width: '15px' }} />
+                  </button>
+                  <button
+                    className="noBord"
+                    value='fill'
+                    onClick={FillRow}>
+                    <Symbol src={colicon} id="fricon" text='fill row' h='10px' style={{ width: '15px' }} />
                   </button>
                   <div className="small" id='colorpicker' style={{ display: 'none' }} >
                     <HexColorPicker id='colorpick' color={selectedColor}  onChange={setColor}  />  
@@ -370,12 +364,11 @@ function Container() {
          
                 <div className="colorCont" style={{ backgroundColor: '#c1d8c3' }}>
                  <div className='colorButts'>
-                 
                     {initColors()}
                   </div>
                   <div id="colorBtns">
-                    {/* <button className='colorBtn' onClick={() => { setColorNum(colorNum - 1) }}>-</button>
-                    <button className='colorBtn' onClick={() => { setColorNum(colorNum + 1) }}>+</button> */}
+                    <button className='colorBtn' onClick={() => { setColorNum(colorNum - 1) }}>-</button>
+                    <button className='colorBtn' onClick={() => { setColorNum(colorNum + 1) }}>+</button>
                   </div>
                 </div>
             

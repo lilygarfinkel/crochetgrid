@@ -1,5 +1,5 @@
 .Container {
-  --yel: #BACF1D;
+  --yel: #FAE3DC;
   --yel2: #f5e8b7;
   --yel3: #FFFBEF;
 }
@@ -13,6 +13,8 @@
   height: 100vh;
   overflow: auto;
   margin-top: 40px;
+  background-color: #FAE3DC;
+
 }
 
 .navContainer {
@@ -23,7 +25,7 @@
   display: inline-flex;
   flex-direction: row;
   position: absolute;
-  background-color: #f5e8b7;
+  background-color: #FAE3DC;
 }
 
 #navbar.navbar {
@@ -40,7 +42,7 @@
   --w: calc(100vw - 15px);
   width: var(--w);
   position: absolute;
-  background: #f5e8b7;
+  background: #FAE3DC;
   border: none;
   display: flex;
 
@@ -55,10 +57,8 @@
   display: flex;
   justify-content: center;
   position: relative;
-  /* margin-right:10px; */
-  border-bottom: 1px solid #d2c89f;
-  box-shadow: 0 2px #ebdfb1;
-}
+  border-bottom: 1px solid #e3cfc9;
+  box-shadow: 0 2px #dbc7c1;}
 
 .input {
   border: 2px solid black;
@@ -71,16 +71,27 @@
 
 .panelInput,
 .export {
-  background-color: #ffc9a3;
+  background-color: #FEF8F5;
   color: black;
-  border: 2px solid rgb(47, 47, 47);
+  border: 0px ;
   font-size: 12px;
   width: 55px;
   height:20px;
   position:relative;
 }
 
+#sizeh, #sizew{
+  width: 25px;
 
+}
+
+input:focus{
+  outline: none;
+
+}
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 .zoom {
   background-color: none;
   border: 0px;
@@ -112,7 +123,7 @@
 }
 
 .settings {
-  background-color: #f5e8b7;
+  background-color: #FAE3DC;
   width: 150px;
   height: calc(100vh - 40px - 30px);
   position: relative;
@@ -128,7 +139,7 @@
   height:20px;
 }
 .sideSettings {
-  background-color: #faf0cc;
+  background-color: #FDECEA;
   width: 35px;
   height: calc(100vh - 40px - 30px);
   /* margin-top: 30px; */
@@ -139,15 +150,15 @@
   flex-direction: column;
   z-index: 1;
   align-items: center;
-   border-right: 1px solid #d2c89f;
+   border-right: 1px solid #FAE3DC;
 }
 
 .settingsTitle {
   height: 25px;
   width:150px;
   font-size: 10px;
-  border-bottom: 1px solid #d2c89f;
-  box-shadow: 0 2px #ebdfb1;
+  border-bottom: 1px solid #e3cfc9;
+  box-shadow: 0 2px #dbc7c1;
   display: flex;
   flex-direction: row;
   position: relative;
@@ -159,7 +170,7 @@
 }
 #colorSettingsTitle{
   margin-top:2px;
-  border-top: 1px solid #d2c89f;
+  border-top: 1px solid #FAE3DC;
 }
 
 .settingsTit {
@@ -397,7 +408,7 @@
   position: absolute;
   margin-top: 32px;
   left: 0;
-  background-color: #FFFBEF;
+  background-color: #FEFAF9;
 
 }
 
