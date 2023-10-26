@@ -83,15 +83,6 @@ function Container() {
     setDrawMode(2);
   }
 
-  function Fill() {
-    var pixel = document.getElementsByClassName('pixel');
-    for (var i = 0; i < pixel.length; i++) {
-      pixel[i].style.backgroundColor = selectedColor;
-    }
-    setBg(selectedColor);
-    setDrawMode(2);
-  }
-
   function initColors() {
     let colors = [];
     for (let i = 0; i < colorNum; i++) {
@@ -172,6 +163,20 @@ function Container() {
     console.log(localStorage.filename)
   }
 
+  function PixelFill(){
+    setDrawMode(0);
+  }
+
+  function Fill() {
+    var pixel = document.getElementsByClassName('pixel');
+    for (var i = 0; i < pixel.length; i++) {
+      pixel[i].style.backgroundColor = selectedColor;
+    }
+    setBg(selectedColor);
+    setDrawMode(2);
+
+  }
+
   function FillCol(){
     setDrawMode(3);
   }
@@ -205,8 +210,9 @@ function Container() {
             <div id="gridOptions" className='options' display='flex'>
               <div className='size' id='gridOP'>
                 <div >
+                  Format:
                   <div className="option">
-                    <Symbol src={gridicon} id="gicon" text='grid layout' />
+                    {/* <Symbol src={gridicon} id="gicon" text='grid layout' /> */}
                     <select
                       className="panelInput"
                       defaultValue='grid'
@@ -216,9 +222,10 @@ function Container() {
                       <option name="grid"> grid</option>
                       <option name="offset">offset</option>
                     </select>
-                  </div>
+                  </div><br></br>
+                  Pixel Height:
                   <div className="option">
-                    <Symbol src={stitchicon} id="sticon" text='stitch size' />
+                    {/* <Symbol src={stitchicon} id="sticon" text='stitch size' /> */}
                     <select
                       className="panelInput"
                       defaultValue='double'
@@ -258,8 +265,9 @@ function Container() {
                     />
                   </div>
                 </div>
+                Outline Frequency:
                 <div className="option">
-                  <Symbol src={outlineicon} id="oicon" text='outline frequency' />
+                  {/* <Symbol src={outlineicon} id="oicon" text='outline frequency' /> */}
                   <input
                     type="number"
                     id='outlineSize'
@@ -287,7 +295,11 @@ function Container() {
               </div>
               <p style={{paddingLeft: '2px'}}>select color</p> </div>
               <ColorReplacer id='replacecolor' d='none' setColorC={setColor}></ColorReplacer>
-              <div className='colorButtsRight'>
+              <div id='fillSettingsTitle' className='settingsTitle'>
+              <p className='settingsTit'>Fill Options</p> 
+              <button id="collapseFillOps" className='collapseOps' onClick={()=> {collapseSettings('fill')}}>v</button>
+            </div>  
+              <div id='fillOptions' >
                   <button
                     className="noBord"
                     value='reset'
@@ -295,23 +307,34 @@ function Container() {
                     <Symbol src={reseticon} id="ricon" text='clear grid' style={{ height: '25px' }} />
                   </button>
                   <button
-                    className="noBord"
+                    className="fillButt"
                     value='fill'
-                    onClick={Fill}>
-                    <Symbol src={fillicon} id="ficon" text='fill grid' style={{ height: '25px' }} />
+                    onClick={PixelFill}
+                    id='pbutt'>
+                    Pixel
                   </button>
                   <button
-                    className="noBord"
+                    className="fillButt"
                     value='fill'
-                    onClick={FillCol}>
-                    <Symbol src={colicon} id="fricon" text='fill column' h='10px' style={{ width: '15px' }} />
+                    onClick={Fill}
+                    id='fbutt'>
+                    Entire grid
                   </button>
                   <button
-                    className="noBord"
+                    className="fillButt"
                     value='fill'
-                    onClick={FillRow}>
-                    <Symbol src={colicon} id="fricon" text='fill row' h='10px' style={{ width: '15px' }} />
+                    onClick={FillCol}
+                    id='cbutt'>
+                      Column
                   </button>
+                  <button
+                    className="fillButt"
+                    value='fill'
+                    onClick={FillRow}
+                    id='rbutt'>
+                      Row
+                  </button>
+                  </div>
                   <div className="small" id='colorpicker' style={{ display: 'none' }} >
                     <HexColorPicker id='colorpick' color={selectedColor}  onChange={setColor}  />  
                     <HexColorInput id='hexpick' color={selectedColor} onChange={setColor} prefixed />
@@ -320,7 +343,7 @@ function Container() {
                       onClick={()=> {saveColor(selectedColor)}}>+</button>
                 </div>
            
-                </div>
+                
                 </div>
           </div>
          

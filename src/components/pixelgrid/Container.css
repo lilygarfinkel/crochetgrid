@@ -74,13 +74,14 @@
   background-color: #FEF8F5;
   color: black;
   border: 0px ;
+  border-radius: 5px;
   font-size: 12px;
   width: 55px;
   height:20px;
   position:relative;
 }
 
-#sizeh, #sizew{
+#sizeh, #sizew, #outlineSize{
   width: 25px;
 
 }
@@ -154,9 +155,10 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .settingsTitle {
-  height: 25px;
+  height: 30px;
   width:150px;
   font-size: 10px;
+  border-top: 1px solid #e3cfc9;
   border-bottom: 1px solid #e3cfc9;
   box-shadow: 0 2px #dbc7c1;
   display: flex;
@@ -164,13 +166,10 @@ input[type=number]::-webkit-inner-spin-button {
   position: relative;
 }
 
-#gridSettingsTitle{
-  margin-top: 5px;
 
-}
 #colorSettingsTitle{
   margin-top:2px;
-  border-top: 1px solid #FAE3DC;
+  border-top: 1px solid #e3cfc9;
 }
 
 .settingsTit {
@@ -195,6 +194,7 @@ input[type=number]::-webkit-inner-spin-button {
   flex-direction: column;
   position: relative;
   padding-right: 10px;
+  padding-top:10px;
 }
 
 .size {
@@ -254,7 +254,7 @@ input[type=number]::-webkit-inner-spin-button {
 
 #colorpicker{
   /* display:none; */
-  background-color: #f5e8b7 ;
+  background-color: #FAE3DC ;
   width:auto;
   padding:5px;
   z-index:2;
@@ -359,7 +359,24 @@ input[type=number]::-webkit-inner-spin-button {
 
 
 #colorOptions{
+  display:flex;
   flex-direction: column;
+  padding-top: 10px;
+}
+
+.fillButt{
+  background:#FEF8F5; 
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  font-size: 10px;
+  width: 65px;
+  margin-left: 5px;
+}
+
+.fillButt:focus{
+  background:black; 
+ color:white;
 }
 
 #patStart {

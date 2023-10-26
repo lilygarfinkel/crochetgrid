@@ -32,7 +32,7 @@ export default function Pixel(props) {
       var pix = document.getElementsByClassName('pixel');
       for (var i = 1; i < pix.length; i++) {
         var yid = pix[i].id.split("x")[1];
-        // console.log(yid[0], count)
+        console.log(yid[0], count)
         if (yid.toString() === count.toString()) {
           pix[i].style.backgroundColor = selectedColor;
         }
