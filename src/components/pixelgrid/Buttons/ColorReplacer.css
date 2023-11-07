@@ -17,11 +17,8 @@
   display: inline-flex;
   flex-direction: row;
   display:none;
-
-}
-
-#replacebutt{
   font-size: 10px;
+
 }
 
   .colorinps::-webkit-color-swatch-wrapper {

@@ -23,8 +23,8 @@ export const MenuLink = styled(Link)`
   margin-top:5px;
   font-size: 12px;
   &.active {
-    background: #FAE3DC;
-    border:1px solid #FAE3DC;
+    background: #faeedc;
+    border:1px solid #faeedc;
     border-radius:3px;
   }
 `
@@ -37,7 +37,7 @@ export const LoginLink = styled(Link)`
   right: 0;
   position: absolute;
   &.active {
-    color: #FFFBEF;
+    color: #faeedc;
   }
 `
 export const Menu = styled.div`
@@ -73,7 +73,7 @@ export const StyledA = styled(Link)`
     text-decoration: none;
     color:black;
     &:hover {
-      background-color: #FAE3DC;
+      background-color: #faeedc;
       }
 
 `
@@ -82,7 +82,7 @@ export const SubA = styled(StyledA)`
     text-decoration: none;
     display: block;
     text-align: right;
-    background-color: #FAE3DC;
+    background-color: #faeedc;
     // padding: 10px;
  
  

@@ -15,13 +15,14 @@ import saveicon from './icons/save.png'
 import colicon from './icons/fill_col.png'
 import plusicon from './icons/plus.png'
 import minusicon from './icons/minus.png'
-
+import seventeen from './icons/17 stitches.png'
 
 import settingsicon from './icons/settings.png'
+import SwatchCalc from './SwatchCalc.jsx'
 
 import SaveButton from './Buttons/SaveButton.jsx'
 import ColorReplacer from "./Buttons/ColorReplacer.jsx"
-import { HexColorPicker, HexColorInput  } from "react-colorful";
+import { HexColorPicker, HexColorInput } from "react-colorful";
 import { exportComponentAsPNG } from "react-component-export-image"
 
 
@@ -101,29 +102,29 @@ function Container() {
     console.log(selectedColor);
   }
 
-  function saveColor(sColor){
-      var id = savedColor.toString() + 'c';
-      var saving = document.getElementById(id);
-      saving.style.backgroundColor = sColor;
-      var num = savedColor + 1 
-      console.log(savedColor, colorNum, num)
-      if(num === colorNum){
-        setSavedColor(0)
-      }
-      else{
-        setSavedColor(num)
+  function saveColor(sColor) {
+    var id = savedColor.toString() + 'c';
+    var saving = document.getElementById(id);
+    saving.style.backgroundColor = sColor;
+    var num = savedColor + 1
+    console.log(savedColor, colorNum, num)
+    if (num === colorNum) {
+      setSavedColor(0)
+    }
+    else {
+      setSavedColor(num)
 
-      }
-    
-    
+    }
+
+
   }
 
-  function showColorPick(){
+  function showColorPick() {
     var disp = document.getElementById('colorpicker').style.display;
-    if(disp==='none'){
+    if (disp === 'none') {
       document.getElementById('colorpicker').style.display = 'flex'
     }
-    else if(disp ==='flex'){
+    else if (disp === 'flex') {
       document.getElementById('colorpicker').style.display = 'none'
     }
 
@@ -138,7 +139,7 @@ function Container() {
 
   function hideNavbar(id) {
     let s = document.getElementById('settings');
-    if ( s.style.display === 'none' ) {
+    if (s.style.display === 'none') {
       s.style.display = 'flex';
 
     }
@@ -147,14 +148,33 @@ function Container() {
     }
   }
 
-  function collapseSettings(id){
+  function collapseSettings(id) {
     var thisO = document.getElementById(id + 'Options');
-    var display = thisO.style.display;
-    if(display === 'none')
-      thisO.style.display ='flex';
-    else {
-      thisO.style.display ='none';
+    var thisB = document.getElementById('collapse' + id + 'Ops');
+    var thisT = document.getElementById(id + 'SettingsTitle');
 
+    console.log(thisO)
+    var display = thisO.style.display;
+    var valb = thisB.value;
+
+    if (display === 'none') {
+      thisO.style.display = 'flex';
+      thisT.style.boxShadow = '0 2px #e8e5e2';
+    }
+    else {
+      thisO.style.display = 'none';
+      thisT.style.boxShadow = 'none';
+
+
+    }
+
+    if (valb === '🞃') {
+      thisB.value = '🞂';
+      thisB.innerHTML = '🞂';
+    }
+    else {
+      thisB.value = '🞃';
+      thisB.innerHTML = '🞃';
     }
   }
 
@@ -163,7 +183,7 @@ function Container() {
     console.log(localStorage.filename)
   }
 
-  function PixelFill(){
+  function PixelFill() {
     setDrawMode(0);
   }
 
@@ -177,13 +197,27 @@ function Container() {
 
   }
 
-  function FillCol(){
+  function FillCol() {
     setDrawMode(3);
   }
 
-  function FillRow(){
+  function FillRow() {
     setDrawMode(4);
   }
+
+  function toggleSwatch() {
+    console.log('clicked')
+    var box = document.getElementById('swatchSet');
+
+    if (box.style.display === 'flex') {
+      box.style.display = 'none';
+    }
+    else if (box.style.display === 'none') {
+      box.style.display = 'flex';
+    }
+  }
+
+
 
   useEffect(() => {
     drawGrid();
@@ -192,78 +226,58 @@ function Container() {
   return (
     <div className="Container">
       <div className='page'>
+
         <div className='navContainer'>
+
+         <SwatchCalc></SwatchCalc>
+
           <div className='sideSettings'>
-            <button 
-              className='noBord' 
-              onClick={()=>{hideNavbar('settings')}}>
-                <img src={settingsicon} id="seticon" text='settings' className='togglenav' />
-              </button>
-            </div>
+            <button
+              className='noBord'
+              onClick={() => { hideNavbar('settings') }}>
+              <img src={settingsicon} id="seticon" text='settings' className='togglenav' />
+            </button>
+          </div>
 
 
           <div className='settings' id='settings' style={{ display: 'none' }}>
-          <div id='gridSettingsTitle' className='settingsTitle'>
-              <p className='settingsTit'>Grid Layout</p> 
-              <button id="collapseGridOps" className='collapseOps' onClick={()=>{collapseSettings('grid')}}>v</button>
+            <div id='gridSettingsTitle' className='settingsTitle'>
+              <p className='settingsTit'>Grid Layout</p>
+              <button id="collapsegridOps" className='collapseOps' value='🞃' onClick={() => { collapseSettings('grid') }}>🞃</button>
             </div>
             <div id="gridOptions" className='options' display='flex'>
               <div className='size' id='gridOP'>
                 <div >
-                  Format:
-                  <div className="option">
-                    {/* <Symbol src={gridicon} id="gicon" text='grid layout' /> */}
-                    <select
-                      className="panelInput"
-                      defaultValue='grid'
-                      onChange={e => {
-                        changeMode(e)
-                      }}>
-                      <option name="grid"> grid</option>
-                      <option name="offset">offset</option>
-                    </select>
-                  </div><br></br>
-                  Pixel Height:
-                  <div className="option">
-                    {/* <Symbol src={stitchicon} id="sticon" text='stitch size' /> */}
-                    <select
-                      className="panelInput"
-                      defaultValue='double'
-                      onChange={e => {
-                        changeStitch(e)
-                      }}>
-                      <option name="single"> single</option>
-                      <option name="double">double</option>
-                      <option name="triple">triple</option>
-                    </select>
+                  <div >
+                    Format:
+                    <div className="option">
+                      {/* <Symbol src={gridicon} id="gicon" text='grid layout' /> */}
+                      <select
+                        className="panelInput"
+                        defaultValue='grid'
+                        onChange={e => {
+                          changeMode(e)
+                        }}>
+                        <option name="grid"> grid</option>
+                        <option name="offset">offset</option>
+                      </select>
+                    </div><br></br>
+                    Pixel Height:
+                    <div className="option">
+                      {/* <Symbol src={stitchicon} id="sticon" text='stitch size' /> */}
+                      <select
+                        className="panelInput"
+                        defaultValue='double'
+                        onChange={e => {
+                          changeStitch(e)
+                        }}>
+                        <option name="single"> single</option>
+                        <option name="double">double</option>
+                        <option name="triple">triple</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div > 
-                  Size: 
-                  <div className="option">
-                    {/* <Symbol src={widicon} id="wicon" text='width' /> */}
-                    <input
-                      type="number"
-                      id='sizew'
-                      className="panelInput"
-                      defaultValue={panelWidth}
-                      onChange={e => {
-                        setPanelWidth(e.target.value);
-                      }}
-                    />
-                  </div>x
-                  <div className="option">
-                    {/* <Symbol src={heiicon} id="hicon" text='height' /> */}
-                    <input
-                      type="number"
-                      id='sizeh'
-                      className="panelInput"
-                      defaultValue={panelHeight}
-                      onChange={e => {
-                        setPanelHeight(e.target.value);
-                      }}
-                    />
-                  </div>
+
                 </div>
                 Outline Frequency:
                 <div className="option">
@@ -278,78 +292,117 @@ function Container() {
                     }}
                   />
                 </div>
+
+                Size:
+                <div className="option">
+                  {/* <Symbol src={widicon} id="wicon" text='width' /> */}
+                  <input
+                    type="number"
+                    id='sizew'
+                    className="panelInput"
+                    defaultValue={panelWidth}
+                    onChange={e => {
+                      setPanelWidth(e.target.value);
+                    }}
+                  />
+                </div>x
+                <div className="option">
+                  {/* <Symbol src={heiicon} id="hicon" text='height' /> */}
+                  <input
+                    type="number"
+                    id='sizeh'
+                    className="panelInput"
+                    defaultValue={panelHeight}
+                    onChange={e => {
+                      setPanelHeight(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="option">
+                  <button
+                    id='swatchtog'
+                    className="panelInput"
+                    onClick={toggleSwatch}
+                    style={{ marginBottom: '10px', height: 'auto' }}>
+                    size from swatch</button>
+                </div>
               </div>
             </div>
-      
+
             <div id='colorSettingsTitle' className='settingsTitle'>
-              <p className='settingsTit'>Color Options</p> 
-              <button id="collapseColorOps" className='collapseOps' onClick={()=> {collapseSettings('color')}}>v</button>
-            </div>  
-            <div id='colorOptions' display='flex'>
+              <button id="collapsecolorOps" className='collapseOps' value='🞃' onClick={() => { collapseSettings('color') }}>🞃</button>
+
+              <p className='settingsTit'>Color Options</p>
+            </div>
+            <div id='colorOptions' className='options' display='flex'>
               <div id="colorselectlabel">
-              <div
-                  id= 'colorinput'
-                  className = 'colorinps' 
+                <div
+                  id='colorinput'
+                  className='colorinps'
                   onClick={showColorPick}
-                  style={{backgroundColor: selectedColor}}>
+                  style={{ backgroundColor: selectedColor }}>
+                </div>
+                <p style={{ paddingLeft: '2px', fontSize: '10px' }}>select color</p> </div>
+              <div className="small" id='colorpicker' style={{ display: 'none' }} >
+                <HexColorPicker id='colorpick' color={selectedColor} onChange={setColor} />
+                <HexColorInput id='hexpick' color={selectedColor} onChange={setColor} prefixed />
+                <button
+                  id="addcolor"
+                  onClick={() => { saveColor(selectedColor) }}>+</button>
               </div>
-              <p style={{paddingLeft: '2px'}}>select color</p> </div>
+
               <ColorReplacer id='replacecolor' d='none' setColorC={setColor}></ColorReplacer>
-              <div id='fillSettingsTitle' className='settingsTitle'>
-              <p className='settingsTit'>Fill Options</p> 
-              <button id="collapseFillOps" className='collapseOps' onClick={()=> {collapseSettings('fill')}}>v</button>
-            </div>  
-              <div id='fillOptions' >
-                  <button
-                    className="noBord"
-                    value='reset'
-                    onClick={Reset}>
-                    <Symbol src={reseticon} id="ricon" text='clear grid' style={{ height: '25px' }} />
-                  </button>
-                  <button
-                    className="fillButt"
-                    value='fill'
-                    onClick={PixelFill}
-                    id='pbutt'>
-                    Pixel
-                  </button>
-                  <button
-                    className="fillButt"
-                    value='fill'
-                    onClick={Fill}
-                    id='fbutt'>
-                    Entire grid
-                  </button>
-                  <button
-                    className="fillButt"
-                    value='fill'
-                    onClick={FillCol}
-                    id='cbutt'>
-                      Column
-                  </button>
-                  <button
-                    className="fillButt"
-                    value='fill'
-                    onClick={FillRow}
-                    id='rbutt'>
-                      Row
-                  </button>
-                  </div>
-                  <div className="small" id='colorpicker' style={{ display: 'none' }} >
-                    <HexColorPicker id='colorpick' color={selectedColor}  onChange={setColor}  />  
-                    <HexColorInput id='hexpick' color={selectedColor} onChange={setColor} prefixed />
-                    <button
-                      id="addcolor"
-                      onClick={()=> {saveColor(selectedColor)}}>+</button>
-                </div>
-           
-                
-                </div>
+
+            </div>
+            <div id='fillSettingsTitle' className='settingsTitle'>
+              <p className='settingsTit'>Fill Options</p>
+              <button id="collapsefillOps" className='collapseOps' value='🞃' onClick={() => { collapseSettings('fill') }}>🞃</button>
+            </div>
+            <div id='fillOptions' className="options" >
+              <button
+                className="noBord"
+                value='reset'
+                onClick={Reset}>
+                <Symbol src={reseticon} id="ricon" text='clear grid' style={{ height: '25px' }} />
+              </button>
+              <button
+                className="fillButt"
+                value='fill'
+                onClick={PixelFill}
+                id='pbutt'>
+                Pixel
+              </button>
+              <button
+                className="fillButt"
+                value='fill'
+                onClick={Fill}
+                id='fbutt'>
+                Entire grid
+              </button>
+              <button
+                className="fillButt"
+                value='fill'
+                onClick={FillCol}
+                id='cbutt'>
+                Column
+              </button>
+              <button
+                className="fillButt"
+                value='fill'
+                onClick={FillRow}
+                id='rbutt'>
+                Row
+              </button>
+            </div>
+
+
+
           </div>
-         
+
+
 
           <div id="navbar" className="navbar">
-   
+
             <div className='inputC'>
               <input className='input' id='docname' type='text' value={localStorage.filename} onChange={(e) => { setFName(e.target.value); storeFileName(e.target.value) }}></input>
             </div>
@@ -366,7 +419,10 @@ function Container() {
             </div>
           </div>
         </div>
+
+
         <div className='snaptobtm'>
+
           <div className="gridcontainer" onMouseDown={() => { setClick(true); }} onMouseUp={() => { setClick(false); }}  >
             <div className="grid" id='grid' ref={panelRef}>
               {drawGrid()}
@@ -378,15 +434,15 @@ function Container() {
               <div className='zooms'>
                 <span>Zoom:</span>
                 <div className='exps'>
-                  <button className='noBord' onClick={() => { setZoom(zoom + 1) }}> <Symbol src={plusicon} id="picon" style={{ height: '25px' }} /></button>
-                  <button className='noBord' onClick={() => { setZoom(zoom - 1) }}> <Symbol src={minusicon} id="micon" style={{ width: '10px' }} /></button>
+                  <button className='noBord' onClick={() => { setZoom(zoom - 1) }}>-</button>
+                  <button className='noBord' onClick={() => { setZoom(zoom + 1) }}>+</button>
                 </div>
               </div>
-            
+
               <div className='colors'>
-         
+
                 <div className="colorCont" style={{ backgroundColor: '#c1d8c3' }}>
-                 <div className='colorButts'>
+                  <div className='colorButts'>
                     {initColors()}
                   </div>
                   <div id="colorBtns">
@@ -394,7 +450,7 @@ function Container() {
                     <button className='colorBtn' onClick={() => { setColorNum(colorNum + 1) }}>+</button>
                   </div>
                 </div>
-            
+
               </div>
             </div>
           </div>

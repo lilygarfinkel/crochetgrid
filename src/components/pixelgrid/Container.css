@@ -1,5 +1,5 @@
 .Container {
-  --yel: #FAE3DC;
+  --yel: #faeedc;
   --yel2: #f5e8b7;
   --yel3: #FFFBEF;
 }
@@ -11,9 +11,9 @@
   left:0px;
   right:0px;
   height: 100vh;
-  overflow: auto;
+  /* overflow: auto; */
   margin-top: 40px;
-  background-color: #FAE3DC;
+  background-color: #faeedc;
 
 }
 
@@ -25,7 +25,7 @@
   display: inline-flex;
   flex-direction: row;
   position: absolute;
-  background-color: #FAE3DC;
+  background-color: #faeedc;
 }
 
 #navbar.navbar {
@@ -42,7 +42,7 @@
   --w: calc(100vw - 15px);
   width: var(--w);
   position: absolute;
-  background: #FAE3DC;
+  background: #faeedc;
   border: none;
   display: flex;
 
@@ -57,8 +57,9 @@
   display: flex;
   justify-content: center;
   position: relative;
-  border-bottom: 1px solid #e3cfc9;
-  box-shadow: 0 2px #dbc7c1;}
+  border-bottom: 1px solid #fceed7;
+  box-shadow: 0 2px #e8e5e2;
+}
 
 .input {
   border: 2px solid black;
@@ -75,15 +76,16 @@
   color: black;
   border: 0px ;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 10px;
   width: 55px;
-  height:20px;
+  height:15px;
   position:relative;
+ 
 }
 
 #sizeh, #sizew, #outlineSize{
   width: 25px;
-
+  
 }
 
 input:focus{
@@ -116,23 +118,37 @@ input[type=number]::-webkit-inner-spin-button {
   border: none;
   background: none;
   height: auto;
+  font-weight: 800;
+  font-size: 18;
 }
 
-.panelInput {
+#panelInput {
   margin: 2px;
   margin-bottom: 5px;
 }
 
 .settings {
-  background-color: #FAE3DC;
+  background-color: #faeedc;
   width: 150px;
-  height: calc(100vh - 40px - 30px);
+  height: calc(100vh - 40px - 18px);
   position: relative;
   left: 0;
   display: flex;
   flex-direction: column;
   z-index: 2;
-  
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  height: 6px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(97, 152, 134);
+  border-radius: 5px;
+
+
 }
 
 .togglenav{
@@ -140,7 +156,7 @@ input[type=number]::-webkit-inner-spin-button {
   height:20px;
 }
 .sideSettings {
-  background-color: #FDECEA;
+  background-color: #fff8ed;
   width: 35px;
   height: calc(100vh - 40px - 30px);
   /* margin-top: 30px; */
@@ -151,25 +167,29 @@ input[type=number]::-webkit-inner-spin-button {
   flex-direction: column;
   z-index: 1;
   align-items: center;
-   border-right: 1px solid #FAE3DC;
+   border-right: 1px solid #faeedc;
 }
 
 .settingsTitle {
-  height: 30px;
+  height: 25px;
   width:150px;
   font-size: 10px;
-  border-top: 1px solid #e3cfc9;
-  border-bottom: 1px solid #e3cfc9;
-  box-shadow: 0 2px #dbc7c1;
+  font-weight: 600;
+  border-top: 1px solid #eee2d0;
+  border-bottom: 1px solid #eee2d0;
+  box-shadow:  0 2px 5px #eee2d0;
   display: flex;
   flex-direction: row;
   position: relative;
+  padding-left:15px;
 }
 
 
 #colorSettingsTitle{
+  border-top: 1px solid #eee2d0;
   margin-top:2px;
-  border-top: 1px solid #e3cfc9;
+  border-top: 1px solid #fff8ed;
+
 }
 
 .settingsTit {
@@ -182,19 +202,13 @@ input[type=number]::-webkit-inner-spin-button {
 .collapseOps{
   display:flex;
   position: absolute;
-  right:0;
+  left:0;
   margin-right: 5px; 
   border: none;
   background: none;
-  height: auto;
-}
+  height: 35px;
+  width: 15px;
 
-#gridOptions {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  padding-right: 10px;
-  padding-top:10px;
 }
 
 .size {
@@ -240,6 +254,17 @@ input[type=number]::-webkit-inner-spin-button {
   padding-bottom: 10px;
 }
 
+
+.options{
+  display:flex;
+  flex-direction: column;
+  padding-top: 10px;
+  position: relative;
+  margin-left: 5px;
+  margin-bottom: 5px;
+
+}
+
 .colors {
   display: flex;
   flex-direction: column;
@@ -253,27 +278,24 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 #colorpicker{
-  /* display:none; */
-  background-color: #FAE3DC ;
+  background-color: #faeedc ;
   width:auto;
   padding:5px;
   z-index:2;
-  left:0;
-  /* margin-bottom: 30px; */
-  position: relative;
+  position: absolute;
   align-items:center;
-  display: flex;
+  display: block;
   flex-direction: column;
+  float:right;
+  right: 0;
 }
 
 .small .react-colorful {
   margin: 5px;
-  /* margin-left: 25px; */
   width: 100px;
   height: 60px;
-  /* border: 1px solid rgb(19, 19, 24); */
   border-radius: 0.5rem;
- 
+
 }
 
 .small .react-colorful__hue {
@@ -298,7 +320,7 @@ input[type=number]::-webkit-inner-spin-button {
 #colorbox {
   display: inline-flex;
   flex-direction: row;
-  height:35px;
+  height:30px;
   position: relative;
   background-color: transparent;
   width: 190px;
@@ -316,22 +338,31 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .colorBtn {
+  position:relative;
   height: 15px;
   width: 15px;
   margin-left: 5px;
   margin-right: 5px;
+  border:none;
+  background-color: transparent;
+  font-weight: 800;
 }
 
 .colorBtns {
   display: inline-flex;
   flex-direction: column;
-  align-items: center;
   width: 10px;
   margin: 2px;
-  /* padding-left:5px; */
-  text-align: center;
+  position: relative;
 }
 
+#colorBtns {
+  display: block;
+  position: relative;
+  height:30px;
+  font-size: 18px;
+  text-align: center;
+}
 .colorinphold{
   padding-left:5px;
 }
@@ -357,12 +388,6 @@ input[type=number]::-webkit-inner-spin-button {
 
 }
 
-
-#colorOptions{
-  display:flex;
-  flex-direction: column;
-  padding-top: 10px;
-}
 
 .fillButt{
   background:#FEF8F5; 
