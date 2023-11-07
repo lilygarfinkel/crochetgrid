@@ -278,7 +278,7 @@ function Container() {
                     </div>
                   </div>
 
-                </div>
+                
                 Outline Frequency:
                 <div className="option">
                   {/* <Symbol src={outlineicon} id="oicon" text='outline frequency' /> */}
@@ -291,7 +291,7 @@ function Container() {
                       changeOutline(e);
                     }}
                   />
-                </div>
+                </div><br></br>
 
                 Size:
                 <div className="option">
@@ -318,6 +318,7 @@ function Container() {
                     }}
                   />
                 </div>
+                <br></br>
                 <div className="option">
                   <button
                     id='swatchtog'
@@ -325,6 +326,7 @@ function Container() {
                     onClick={toggleSwatch}
                     style={{ marginBottom: '10px', height: 'auto' }}>
                     size from swatch</button>
+                </div>
                 </div>
               </div>
             </div>
