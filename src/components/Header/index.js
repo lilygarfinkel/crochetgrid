@@ -17,7 +17,12 @@ const Navbar = () => {
   return (
     <>
       <PrimaryNav>
-        <Menu>
+      
+        <div id='imgC' style={{width:'100vw',position:'absolute', textAlign:'center'}}>
+          <img id='img' src={logo} style={{height:'50px', position:'relative'}}></img>
+        </div>
+        
+        {/* <Menu>
           <MenuLink to="/" >
             <img src={gg} alt="Logo" id="logo" style={{ height: '30px' }} />
 
@@ -50,7 +55,7 @@ const Navbar = () => {
                     {/* <LoginLink to="/login"  >
 
           </LoginLink> */}
-        </Menu>
+        {/* </Menu> */} 
       </PrimaryNav>
     </>
   )

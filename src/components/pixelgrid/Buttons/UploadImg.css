@@ -1,0 +1,17 @@
+
+#UploadImg{
+    display: none;
+    position: absolute;
+    z-index: 10;
+    flex-direction: column;
+    height:430px;
+    width:400px;
+    --w:  calc( 100vw - 400px );
+    --h:  calc( 100vh - 430px );
+    margin-left: calc(var(--w) / 2 );
+    margin-top: calc(var(--h) / 2 - 40px);
+    background-color: #FEF8F5;
+    border: 1px solid rgb(97, 152, 134);
+    align-items: center;
+    padding: 10px;
+}

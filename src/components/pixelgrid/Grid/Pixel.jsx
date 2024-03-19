@@ -21,14 +21,29 @@ export default function Pixel(props) {
     setBorder();
   }, [bgFill, bordB, bordR, bold, drawMode])
 
+
+  function fillSearch(){
+    var left = (x-1).toString() + 'x' + count.toString();
+    var right = (x+1).toString() + 'x' + count.toString();
+    var up = (x).toString() + 'x' + (count+1).toString();
+    var down = (x).toString() + 'x' + (count-1).toString();
+
+    var l = document.getElementById(left);
+    var r = document.getElementById(right);
+    var u = document.getElementById(up);
+    var d = document.getElementById(down);
+  }
+
   function applyColor() {
     setPixelColor(selectedColor)
     setCanChangeColor(false)
-    console.log(dm);
-    if (dm === 2) {
+    if(dm === 1){
+      fillSearch();
+    }
+    else if (dm === 2) {
       setDM(0)
     }
-    if (dm === 3) {
+    else if (dm === 3) {
       var pix = document.getElementsByClassName('pixel');
       for (var i = 1; i < pix.length; i++) {
         var yid = pix[i].id.split("x")[1];
@@ -38,7 +53,7 @@ export default function Pixel(props) {
         }
       }
      }
-    if (dm === 4) {
+    else if (dm === 4) {
       var pix = document.getElementsByClassName('pixel');
       for (var i = 1; i < pix.length; i++) {
         var xid = pix[i].id.split("x")[0];
@@ -49,6 +64,7 @@ export default function Pixel(props) {
       }
     }
   }
+
 
  function setBorder(){
     if (borderR) {
@@ -106,7 +122,7 @@ export default function Pixel(props) {
       className="pixel"
       onClick={applyColor}
       // onMouseEnter={changeColorOnHover}
-      onMouseLeave={resetColor}
+      // onMouseLeave={resetColor}
       style={{ backgroundColor: pixelColor, border: '1px solid grey', borderRight: bordR, borderBottom: bordB, height: stitch + zoom + "px", width: 15 + zoom + "px" }}
     ></div>
   )

@@ -1,0 +1,236 @@
+
+#swatchSet{
+    display: none;
+    position: absolute;
+    z-index: 10;
+    flex-direction: column;
+    height:430px;
+    width:400px;
+    --w:  calc( 100vw - 400px );
+    --h:  calc( 100vh - 430px );
+    margin-left: calc(var(--w) / 2 );
+    margin-top: calc(var(--h) / 2 - 40px);
+    background-color: #FEF8F5;
+    border: 1px solid rgb(97, 152, 134);
+    align-items: center;
+    padding: 10px;
+}
+
+#heading{
+    display: flex; 
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    
+}
+
+#close{
+position: absolute;
+display:block;
+right:0;
+top: 0;
+width: 20px;
+height: 20px;
+font-size: 10px;
+margin: 0;
+padding: 0;
+border: 0px;
+background-color: #fceed7;
+}
+  
+ 
+  .swatchbutt, .swatchbuttU{
+    width: 35px; 
+    height: 15px; 
+    background-color: #fceed7;
+    border-radius: 5px;
+    border: 0px ;
+    margin: 5px;
+    padding-left: 2px;
+    text-align: center;
+
+  }
+  
+   #swatchSizeL{
+    background-color: #c1d8c3;
+    padding: 5px;
+    width: 400px;
+    border-bottom:1px solid rgb(97, 152, 134);
+    display: flex;
+    flex-direction: column;
+    /* margin-right:20px; */
+  }
+  
+  #swatchSizeR{
+    background-color: #c1d8c3;
+    padding: 5px;
+    width: 400px;
+    border-bottom:1px solid rgb(97, 152, 134)
+
+  }
+  .swatchinp{
+    font-size: 10px; 
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+  }
+  .swatchButts{
+    display: flex; 
+    flex-direction: row; 
+    width: 200px;
+
+  }
+  .swatchdims{
+    display: flex; 
+    flex-direction: column;
+    margin-left: 5px;
+  }
+
+  #apply{
+    height: 25px; 
+    width: 55px; 
+    background-color: rgb(97, 152, 134);
+    border-radius: 5px;
+    border: 0px; 
+    margin: 5px;
+    padding-left:2px;
+  }
+
+  #cancel{
+    height: 25px; 
+    width: 55px; 
+    background-color: #fceed7;
+    border-radius: 5px;
+    border: 0px; 
+    margin: 5px;
+    padding-left:2px;
+  }
+  
+  #swatchtit{
+    font-size: 18px;
+    margin: 2px; 
+    padding-bottom: 2px;
+  }
+
+  .desc{
+    font-size: 10px;
+    margin:0px;
+    /* margin-left: 20px; */
+    padding:0px;
+    margin-left: 5px;
+    /* width: 175px; */
+  }
+  
+  h4{
+    font-size: 14px;
+    padding: 0px;
+    margin:0px;
+    height: 25px;
+    /* text-align: center; */
+    /* background-color: #fceed7; */
+  }
+
+  h5{
+    font-size: 12px; 
+    padding-left: 5px;
+  }
+
+  #calc{
+    width: auto; 
+  }
+
+  .swatchans{
+    text-align: center;
+    height: 25px; 
+    width: 50px; 
+    font-size: 14px;
+    background-color: rgb(97, 152, 134);
+    border-radius: 5px;
+    border: 0px; 
+    margin: 5px;
+  }
+
+  .swatchansdims{
+    display: flex;
+    flex-direction: row;
+  }
+  .lbl{
+    padding: 0;
+    margin: 0px;
+  }
+
+  #calculated{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    /* align-items: center; */
+  }
+  .swatchimg{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  #bottombutts{
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  #pt1{
+    display: flex;
+    flex-direction: row;
+    
+  }
+
+  .radio{
+    position: relative;
+    display: inline-flex;
+    flex-direction:row ;
+  }
+
+ fieldset{
+  right:0;
+  top:0;
+  position: absolute;
+  margin:30px;
+  /* font-size: 10px; */
+  }
+
+  .radio input[type='radio'] {
+    display: none; /*removes original button*/
+   }
+  
+  .radio label {                     /* add this so dot is relative to the label */
+      position: relative;
+      display: inline-block;
+  }
+  
+  .radio label:before { /*styles outer circle*/
+      content: " ";
+      display: inline-block;
+      top: 5px;
+      margin: 0 2px 0 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 11px;
+      border: 2px solid rgb(97, 152, 134);
+      background-color: transparent;
+      vertical-align:middle; 
+  }
+  
+  /* remove the first label from this selector */
+  .radio input[type='radio']:checked + label:after { /*styles inside circle*/
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      top: 6px;                    
+      /* left: 6px; */
+      content: " ";
+      display: block;
+      background-color: rgb(97, 152, 134);
+  }
